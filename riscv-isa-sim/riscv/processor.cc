@@ -40,8 +40,10 @@ processor_t::processor_t(const char* isa, const char* priv, const char* varch,
 
   disassembler = new disassembler_t(max_xlen);
   if (ext)
-    for (auto disasm_insn : ext->get_disasms())
+    for (auto disasm_insn : ext->get_disasms()) {
+			std::cout << disasm_insn->get_name() << std::endl;
       disassembler->add_insn(disasm_insn);
+		}
 
   set_pmp_granularity(1 << PMP_SHIFT);
   set_pmp_num(state.max_pmp);
