@@ -86,8 +86,6 @@ void htif_t::start()
 
 std::map<std::string, uint64_t> htif_t::load_payload(const std::string& payload, reg_t* entry)
 {
-	//std::cout << payload << std::endl;
-	std::cout << "CALL LOAD PAYLOAD" << std::endl;
   std::string path;
   if (access(payload.c_str(), F_OK) == 0)
     path = payload;

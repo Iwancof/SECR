@@ -7,13 +7,7 @@
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
 !_TAG_PROGRAM_VERSION	0.0.0	/a3c87ab5/
 $(riscv_gen_srcs)	build/riscv.mk	/^$(riscv_gen_srcs): %.cc: insns\/%.h insn_template.cc$/;"	t
-$(riscv_gen_srcs)	riscv.mk	/^$(riscv_gen_srcs): %.cc: insns\/%.h insn_template.cc$/;"	t
 $(riscv_gen_srcs)	riscv/riscv.mk.in	/^$(riscv_gen_srcs): %.cc: insns\/%.h insn_template.cc$/;"	t
-%	Makefile	/^% : %,v$/;"	t
-%	Makefile	/^% : RCS\/%$/;"	t
-%	Makefile	/^% : RCS\/%,v$/;"	t
-%	Makefile	/^% : SCCS\/s.%$/;"	t
-%	Makefile	/^% : s.%$/;"	t
 %	Makefile.in	/^% : %,v$/;"	t
 %	Makefile.in	/^% : RCS\/%$/;"	t
 %	Makefile.in	/^% : RCS\/%,v$/;"	t
@@ -25,15 +19,12 @@ $(riscv_gen_srcs)	riscv/riscv.mk.in	/^$(riscv_gen_srcs): %.cc: insns\/%.h insn_t
 %	build/Makefile	/^% : SCCS\/s.%$/;"	t
 %	build/Makefile	/^% : s.%$/;"	t
 %.cc	build/riscv.mk	/^$(riscv_gen_srcs): %.cc: insns\/%.h insn_template.cc$/;"	t
-%.cc	riscv.mk	/^$(riscv_gen_srcs): %.cc: insns\/%.h insn_template.cc$/;"	t
 %.cc	riscv/riscv.mk.in	/^$(riscv_gen_srcs): %.cc: insns\/%.h insn_template.cc$/;"	t
 %.h	debug_rom/Makefile	/^%.h:	%.raw$/;"	t
-%.out	Makefile	/^%.out: % all$/;"	t
 %.out	Makefile.in	/^%.out: % all$/;"	t
 %.out	build/Makefile	/^%.out: % all$/;"	t
 %.raw	debug_rom/Makefile	/^%.raw:	%$/;"	t
 -g	build/config.status	/^  alias -g '${1+"$@"}'='"$@"'$/;"	a
--g	config.status	/^  alias -g '${1+"$@"}'='"$@"'$/;"	a
 -g	configure	/^  alias -g '${1+"$@"}'='"$@"'$/;"	a
 -g	configure	/^  alias -g '\\${1+\\"\\$@\\"}'='\\"\\$@\\"'$/;"	a
 .text	debug_rom/link.ld	/^    .text :$/;"	S
@@ -114,7 +105,6 @@ AC_QUICK_ACCESS_CMDTYPE_LENGTH	riscv/debug_defines.h	/^#define AC_QUICK_ACCESS_C
 AC_QUICK_ACCESS_CMDTYPE_OFFSET	fesvr/debug_defines.h	/^#define AC_QUICK_ACCESS_CMDTYPE_OFFSET /;"	d
 AC_QUICK_ACCESS_CMDTYPE_OFFSET	riscv/debug_defines.h	/^#define AC_QUICK_ACCESS_CMDTYPE_OFFSET /;"	d
 ADDI	fesvr/dtm.cc	/^#define ADDI(/;"	d	file:
-AR	Makefile	/^AR            := ar$/;"	m
 AR	Makefile.in	/^AR            := @AR@$/;"	m
 AR	build/Makefile	/^AR            := ar$/;"	m
 AT_SYSCALL	fesvr/syscall.cc	/^#define AT_SYSCALL(/;"	d	file:
@@ -148,7 +138,6 @@ CAUSE_SUPERVISOR_ECALL	riscv/encoding.h	/^#define CAUSE_SUPERVISOR_ECALL /;"	d
 CAUSE_USER_ECALL	riscv/encoding.h	/^#define CAUSE_USER_ECALL /;"	d
 CAUSE_VIRTUAL_INSTRUCTION	riscv/encoding.h	/^#define CAUSE_VIRTUAL_INSTRUCTION /;"	d
 CAUSE_VIRTUAL_SUPERVISOR_ECALL	riscv/encoding.h	/^#define CAUSE_VIRTUAL_SUPERVISOR_ECALL /;"	d
-CC	Makefile	/^CC            := gcc$/;"	m
 CC	Makefile.in	/^CC            := @CC@$/;"	m
 CC	build/Makefile	/^CC            := gcc$/;"	m
 CC	debug_rom/Makefile	/^CC = $(RISCV)\/bin\/riscv64-unknown-elf-gcc$/;"	m
@@ -163,11 +152,9 @@ CMDERR_NOTSUP	riscv/debug_module.h	/^    CMDERR_NOTSUP = 2,$/;"	e	enum:cmderr
 CMDERR_OTHER	riscv/debug_module.h	/^    CMDERR_OTHER = 7  $/;"	e	enum:cmderr
 COMPARE_MAX	softfloat/fall_maxmin.c	/^#define COMPARE_MAX(/;"	d	file:
 COMPARE_MIN	softfloat/fall_maxmin.c	/^#define COMPARE_MIN(/;"	d	file:
-COMPILE	Makefile	/^COMPILE       := $(CXX) -MMD -MP $(all-cxx-flags) $(sprojs_include)$/;"	m
 COMPILE	Makefile.in	/^COMPILE       := $(CXX) -MMD -MP $(all-cxx-flags) $(sprojs_include)$/;"	m
 COMPILE	build/Makefile	/^COMPILE       := $(CXX) -MMD -MP $(all-cxx-flags) $(sprojs_include)$/;"	m
 COMPILE	debug_rom/Makefile	/^COMPILE = $(CC) -nostdlib -nostartfiles -I.. -Tlink.ld$/;"	m
-COMPILE_C	Makefile	/^COMPILE_C     := $(CC) -MMD -MP $(all-c-flags) $(sprojs_include)$/;"	m
 COMPILE_C	Makefile.in	/^COMPILE_C     := $(CC) -MMD -MP $(all-c-flags) $(sprojs_include)$/;"	m
 COMPILE_C	build/Makefile	/^COMPILE_C     := $(CC) -MMD -MP $(all-c-flags) $(sprojs_include)$/;"	m
 CPU_HZ	riscv/sim.h	/^  static const size_t CPU_HZ = 1000000000; \/\/ 1GHz CPU$/;"	m	class:sim_t	typeref:typename:const size_t
@@ -811,8 +798,6 @@ CSR_VTYPE	riscv/encoding.h	/^#define CSR_VTYPE /;"	d
 CSR_VXRM	riscv/encoding.h	/^#define CSR_VXRM /;"	d
 CSR_VXSAT	riscv/encoding.h	/^#define CSR_VXSAT /;"	d
 CUSTOMEXT_ENABLED	build/config.h	/^#define CUSTOMEXT_ENABLED /;"	d
-CUSTOMEXT_ENABLED	config.h	/^#define CUSTOMEXT_ENABLED /;"	d
-CXX	Makefile	/^CXX           := g++$/;"	m
 CXX	Makefile.in	/^CXX           := @CXX@$/;"	m
 CXX	build/Makefile	/^CXX           := g++$/;"	m
 Compiling and Running a Simple C Program	README.md	/^Compiling and Running a Simple C Program$/;"	s
@@ -867,16 +852,13 @@ DECLARE_INST_TRAP	riscv/trap.h	/^#define DECLARE_INST_TRAP(/;"	d
 DECLARE_MEM_TRAP	riscv/trap.h	/^#define DECLARE_MEM_TRAP(/;"	d
 DECLARE_TRAP	riscv/trap.h	/^#define DECLARE_TRAP(/;"	d
 DEFAULT_ISA	build/config.h	/^#define DEFAULT_ISA /;"	d
-DEFAULT_ISA	config.h	/^#define DEFAULT_ISA /;"	d
 DEFAULT_ISA	riscv/riscv.ac	/^  AC_DEFINE_UNQUOTED([DEFAULT_ISA], "$withval", [Default value for --isa switch]),$/;"	d
 DEFAULT_ISA	riscv/riscv.ac	/^  AC_DEFINE_UNQUOTED([DEFAULT_ISA], "RV64IMAFDC", [Default value for --isa switch]))$/;"	d
 DEFAULT_PRIV	build/config.h	/^#define DEFAULT_PRIV /;"	d
-DEFAULT_PRIV	config.h	/^#define DEFAULT_PRIV /;"	d
 DEFAULT_PRIV	riscv/riscv.ac	/^  AC_DEFINE_UNQUOTED([DEFAULT_PRIV], "$withval", [Default value for --priv switch]),$/;"	d
 DEFAULT_PRIV	riscv/riscv.ac	/^  AC_DEFINE_UNQUOTED([DEFAULT_PRIV], "MSU", [Default value for --priv switch]))$/;"	d
 DEFAULT_RSTVEC	riscv/encoding.h	/^#define DEFAULT_RSTVEC /;"	d
 DEFAULT_VARCH	build/config.h	/^#define DEFAULT_VARCH /;"	d
-DEFAULT_VARCH	config.h	/^#define DEFAULT_VARCH /;"	d
 DEFAULT_VARCH	riscv/riscv.ac	/^  AC_DEFINE_UNQUOTED([DEFAULT_VARCH], "$withval", [Default value for --varch switch]),$/;"	d
 DEFAULT_VARCH	riscv/riscv.ac	/^  AC_DEFINE_UNQUOTED([DEFAULT_VARCH], ["vlen:128,elen:64,slen:128"], [Default value for --varch /;"	d
 DEFINE_B0TYPE	disasm/disasm.cc	/^  #define DEFINE_B0TYPE(/;"	d	file:
@@ -1675,7 +1657,6 @@ DMI_SERTX_DATA_OFFSET	riscv/debug_defines.h	/^#define DMI_SERTX_DATA_OFFSET /;"	
 DO_WRITE_FREG	riscv/decode.h	/^#define DO_WRITE_FREG(/;"	d
 DRAM_BASE	riscv/encoding.h	/^#define DRAM_BASE /;"	d
 DTC	build/config.h	/^#define DTC /;"	d
-DTC	config.h	/^#define DTC /;"	d
 DTC	configure.ac	/^AC_DEFINE_UNQUOTED(DTC, ["dtc"], [Executable name of device-tree-compiler])$/;"	d
 DTMCONTROL_ABITS	riscv/jtag_dtm.cc	/^#define DTMCONTROL_ABITS /;"	d	file:
 DTMCONTROL_DMIHARDRESET	riscv/jtag_dtm.cc	/^#define DTMCONTROL_DMIHARDRESET /;"	d	file:
@@ -1814,7 +1795,6 @@ FDT_BITWISE	fdt/libfdt_env.h	/^#define FDT_BITWISE$/;"	d
 FDT_CREATE_FLAGS_ALL	fdt/libfdt.h	/^#define FDT_CREATE_FLAGS_ALL	/;"	d
 FDT_CREATE_FLAG_NO_NAME_DEDUP	fdt/libfdt.h	/^#define FDT_CREATE_FLAG_NO_NAME_DEDUP /;"	d
 FDT_ENABLED	build/config.h	/^#define FDT_ENABLED /;"	d
-FDT_ENABLED	config.h	/^#define FDT_ENABLED /;"	d
 FDT_END	fdt/fdt.h	/^#define FDT_END	/;"	d
 FDT_END_NODE	fdt/fdt.h	/^#define FDT_END_NODE	/;"	d
 FDT_ERRTABENT	fdt/fdt_strerror.c	/^#define FDT_ERRTABENT(/;"	d	file:
@@ -1863,7 +1843,6 @@ FDT_V2_SIZE	fdt/fdt.h	/^#define FDT_V2_SIZE	/;"	d
 FDT_V3_SIZE	fdt/fdt.h	/^#define FDT_V3_SIZE	/;"	d
 FENCE_I	fesvr/dtm.cc	/^#define FENCE_I /;"	d	file:
 FESVR_ENABLED	build/config.h	/^#define FESVR_ENABLED /;"	d
-FESVR_ENABLED	config.h	/^#define FESVR_ENABLED /;"	d
 FETCH	riscv/memtracer.h	/^  FETCH,$/;"	e	enum:access_type
 FLEN	riscv/decode.h	/^#define FLEN /;"	d
 FPEXC_DZ	riscv/decode.h	/^#define FPEXC_DZ /;"	d
@@ -1892,35 +1871,22 @@ FSR_UFA	riscv/decode.h	/^#define FSR_UFA /;"	d
 GLIBC_64BIT_PTR_BUG	fesvr/context.h	/^#define GLIBC_64BIT_PTR_BUG$/;"	d
 Gdb	tests/testlib.py	/^class Gdb(object):$/;"	c
 HASH_SIZE	riscv/disasm.h	/^  static const int HASH_SIZE = 256;$/;"	m	class:disassembler_t	typeref:typename:const int
-HAVE_DLOPEN	Makefile	/^HAVE_DLOPEN := yes$/;"	m
 HAVE_DLOPEN	Makefile.in	/^HAVE_DLOPEN := @HAVE_DLOPEN@$/;"	m
 HAVE_DLOPEN	build/Makefile	/^HAVE_DLOPEN := yes$/;"	m
 HAVE_DLOPEN	build/config.h	/^#define HAVE_DLOPEN /;"	d
-HAVE_DLOPEN	config.h	/^#define HAVE_DLOPEN /;"	d
-HAVE_INT128	Makefile	/^HAVE_INT128 := yes$/;"	m
 HAVE_INT128	Makefile.in	/^HAVE_INT128 := @HAVE_INT128@$/;"	m
 HAVE_INT128	build/Makefile	/^HAVE_INT128 := yes$/;"	m
 HAVE_INT128	configure.ac	/^AC_CHECK_TYPE([__int128_t], AC_SUBST([HAVE_INT128],[yes]))$/;"	s
 HAVE_INTTYPES_H	build/config.h	/^#define HAVE_INTTYPES_H /;"	d
-HAVE_INTTYPES_H	config.h	/^#define HAVE_INTTYPES_H /;"	d
 HAVE_LIBPTHREAD	build/config.h	/^#define HAVE_LIBPTHREAD /;"	d
-HAVE_LIBPTHREAD	config.h	/^#define HAVE_LIBPTHREAD /;"	d
 HAVE_MEMORY_H	build/config.h	/^#define HAVE_MEMORY_H /;"	d
-HAVE_MEMORY_H	config.h	/^#define HAVE_MEMORY_H /;"	d
 HAVE_STDINT_H	build/config.h	/^#define HAVE_STDINT_H /;"	d
-HAVE_STDINT_H	config.h	/^#define HAVE_STDINT_H /;"	d
 HAVE_STDLIB_H	build/config.h	/^#define HAVE_STDLIB_H /;"	d
-HAVE_STDLIB_H	config.h	/^#define HAVE_STDLIB_H /;"	d
 HAVE_STRINGS_H	build/config.h	/^#define HAVE_STRINGS_H /;"	d
-HAVE_STRINGS_H	config.h	/^#define HAVE_STRINGS_H /;"	d
 HAVE_STRING_H	build/config.h	/^#define HAVE_STRING_H /;"	d
-HAVE_STRING_H	config.h	/^#define HAVE_STRING_H /;"	d
 HAVE_SYS_STAT_H	build/config.h	/^#define HAVE_SYS_STAT_H /;"	d
-HAVE_SYS_STAT_H	config.h	/^#define HAVE_SYS_STAT_H /;"	d
 HAVE_SYS_TYPES_H	build/config.h	/^#define HAVE_SYS_TYPES_H /;"	d
-HAVE_SYS_TYPES_H	config.h	/^#define HAVE_SYS_TYPES_H /;"	d
 HAVE_UNISTD_H	build/config.h	/^#define HAVE_UNISTD_H /;"	d
-HAVE_UNISTD_H	config.h	/^#define HAVE_UNISTD_H /;"	d
 HGATP32_MODE	riscv/encoding.h	/^#define HGATP32_MODE /;"	d
 HGATP32_PPN	riscv/encoding.h	/^#define HGATP32_PPN /;"	d
 HGATP32_VMID	riscv/encoding.h	/^#define HGATP32_VMID /;"	d
@@ -1954,19 +1920,14 @@ INIT_UINTM4	softfloat/primitiveTypes.h	/^#define INIT_UINTM4(/;"	d
 INLINE	softfloat/platform.h	/^#define INLINE /;"	d
 INLINE_LEVEL	softfloat/platform.h	/^#define INLINE_LEVEL /;"	d
 INSNS_PER_RTC_TICK	riscv/sim.h	/^  static const size_t INSNS_PER_RTC_TICK = 100; \/\/ 10 MHz clock for 1 BIPS core$/;"	m	class:sim_t	typeref:typename:const size_t
-INSTALL	Makefile	/^INSTALL       := \/usr\/bin\/install -c$/;"	m
 INSTALL	Makefile.in	/^INSTALL       := @INSTALL@$/;"	m
 INSTALL	build/Makefile	/^INSTALL       := \/usr\/bin\/install -c$/;"	m
-INSTALLDIR	Makefile	/^INSTALLDIR ?= $(DESTDIR)$(prefix)$/;"	m
 INSTALLDIR	Makefile.in	/^INSTALLDIR ?= $(DESTDIR)$(prefix)$/;"	m
 INSTALLDIR	build/Makefile	/^INSTALLDIR ?= $(DESTDIR)$(prefix)$/;"	m
-INSTALL_EXE	Makefile	/^INSTALL_EXE   := $(INSTALL) -m 755$/;"	m
 INSTALL_EXE	Makefile.in	/^INSTALL_EXE   := $(INSTALL) -m 755$/;"	m
 INSTALL_EXE	build/Makefile	/^INSTALL_EXE   := $(INSTALL) -m 755$/;"	m
-INSTALL_HDR	Makefile	/^INSTALL_HDR   := $(INSTALL) -m 644$/;"	m
 INSTALL_HDR	Makefile.in	/^INSTALL_HDR   := $(INSTALL) -m 644$/;"	m
 INSTALL_HDR	build/Makefile	/^INSTALL_HDR   := $(INSTALL) -m 644$/;"	m
-INSTALL_LIB	Makefile	/^INSTALL_LIB   := $(INSTALL) -m 644$/;"	m
 INSTALL_LIB	Makefile.in	/^INSTALL_LIB   := $(INSTALL) -m 644$/;"	m
 INSTALL_LIB	build/Makefile	/^INSTALL_LIB   := $(INSTALL) -m 644$/;"	m
 INTERLEAVE	riscv/sim.h	/^  static const size_t INTERLEAVE = 5000;$/;"	m	class:sim_t	typeref:typename:const size_t
@@ -2005,16 +1966,13 @@ Interactive Debug Mode	README.md	/^Interactive Debug Mode$/;"	s
 JTAG_DTM_H	riscv/jtag_dtm.h	/^#define JTAG_DTM_H$/;"	d
 JUMP	fesvr/dtm.cc	/^#define JUMP(/;"	d	file:
 JUMP_TARGET	riscv/decode.h	/^#define JUMP_TARGET /;"	d
-LD	Makefile	/^LD            := $(CXX)$/;"	m
 LD	Makefile.in	/^LD            := $(CXX)$/;"	m
 LD	build/Makefile	/^LD            := $(CXX)$/;"	m
 LIBFDT_ENV_H	fdt/libfdt_env.h	/^#define LIBFDT_ENV_H$/;"	d
 LIBFDT_H	fdt/libfdt.h	/^#define LIBFDT_H$/;"	d
 LIBFDT_INTERNAL_H	fdt/libfdt_internal.h	/^#define LIBFDT_INTERNAL_H$/;"	d
-LIBS	Makefile	/^LIBS          := -lpthread -ldl -lpthread $/;"	m
 LIBS	Makefile.in	/^LIBS          := @LIBS@$/;"	m
 LIBS	build/Makefile	/^LIBS          := -lpthread -ldl -lpthread $/;"	m
-LINK	Makefile	/^LINK          := $(LD) -L. $(all-link-flags) -Wl,-rpath,$(install_libs_dir) $(patsubst -L%,-Wl$(/;"	m
 LINK	Makefile.in	/^LINK          := $(LD) -L. $(all-link-flags) -Wl,-rpath,$(install_libs_dir) $(patsubst -L%,-Wl$(/;"	m
 LINK	build/Makefile	/^LINK          := $(LD) -L. $(all-link-flags) -Wl,-rpath,$(install_libs_dir) $(patsubst -L%,-Wl$(/;"	m
 LITTLEENDIAN	softfloat/platform.h	/^#define LITTLEENDIAN /;"	d
@@ -3865,7 +3823,6 @@ MIP_VSEIP	riscv/encoding.h	/^#define MIP_VSEIP /;"	d
 MIP_VSSIP	riscv/encoding.h	/^#define MIP_VSSIP /;"	d
 MIP_VSTIP	riscv/encoding.h	/^#define MIP_VSTIP /;"	d
 MIP_VS_MASK	riscv/encoding.h	/^#define MIP_VS_MASK /;"	d
-MKINSTALLDIRS	Makefile	/^MKINSTALLDIRS := $(scripts_dir)\/mk-install-dirs.sh$/;"	m
 MKINSTALLDIRS	Makefile.in	/^MKINSTALLDIRS := $(scripts_dir)\/mk-install-dirs.sh$/;"	m
 MKINSTALLDIRS	build/Makefile	/^MKINSTALLDIRS := $(scripts_dir)\/mk-install-dirs.sh$/;"	m
 MMU	riscv/decode.h	/^#define MMU /;"	d
@@ -3899,7 +3856,6 @@ MSTATUS_VS	riscv/encoding.h	/^#define MSTATUS_VS /;"	d
 MSTATUS_XS	riscv/encoding.h	/^#define MSTATUS_XS /;"	d
 MTIMECMP_BASE	riscv/clint.cc	/^#define MTIMECMP_BASE	/;"	d	file:
 MTIME_BASE	riscv/clint.cc	/^#define MTIME_BASE	/;"	d	file:
-Makefile	Makefile	/^Makefile : $(src_dir)\/Makefile.in $(sprojs_mk_in) config.status$/;"	t
 Makefile	Makefile.in	/^Makefile : $(src_dir)\/Makefile.in $(sprojs_mk_in) config.status$/;"	t
 Makefile	build/Makefile	/^Makefile : $(src_dir)\/Makefile.in $(sprojs_mk_in) config.status$/;"	t
 NCSR	riscv/decode.h	/^const int NCSR = 4096;$/;"	v	typeref:typename:const int
@@ -3915,17 +3871,11 @@ OPERATION_LOAD	riscv/processor.h	/^  OPERATION_LOAD,$/;"	e	enum:__anon2b80edf106
 OPERATION_STORE	riscv/processor.h	/^  OPERATION_STORE,$/;"	e	enum:__anon2b80edf10603
 P	riscv/decode.h	/^#define P /;"	d
 PACKAGE_BUGREPORT	build/config.h	/^#define PACKAGE_BUGREPORT /;"	d
-PACKAGE_BUGREPORT	config.h	/^#define PACKAGE_BUGREPORT /;"	d
 PACKAGE_NAME	build/config.h	/^#define PACKAGE_NAME /;"	d
-PACKAGE_NAME	config.h	/^#define PACKAGE_NAME /;"	d
 PACKAGE_STRING	build/config.h	/^#define PACKAGE_STRING /;"	d
-PACKAGE_STRING	config.h	/^#define PACKAGE_STRING /;"	d
 PACKAGE_TARNAME	build/config.h	/^#define PACKAGE_TARNAME /;"	d
-PACKAGE_TARNAME	config.h	/^#define PACKAGE_TARNAME /;"	d
 PACKAGE_URL	build/config.h	/^#define PACKAGE_URL /;"	d
-PACKAGE_URL	config.h	/^#define PACKAGE_URL /;"	d
 PACKAGE_VERSION	build/config.h	/^#define PACKAGE_VERSION /;"	d
-PACKAGE_VERSION	config.h	/^#define PACKAGE_VERSION /;"	d
 PAUSE_DR	riscv/jtag_dtm.h	/^  PAUSE_DR,$/;"	e	enum:__anon58dfc25b0103
 PAUSE_IR	riscv/jtag_dtm.h	/^  PAUSE_IR,$/;"	e	enum:__anon58dfc25b0103
 PC_ALIGN	riscv/decode.h	/^#define PC_ALIGN /;"	d
@@ -3961,7 +3911,6 @@ PTE_V	riscv/encoding.h	/^#define PTE_V /;"	d
 PTE_W	riscv/encoding.h	/^#define PTE_W /;"	d
 PTE_X	riscv/encoding.h	/^#define PTE_X /;"	d
 PT_LOAD	fesvr/elf.h	/^#define PT_LOAD /;"	d
-RANLIB	Makefile	/^RANLIB        := ranlib$/;"	m
 RANLIB	Makefile.in	/^RANLIB        := @RANLIB@$/;"	m
 RANLIB	build/Makefile	/^RANLIB        := ranlib$/;"	m
 RD	riscv/decode.h	/^#define RD /;"	d
@@ -3977,7 +3926,6 @@ REMOTE_BITBANG_H	riscv/remote_bitbang.h	/^#define REMOTE_BITBANG_H$/;"	d
 RISCV_AT_FDCWD	fesvr/syscall.cc	/^#define RISCV_AT_FDCWD /;"	d	file:
 RISCV_CSR_ENCODING_H	riscv/encoding.h	/^#define RISCV_CSR_ENCODING_H$/;"	d
 RISCV_ENABLED	build/config.h	/^#define RISCV_ENABLED /;"	d
-RISCV_ENABLED	config.h	/^#define RISCV_ENABLED /;"	d
 RISCV_ENCODING_H	riscv/encoding.h	/^#define RISCV_ENCODING_H$/;"	d
 RISCV_PGLEVEL_BITS	riscv/encoding.h	/^# define RISCV_PGLEVEL_BITS /;"	d
 RISCV_PGSHIFT	riscv/encoding.h	/^#define RISCV_PGSHIFT /;"	d
@@ -3991,10 +3939,8 @@ ROD	riscv/processor.h	/^  ROD,$/;"	e	enum:VRM
 RS1	riscv/decode.h	/^#define RS1 /;"	d
 RS2	riscv/decode.h	/^#define RS2 /;"	d
 RS3	riscv/decode.h	/^#define RS3 /;"	d
-RUN	Makefile	/^RUN           := @RUN@$/;"	m
 RUN	Makefile.in	/^RUN           := @RUN@$/;"	m
 RUN	build/Makefile	/^RUN           := @RUN@$/;"	m
-RUNFLAGS	Makefile	/^RUNFLAGS      := @RUNFLAGS@$/;"	m
 RUNFLAGS	Makefile.in	/^RUNFLAGS      := @RUNFLAGS@$/;"	m
 RUNFLAGS	build/Makefile	/^RUNFLAGS      := @RUNFLAGS@$/;"	m
 RUN_AC_OR_DIE	fesvr/dtm.cc	/^#define RUN_AC_OR_DIE(/;"	d	file:
@@ -4046,12 +3992,10 @@ SHT_NOBITS	fesvr/elf.h	/^#define SHT_NOBITS /;"	d
 SIP_SSIP	riscv/encoding.h	/^#define SIP_SSIP /;"	d
 SIP_STIP	riscv/encoding.h	/^#define SIP_STIP /;"	d
 SOFTFLOAT_ENABLED	build/config.h	/^#define SOFTFLOAT_ENABLED /;"	d
-SOFTFLOAT_ENABLED	config.h	/^#define SOFTFLOAT_ENABLED /;"	d
 SOFTFLOAT_FAST_DIV64TO32	softfloat/platform.h	/^#define SOFTFLOAT_FAST_DIV64TO32$/;"	d
 SOFTFLOAT_FAST_INT64	softfloat/platform.h	/^#define SOFTFLOAT_FAST_INT64$/;"	d
 SOFTFLOAT_ROUND_ODD	softfloat/platform.h	/^#define SOFTFLOAT_ROUND_ODD$/;"	d
 SPIKE_MAIN_ENABLED	build/config.h	/^#define SPIKE_MAIN_ENABLED /;"	d
-SPIKE_MAIN_ENABLED	config.h	/^#define SPIKE_MAIN_ENABLED /;"	d
 SRL	fesvr/dtm.cc	/^#define SRL(/;"	d	file:
 SSTATUS32_SD	riscv/encoding.h	/^#define SSTATUS32_SD /;"	d
 SSTATUS64_SD	riscv/encoding.h	/^#define SSTATUS64_SD /;"	d
@@ -4071,13 +4015,11 @@ SSTATUS_XS	riscv/encoding.h	/^#define SSTATUS_XS /;"	d
 STATE	riscv/decode.h	/^#define STATE /;"	d
 STATE	riscv/processor.cc	/^#define STATE /;"	d	file:
 STDC_HEADERS	build/config.h	/^#define STDC_HEADERS /;"	d
-STDC_HEADERS	config.h	/^#define STDC_HEADERS /;"	d
 STEP_NONE	riscv/processor.h	/^      STEP_NONE,$/;"	e	enum:state_t::__anon2b80edf10503
 STEP_STEPPED	riscv/processor.h	/^      STEP_STEPPED$/;"	e	enum:state_t::__anon2b80edf10503
 STEP_STEPPING	riscv/processor.h	/^      STEP_STEPPING,$/;"	e	enum:state_t::__anon2b80edf10503
 STORE	fesvr/dtm.cc	/^#define STORE(/;"	d	file:
 STORE	riscv/memtracer.h	/^  STORE,$/;"	e	enum:access_type
-STOW	Makefile	/^STOW          := @stow@$/;"	m
 STOW	Makefile.in	/^STOW          := @stow@$/;"	m
 STOW	build/Makefile	/^STOW          := @stow@$/;"	m
 Simulating a New Instruction	README.md	/^Simulating a New Instruction$/;"	s
@@ -4262,7 +4204,6 @@ VI_XI_LOOP_WITH_CARRY	riscv/decode.h	/^#define VI_XI_LOOP_WITH_CARRY(/;"	d
 VI_XI_SLIDEDOWN_PARAMS	riscv/decode.h	/^#define VI_XI_SLIDEDOWN_PARAMS(/;"	d
 VI_XI_SLIDEUP_PARAMS	riscv/decode.h	/^#define VI_XI_SLIDEUP_PARAMS(/;"	d
 VLEN	riscv/processor.h	/^      reg_t ELEN, VLEN;$/;"	m	class:processor_t::vectorUnit_t	typeref:typename:reg_t
-VPATH	Makefile	/^VPATH := $(addprefix $(src_dir)\/, $(sprojs_enabled))$/;"	m
 VPATH	Makefile.in	/^VPATH := $(addprefix $(src_dir)\/, $(sprojs_enabled))$/;"	m
 VPATH	build/Makefile	/^VPATH := $(addprefix $(src_dir)\/, $(sprojs_enabled))$/;"	m
 VRM	riscv/processor.h	/^enum VRM{$/;"	g
@@ -4286,7 +4227,6 @@ Versioning and APIs	README.md	/^Versioning and APIs$/;"	s
 WIDE_REDUCTION_LOOP	riscv/decode.h	/^#define WIDE_REDUCTION_LOOP(/;"	d
 WIDE_REDUCTION_ULOOP	riscv/decode.h	/^#define WIDE_REDUCTION_ULOOP(/;"	d
 WORDS_BIGENDIAN	build/config.h	/^#  define WORDS_BIGENDIAN /;"	d
-WORDS_BIGENDIAN	config.h	/^#  define WORDS_BIGENDIAN /;"	d
 WORDS_BIGENDIAN	config.h.in	/^#  define WORDS_BIGENDIAN /;"	d	file:
 WRITE	fesvr/dtm.cc	/^#define WRITE /;"	d	file:
 WRITE_FRD	riscv/decode.h	/^#define WRITE_FRD(/;"	d
@@ -4309,7 +4249,6 @@ X_SP	riscv/decode.h	/^#define X_SP /;"	d
 ZERO	riscv/opcodes.h	/^#define ZERO	/;"	d
 [^	configure	/^s\/^ \\('"$ac_word_re"'\\)\\(([^()]*)\\)[	 ]*\\(.*\\)\/P["\\1"]="\\2"\\$/;"	f
 _ACAWK	build/config.status	/^cat >>"$ac_tmp\/subs1.awk" <<_ACAWK &&$/;"	h
-_ACAWK	config.status	/^cat >>"$ac_tmp\/subs1.awk" <<_ACAWK &&$/;"	h
 _ACEOF	configure	/^	 cat confdefs.h - <<_ACEOF >conftest.$ac_ext$/;"	h
 _ACEOF	configure	/^      cat confdefs.h - <<_ACEOF >conftest.$ac_ext$/;"	h
 _ACEOF	configure	/^    cat confdefs.h - <<_ACEOF >conftest.$ac_ext$/;"	h
@@ -4323,7 +4262,6 @@ _ACEOF	configure	/^cat >>confdefs.h <<_ACEOF$/;"	h
 _ACEOF	configure	/^cat >config.log <<_ACEOF$/;"	h
 _ACEOF	configure	/^cat confdefs.h - <<_ACEOF >conftest.$ac_ext$/;"	h
 _ASBOX	build/config.status	/^  sed 'h;s\/.\/-\/g;s\/^...\/## \/;s\/...$\/ ##\/;p;x;p;x' <<_ASBOX$/;"	h
-_ASBOX	config.status	/^  sed 'h;s\/.\/-\/g;s\/^...\/## \/;s\/...$\/ ##\/;p;x;p;x' <<_ASBOX$/;"	h
 _ASBOX	configure	/^  sed 'h;s\/.\/-\/g;s\/^...\/## \/;s\/...$\/ ##\/;p;x;p;x' <<_ASBOX$/;"	h
 _ASEOF	configure	/^cat >$CONFIG_STATUS <<_ASEOF || as_write_fail=1$/;"	h
 _ASUNAME	configure	/^cat <<_ASUNAME$/;"	h
@@ -4533,7 +4471,6 @@ _exception	debug_rom/debug_rom.S	/^_exception:$/;"	l
 _memif	fesvr/device.h	/^  memif_t& _memif;$/;"	m	class:command_t	typeref:typename:memif_t &
 _name	riscv/trap.h	/^  char _name[16];$/;"	m	class:trap_t	typeref:typename:char[16]
 _resume	debug_rom/debug_rom.S	/^_resume:$/;"	l
-_spike_main	build/_spike_main.cc	/^int _spike_main( int arg ) { return arg; }$/;"	f	typeref:typename:int
 _state	riscv/jtag_dtm.h	/^    jtag_state_t _state;$/;"	m	class:jtag_dtm_t	typeref:typename:jtag_state_t
 _tck	riscv/jtag_dtm.h	/^    bool _tck, _tms, _tdi, _tdo;$/;"	m	class:jtag_dtm_t	typeref:typename:bool
 _tdi	riscv/jtag_dtm.h	/^    bool _tck, _tms, _tdi, _tdo;$/;"	m	class:jtag_dtm_t	typeref:typename:bool
@@ -4593,15 +4530,12 @@ address	fdt/fdt.h	/^	fdt64_t address;$/;"	m	struct:fdt_reserve_entry	typeref:typ
 address	riscv/mmu.h	/^    reg_t address;$/;"	m	class:trigger_matched_t	typeref:typename:reg_t
 advance_pc	riscv/execute.cc	/^    #define advance_pc(/;"	d	file:
 afd	fesvr/rfb.h	/^  int afd;$/;"	m	class:rfb_t	typeref:typename:int
-all	Makefile	/^all : $(install_hdrs) $(install_libs) $(install_exes)$/;"	t
 all	Makefile.in	/^all : $(install_hdrs) $(install_libs) $(install_exes)$/;"	t
 all	build/Makefile	/^all : $(install_hdrs) $(install_libs) $(install_exes)$/;"	t
 all	debug_rom/Makefile	/^all: $(patsubst %,%.h,$(ELFS))$/;"	t
-all-c-flags	Makefile	/^all-c-flags := \\$/;"	m
 all-c-flags	Makefile.in	/^all-c-flags := \\$/;"	m
 all-c-flags	build/Makefile	/^all-c-flags := \\$/;"	m
 all-cxx-flags	Makefile.in	/^all-cxx-flags := \\$/;"	m
-all-link-flags	Makefile	/^all-link-flags := $(mcppbs-LDFLAGS) $(LDFLAGS)$/;"	m
 all-link-flags	Makefile.in	/^all-link-flags := $(mcppbs-LDFLAGS) $(LDFLAGS)$/;"	m
 all-link-flags	build/Makefile	/^all-link-flags := $(mcppbs-LDFLAGS) $(LDFLAGS)$/;"	m
 allhalted	riscv/debug_module.h	/^  bool allhalted;$/;"	m	struct:__anon5c7e8f3d0308	typeref:typename:bool
@@ -4627,32 +4561,24 @@ arg	fesvr/option_parser.h	/^    int arg;$/;"	m	struct:option_parser_t::option_t	
 arg_t	riscv/disasm.h	/^class arg_t$/;"	c
 args	riscv/disasm.h	/^  std::vector<const arg_t*> args;$/;"	m	class:disasm_insn_t	typeref:typename:std::vector<const arg_t * >
 as_fn_append	build/config.status	/^  as_fn_append ()$/;"	f
-as_fn_append	config.status	/^  as_fn_append ()$/;"	f
 as_fn_append	configure	/^  as_fn_append ()$/;"	f
 as_fn_arith	build/config.status	/^  as_fn_arith ()$/;"	f
-as_fn_arith	config.status	/^  as_fn_arith ()$/;"	f
 as_fn_arith	configure	/^  as_fn_arith ()$/;"	f
 as_fn_error	build/config.status	/^as_fn_error ()$/;"	f
-as_fn_error	config.status	/^as_fn_error ()$/;"	f
 as_fn_error	configure	/^as_fn_error ()$/;"	f
 as_fn_executable_p	build/config.status	/^as_fn_executable_p ()$/;"	f
-as_fn_executable_p	config.status	/^as_fn_executable_p ()$/;"	f
 as_fn_executable_p	configure	/^as_fn_executable_p ()$/;"	f
 as_fn_exit	build/config.status	/^as_fn_exit ()$/;"	f
-as_fn_exit	config.status	/^as_fn_exit ()$/;"	f
 as_fn_exit	configure	/^as_fn_exit ()$/;"	f
 as_fn_failure	configure	/^as_fn_failure () { as_fn_return 1; }$/;"	f
 as_fn_mkdir_p	build/config.status	/^as_fn_mkdir_p ()$/;"	f
-as_fn_mkdir_p	config.status	/^as_fn_mkdir_p ()$/;"	f
 as_fn_mkdir_p	configure	/^as_fn_mkdir_p ()$/;"	f
 as_fn_ret_failure	configure	/^as_fn_ret_failure () { return 1; }$/;"	f
 as_fn_ret_success	configure	/^as_fn_ret_success () { return 0; }$/;"	f
 as_fn_set_status	build/config.status	/^as_fn_set_status ()$/;"	f
-as_fn_set_status	config.status	/^as_fn_set_status ()$/;"	f
 as_fn_set_status	configure	/^as_fn_set_status ()$/;"	f
 as_fn_success	configure	/^as_fn_success () { as_fn_return 0; }$/;"	f
 as_fn_unset	build/config.status	/^as_fn_unset ()$/;"	f
-as_fn_unset	config.status	/^as_fn_unset ()$/;"	f
 as_fn_unset	configure	/^as_fn_unset ()$/;"	f
 asize	riscv/debug_module.h	/^  unsigned asize;$/;"	m	struct:__anon5c7e8f3d0608	typeref:typename:unsigned
 atime	fesvr/syscall.cc	/^  uint64_t atime;$/;"	m	struct:riscv_stat	typeref:typename:uint64_t	file:
@@ -4690,10 +4616,8 @@ bcd	fesvr/htif.h	/^  bcd_t bcd;$/;"	m	class:htif_t	typeref:typename:bcd_t
 bcd_t	fesvr/device.cc	/^bcd_t::bcd_t()$/;"	f	class:bcd_t
 bcd_t	fesvr/device.h	/^class bcd_t : public device_t$/;"	c
 bigimm	disasm/disasm.cc	/^} bigimm;$/;"	v	typeref:struct:__anon961b4d0a0e08
-bintest_outs	Makefile	/^bintest_outs = $(bintests:=.out)$/;"	m
 bintest_outs	Makefile.in	/^bintest_outs = $(bintests:=.out)$/;"	m
 bintest_outs	build/Makefile	/^bintest_outs = $(bintests:=.out)$/;"	m
-bintests	Makefile	/^bintests = $(src_dir)\/tests\/ebreak.py$/;"	m
 bintests	Makefile.in	/^bintests = $(src_dir)\/tests\/ebreak.py$/;"	m
 bintests	build/Makefile	/^bintests = $(src_dir)\/tests\/ebreak.py$/;"	m
 bit	riscv/opcodes.h	/^static uint32_t bit(uint32_t value, unsigned int b) {$/;"	f	typeref:typename:uint32_t
@@ -4741,13 +4665,10 @@ cflush_t	customext/cflush.cc	/^class cflush_t : public extension_t$/;"	c	file:
 chain	riscv/disasm.h	/^  std::vector<const disasm_insn_t*> chain[HASH_SIZE+1];$/;"	m	class:disassembler_t	typeref:typename:std::vector<const disasm_insn_t * >[]
 chain	riscv/processor.h	/^  bool chain;$/;"	m	struct:__anon2b80edf10408	typeref:typename:bool
 challenge	riscv/debug_module.h	/^    uint32_t challenge;$/;"	m	class:debug_module_t	typeref:typename:uint32_t
-check	Makefile	/^check : check-cpp check-bin$/;"	t
 check	Makefile.in	/^check : check-cpp check-bin$/;"	t
 check	build/Makefile	/^check : check-cpp check-bin$/;"	t
-check-bin	Makefile	/^check-bin : $(bintest_outs)$/;"	t
 check-bin	Makefile.in	/^check-bin : $(bintest_outs)$/;"	t
 check-bin	build/Makefile	/^check-bin : $(bintest_outs)$/;"	t
-check-cpp	Makefile	/^check-cpp : $(test_outs)$/;"	t
 check-cpp	Makefile.in	/^check-cpp : $(test_outs)$/;"	t
 check-cpp	build/Makefile	/^check-cpp : $(test_outs)$/;"	t
 check_block_	fdt/fdt.c	/^static int check_block_(uint32_t hdrsize, uint32_t totalsize,$/;"	f	typeref:typename:int	file:
@@ -4774,7 +4695,6 @@ chunk_max_size	fesvr/htif_pthread.h	/^  virtual size_t chunk_max_size() { return
 chunk_max_size	fesvr/tsi.h	/^  size_t chunk_max_size() override { return 1024; }$/;"	f	class:tsi_t	typeref:typename:size_t
 chunk_max_size	riscv/sim.h	/^  size_t chunk_max_size() { return 8; }$/;"	f	class:sim_t	typeref:typename:size_t
 chunked_memif_t	fesvr/memif.h	/^class chunked_memif_t$/;"	c
-clean	Makefile	/^clean :$/;"	t
 clean	Makefile.in	/^clean :$/;"	t
 clean	build/Makefile	/^clean :$/;"	t
 clean	debug_rom/Makefile	/^clean:$/;"	t
@@ -4795,7 +4715,6 @@ cmderr_t	riscv/debug_module.h	/^} cmderr_t;$/;"	t	typeref:enum:cmderr
 cmemif	fesvr/memif.h	/^  chunked_memif_t* cmemif;$/;"	m	class:memif_t	typeref:typename:chunked_memif_t *
 cmp	riscv/processor.cc	/^  struct cmp {$/;"	s	function:processor_t::build_opcode_map	file:
 cnt	riscv/insns/viota_m.h	/^int cnt = 0;$/;"	v	typeref:typename:int
-comma	Makefile	/^comma := ,$/;"	m
 comma	Makefile.in	/^comma := ,$/;"	m
 comma	build/Makefile	/^comma := ,$/;"	m
 command	riscv/debug_module.h	/^    uint32_t command;$/;"	m	class:debug_module_t	typeref:typename:uint32_t
@@ -4820,7 +4739,6 @@ commonNaN	softfloat/specialize.h	/^struct commonNaN { char _unused; };$/;"	s
 compile	tests/testlib.py	/^def compile(*args):$/;"	f
 cond	fesvr/context.h	/^  pthread_cond_t cond;$/;"	m	class:context_t	typeref:typename:pthread_cond_t
 config	riscv/debug_module.h	/^    debug_module_config_t config;$/;"	m	class:debug_module_t	typeref:typename:debug_module_config_t
-config.status	Makefile	/^config.status : $(src_dir)\/configure$/;"	t
 config.status	Makefile.in	/^config.status : $(src_dir)\/configure$/;"	t
 config.status	build/Makefile	/^config.status : $(src_dir)\/configure$/;"	t
 configure_log	riscv/sim.cc	/^void sim_t::configure_log(bool enable_log, bool enable_commitlog)$/;"	f	class:sim_t	typeref:typename:void
@@ -4862,16 +4780,12 @@ custom_base	riscv/debug_module.h	/^    unsigned custom_base;$/;"	m	class:debug_m
 custom_cflush	customext/cflush.cc	/^static reg_t custom_cflush(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t	file:
 custom_fmt_t	disasm/disasm.cc	/^} custom_fmt_t;$/;"	t	typeref:struct:__anon961b4d0a3108	file:
 customext_CFLAGS	build/customext.mk	/^customext_CFLAGS = -fPIC$/;"	m
-customext_CFLAGS	customext.mk	/^customext_CFLAGS = -fPIC$/;"	m
 customext_CFLAGS	customext/customext.mk.in	/^customext_CFLAGS = -fPIC$/;"	m
 customext_install_shared_lib	build/customext.mk	/^customext_install_shared_lib = yes$/;"	m
-customext_install_shared_lib	customext.mk	/^customext_install_shared_lib = yes$/;"	m
 customext_install_shared_lib	customext/customext.mk.in	/^customext_install_shared_lib = yes$/;"	m
 customext_srcs	build/customext.mk	/^customext_srcs = \\$/;"	m
-customext_srcs	customext.mk	/^customext_srcs = \\$/;"	m
 customext_srcs	customext/customext.mk.in	/^customext_srcs = \\$/;"	m
 customext_subproject_deps	build/customext.mk	/^customext_subproject_deps = \\$/;"	m
-customext_subproject_deps	customext.mk	/^customext_subproject_deps = \\$/;"	m
 customext_subproject_deps	customext/customext.mk.in	/^customext_subproject_deps = \\$/;"	m
 d	riscv/interactive.cc	/^  double d;$/;"	m	union:fpr	typeref:typename:double	file:
 data	fdt/fdt.h	/^	char data[0];$/;"	m	struct:fdt_property	typeref:typename:char[0]
@@ -4902,7 +4816,6 @@ dealloc	riscv/mmio_plugin.h	/^  static void dealloc(void* self)$/;"	f	struct:mmi
 dealloc	riscv/mmio_plugin.h	/^  void (*dealloc)(void*);$/;"	m	struct:__anonafb95f510108	typeref:typename:void (*)(void *)
 debug	riscv/processor.h	/^  bool debug;$/;"	m	class:processor_t	typeref:typename:bool
 debug	riscv/sim.h	/^  bool debug;$/;"	m	class:sim_t	typeref:typename:bool
-debug-%	Makefile	/^debug-% :$/;"	t
 debug-%	Makefile.in	/^debug-% :$/;"	t
 debug-%	build/Makefile	/^debug-% :$/;"	t
 debug_abstract	riscv/debug_module.h	/^    uint8_t debug_abstract[debug_abstract_size * 4];$/;"	m	class:debug_module_t	typeref:typename:uint8_t[]
@@ -4923,13 +4836,10 @@ debug_rom_raw_len	debug_rom/debug_rom.h	/^static const unsigned int debug_rom_ra
 debug_rom_whereto	riscv/debug_module.h	/^    uint8_t debug_rom_whereto[4];$/;"	m	class:debug_module_t	typeref:typename:uint8_t[4]
 decode_insn	riscv/processor.cc	/^insn_func_t processor_t::decode_insn(insn_t insn)$/;"	f	class:processor_t	typeref:typename:insn_func_t
 decode_vm_info	riscv/mmu.h	/^inline vm_info decode_vm_info(int xlen, bool stage2, reg_t prv, reg_t satp)$/;"	f	typeref:typename:vm_info
-default	Makefile	/^default : all$/;"	t
 default	Makefile.in	/^default : all$/;"	t
 default	build/Makefile	/^default : all$/;"	t
-default-CFLAGS	Makefile	/^default-CFLAGS   := -DPREFIX=\\"$(prefix)\\" -Wall -Wno-unused -g -O2$/;"	m
 default-CFLAGS	Makefile.in	/^default-CFLAGS   := -DPREFIX=\\"$(prefix)\\" -Wall -Wno-unused -g -O2$/;"	m
 default-CFLAGS	build/Makefile	/^default-CFLAGS   := -DPREFIX=\\"$(prefix)\\" -Wall -Wno-unused -g -O2$/;"	m
-default-CXXFLAGS	Makefile	/^default-CXXFLAGS := $(default-CFLAGS) -std=c++11$/;"	m
 default-CXXFLAGS	Makefile.in	/^default-CXXFLAGS := $(default-CFLAGS) -std=c++11$/;"	m
 default-CXXFLAGS	build/Makefile	/^default-CXXFLAGS := $(default-CFLAGS) -std=c++11$/;"	m
 defaultNaNExtF80UI0	softfloat/specialize.h	/^#define defaultNaNExtF80UI0 /;"	d
@@ -4942,7 +4852,6 @@ defaultNaNF128UI96	softfloat/specialize.h	/^#define defaultNaNF128UI96 /;"	d
 defaultNaNF16UI	softfloat/specialize.h	/^#define defaultNaNF16UI /;"	d
 defaultNaNF32UI	softfloat/specialize.h	/^#define defaultNaNF32UI /;"	d
 defaultNaNF64UI	softfloat/specialize.h	/^#define defaultNaNF64UI /;"	d
-deps	Makefile	/^deps : $(deps)$/;"	t
 deps	Makefile.in	/^deps : $(deps)$/;"	t
 deps	build/Makefile	/^deps : $(deps)$/;"	t
 depth	fesvr/htif_hexwriter.h	/^  size_t depth;$/;"	m	class:htif_hexwriter_t	typeref:typename:size_t
@@ -4962,15 +4871,12 @@ dirty_fp_state	riscv/decode.h	/^#define dirty_fp_state /;"	d
 dirty_vs_state	riscv/decode.h	/^#define dirty_vs_state /;"	d
 disasm	riscv/processor.cc	/^void processor_t::disasm(insn_t insn)$/;"	f	class:processor_t	typeref:typename:void
 disasm_CFLAGS	build/disasm.mk	/^disasm_CFLAGS = -fPIC$/;"	m
-disasm_CFLAGS	disasm.mk	/^disasm_CFLAGS = -fPIC$/;"	m
 disasm_CFLAGS	disasm/disasm.mk.in	/^disasm_CFLAGS = -fPIC$/;"	m
 disasm_insn_t	riscv/disasm.h	/^  NOINLINE disasm_insn_t(const char* name, uint32_t match, uint32_t mask,$/;"	f	class:disasm_insn_t	typeref:typename:NOINLINE
 disasm_insn_t	riscv/disasm.h	/^class disasm_insn_t$/;"	c
 disasm_install_lib	build/disasm.mk	/^disasm_install_lib = yes$/;"	m
-disasm_install_lib	disasm.mk	/^disasm_install_lib = yes$/;"	m
 disasm_install_lib	disasm/disasm.mk.in	/^disasm_install_lib = yes$/;"	m
 disasm_srcs	build/disasm.mk	/^disasm_srcs = \\$/;"	m
-disasm_srcs	disasm.mk	/^disasm_srcs = \\$/;"	m
 disasm_srcs	disasm/disasm.mk.in	/^disasm_srcs = \\$/;"	m
 disassemble	disasm/disasm.cc	/^std::string disassembler_t::disassemble(insn_t insn) const$/;"	f	class:disassembler_t	typeref:typename:std::string
 disassembler	riscv/processor.h	/^  disassembler_t* disassembler;$/;"	m	class:processor_t	typeref:typename:disassembler_t *
@@ -4980,22 +4886,16 @@ disk_t	fesvr/device.cc	/^disk_t::disk_t(const char* fn)$/;"	f	class:disk_t
 disk_t	fesvr/device.h	/^class disk_t : public device_t$/;"	c
 dispatch	fesvr/syscall.cc	/^void syscall_t::dispatch(reg_t mm)$/;"	f	class:syscall_t	typeref:typename:void
 display	fesvr/rfb.h	/^  int display;$/;"	m	class:rfb_t	typeref:typename:int
-dist	Makefile	/^dist :$/;"	t
 dist	Makefile.in	/^dist :$/;"	t
 dist	build/Makefile	/^dist :$/;"	t
-dist_dir	Makefile	/^dist_dir := $(project_name)-$(project_ver)$/;"	m
 dist_dir	Makefile.in	/^dist_dir := $(project_name)-$(project_ver)$/;"	m
 dist_dir	build/Makefile	/^dist_dir := $(project_name)-$(project_ver)$/;"	m
-dist_files	Makefile	/^dist_files = \\$/;"	m
 dist_files	Makefile.in	/^dist_files = \\$/;"	m
 dist_files	build/Makefile	/^dist_files = \\$/;"	m
-dist_tgz	Makefile	/^dist_tgz := $(project_name)-$(project_ver).tar.gz$/;"	m
 dist_tgz	Makefile.in	/^dist_tgz := $(project_name)-$(project_ver).tar.gz$/;"	m
 dist_tgz	build/Makefile	/^dist_tgz := $(project_name)-$(project_ver).tar.gz$/;"	m
-distcheck	Makefile	/^distcheck : dist$/;"	t
 distcheck	Makefile.in	/^distcheck : dist$/;"	t
 distcheck	build/Makefile	/^distcheck : dist$/;"	t
-distclean	Makefile	/^distclean :$/;"	t
 distclean	Makefile.in	/^distclean :$/;"	t
 distclean	build/Makefile	/^distclean :$/;"	t
 dm	riscv/jtag_dtm.h	/^    debug_module_t *dm;$/;"	m	class:jtag_dtm_t	typeref:typename:debug_module_t *
@@ -5297,7 +5197,6 @@ fdt_begin_node	fdt/fdt_sw.c	/^int fdt_begin_node(void *fdt, const char *name)$/;
 fdt_blocks_misordered_	fdt/fdt_rw.c	/^static int fdt_blocks_misordered_(const void *fdt,$/;"	f	typeref:typename:int	file:
 fdt_boot_cpuid_phys	fdt/libfdt.h	/^#define fdt_boot_cpuid_phys(/;"	d
 fdt_c_srcs	build/fdt.mk	/^fdt_c_srcs = \\$/;"	m
-fdt_c_srcs	fdt.mk	/^fdt_c_srcs = \\$/;"	m
 fdt_c_srcs	fdt/fdt.mk.in	/^fdt_c_srcs = \\$/;"	m
 fdt_cells	fdt/fdt_addresses.c	/^static int fdt_cells(const void *fdt, int nodeoffset, const char *name)$/;"	f	typeref:typename:int	file:
 fdt_check_full	fdt/fdt_ro.c	/^int fdt_check_full(const void *fdt, size_t bufsize)$/;"	f	typeref:typename:int
@@ -5350,7 +5249,6 @@ fdt_getprop_namelen_w	fdt/libfdt.h	/^static inline void *fdt_getprop_namelen_w(v
 fdt_getprop_w	fdt/libfdt.h	/^static inline void *fdt_getprop_w(void *fdt, int nodeoffset,$/;"	f	typeref:typename:void *
 fdt_grab_space_	fdt/fdt_sw.c	/^static void *fdt_grab_space_(void *fdt, size_t len)$/;"	f	typeref:typename:void *	file:
 fdt_hdrs	build/fdt.mk	/^fdt_hdrs = \\$/;"	m
-fdt_hdrs	fdt.mk	/^fdt_hdrs = \\$/;"	m
 fdt_hdrs	fdt/fdt.mk.in	/^fdt_hdrs = \\$/;"	m
 fdt_header	fdt/fdt.h	/^struct fdt_header {$/;"	s
 fdt_header_size	fdt/libfdt.h	/^static inline size_t fdt_header_size(const void *fdt)$/;"	f	typeref:typename:size_t
@@ -5438,7 +5336,6 @@ fdt_strnlen	fdt/libfdt_env.h	/^static inline size_t fdt_strnlen(const char *stri
 fdt_subnode_offset	fdt/fdt_ro.c	/^int fdt_subnode_offset(const void *fdt, int parentoffset,$/;"	f	typeref:typename:int
 fdt_subnode_offset_namelen	fdt/fdt_ro.c	/^int fdt_subnode_offset_namelen(const void *fdt, int offset,$/;"	f	typeref:typename:int
 fdt_subproject_deps	build/fdt.mk	/^fdt_subproject_deps = \\$/;"	m
-fdt_subproject_deps	fdt.mk	/^fdt_subproject_deps = \\$/;"	m
 fdt_subproject_deps	fdt/fdt.mk.in	/^fdt_subproject_deps = \\$/;"	m
 fdt_supernode_atdepth_offset	fdt/fdt_ro.c	/^int fdt_supernode_atdepth_offset(const void *fdt, int nodeoffset,$/;"	f	typeref:typename:int
 fdt_sw_probe_	fdt/fdt_sw.c	/^static int fdt_sw_probe_(void *fdt)$/;"	f	typeref:typename:int	file:
@@ -5449,22 +5346,16 @@ fdt_version	fdt/libfdt.h	/^#define fdt_version(/;"	d
 fence_i	fesvr/dtm.cc	/^void dtm_t::fence_i()$/;"	f	class:dtm_t	typeref:typename:void
 fence_i	riscv/opcodes.h	/^static uint32_t fence_i(void)$/;"	f	typeref:typename:uint32_t
 fesvr_CFLAGS	build/fesvr.mk	/^fesvr_CFLAGS = -fPIC$/;"	m
-fesvr_CFLAGS	fesvr.mk	/^fesvr_CFLAGS = -fPIC$/;"	m
 fesvr_CFLAGS	fesvr/fesvr.mk.in	/^fesvr_CFLAGS = -fPIC$/;"	m
 fesvr_hdrs	build/fesvr.mk	/^fesvr_hdrs = \\$/;"	m
-fesvr_hdrs	fesvr.mk	/^fesvr_hdrs = \\$/;"	m
 fesvr_hdrs	fesvr/fesvr.mk.in	/^fesvr_hdrs = \\$/;"	m
 fesvr_install_hdrs	build/fesvr.mk	/^fesvr_install_hdrs = $(fesvr_hdrs)$/;"	m
-fesvr_install_hdrs	fesvr.mk	/^fesvr_install_hdrs = $(fesvr_hdrs)$/;"	m
 fesvr_install_hdrs	fesvr/fesvr.mk.in	/^fesvr_install_hdrs = $(fesvr_hdrs)$/;"	m
 fesvr_install_lib	build/fesvr.mk	/^fesvr_install_lib = yes$/;"	m
-fesvr_install_lib	fesvr.mk	/^fesvr_install_lib = yes$/;"	m
 fesvr_install_lib	fesvr/fesvr.mk.in	/^fesvr_install_lib = yes$/;"	m
 fesvr_install_prog_srcs	build/fesvr.mk	/^fesvr_install_prog_srcs = \\$/;"	m
-fesvr_install_prog_srcs	fesvr.mk	/^fesvr_install_prog_srcs = \\$/;"	m
 fesvr_install_prog_srcs	fesvr/fesvr.mk.in	/^fesvr_install_prog_srcs = \\$/;"	m
 fesvr_srcs	build/fesvr.mk	/^fesvr_srcs = \\$/;"	m
-fesvr_srcs	fesvr.mk	/^fesvr_srcs = \\$/;"	m
 fesvr_srcs	fesvr/fesvr.mk.in	/^fesvr_srcs = \\$/;"	m
 fetch_slow_path	riscv/mmu.cc	/^tlb_entry_t mmu_t::fetch_slow_path(reg_t vaddr)$/;"	f	class:mmu_t	typeref:typename:tlb_entry_t
 fetch_temp	riscv/mmu.h	/^  uint16_t fetch_temp;$/;"	m	class:mmu_t	typeref:typename:uint16_t
@@ -5537,7 +5428,6 @@ get_flen	riscv/processor.h	/^  unsigned get_flen() {$/;"	f	class:processor_t	typ
 get_freg	riscv/interactive.cc	/^freg_t sim_t::get_freg(const std::vector<std::string>& args)$/;"	f	class:sim_t	typeref:typename:freg_t
 get_id	riscv/processor.h	/^  uint32_t get_id() const { return id; }$/;"	f	class:processor_t	typeref:typename:uint32_t
 get_insn_list	build/riscv.mk	/^get_insn_list = $(shell grep ^DECLARE_INSN $(1) | sed 's\/DECLARE_INSN(\\(.*\\),.*,.*)\/\\1\/')$/;"	m
-get_insn_list	riscv.mk	/^get_insn_list = $(shell grep ^DECLARE_INSN $(1) | sed 's\/DECLARE_INSN(\\(.*\\),.*,.*)\/\\1\/')$/;"	m
 get_insn_list	riscv/riscv.mk.in	/^get_insn_list = $(shell grep ^DECLARE_INSN $(1) | sed 's\/DECLARE_INSN(\\(.*\\),.*,.*)\/\\1\/')$/;"	m
 get_instructions	customext/cflush.cc	/^  std::vector<insn_desc_t> get_instructions() {$/;"	f	class:cflush_t	typeref:typename:std::vector<insn_desc_t>	file:
 get_instructions	riscv/rocc.cc	/^std::vector<insn_desc_t> rocc_t::get_instructions()$/;"	f	class:rocc_t
@@ -5552,7 +5442,6 @@ get_mem	riscv/interactive.cc	/^reg_t sim_t::get_mem(const std::vector<std::strin
 get_mmu	riscv/processor.h	/^  mmu_t* get_mmu() { return mmu; }$/;"	f	class:processor_t	typeref:typename:mmu_t *
 get_name	riscv/disasm.h	/^  const char* get_name() const$/;"	f	class:disasm_insn_t	typeref:typename:const char *
 get_opcode	build/riscv.mk	/^get_opcode = $(shell grep ^DECLARE_INSN.*\\\\\\<$(2)\\\\\\> $(1) | sed 's\/DECLARE_INSN(.*,\\(.*/;"	m
-get_opcode	riscv.mk	/^get_opcode = $(shell grep ^DECLARE_INSN.*\\\\\\<$(2)\\\\\\> $(1) | sed 's\/DECLARE_INSN(.*,\\(.*/;"	m
 get_opcode	riscv/riscv.mk.in	/^get_opcode = $(shell grep ^DECLARE_INSN.*\\\\\\<$(2)\\\\\\> $(1) | sed 's\/DECLARE_INSN(.*,\\(.*/;"	m
 get_path_len	fdt/fdt_overlay.c	/^static int get_path_len(const void *fdt, int nodeoffset)$/;"	f	typeref:typename:int	file:
 get_pc	riscv/interactive.cc	/^reg_t sim_t::get_pc(const std::vector<std::string>& args)$/;"	f	class:sim_t	typeref:typename:reg_t
@@ -5740,10 +5629,8 @@ i8_fromPosOverflow	softfloat/specialize.h	/^#define i8_fromPosOverflow /;"	d
 i_imm	riscv/decode.h	/^  int64_t i_imm() { return int64_t(b) >> 20; }$/;"	f	class:insn_t	typeref:typename:int64_t
 icache	riscv/mmu.h	/^  icache_entry_t icache[ICACHE_ENTRIES];$/;"	m	class:mmu_t	typeref:typename:icache_entry_t[]
 icache.h	build/riscv.mk	/^icache.h: mmu.h$/;"	t
-icache.h	riscv.mk	/^icache.h: mmu.h$/;"	t
 icache.h	riscv/riscv.mk.in	/^icache.h: mmu.h$/;"	t
 icache_entries	build/riscv.mk	/^icache_entries := `grep "ICACHE_ENTRIES =" $(src_dir)\/riscv\/mmu.h | sed 's\/.* = \\(.*\\);\/\\/;"	m
-icache_entries	riscv.mk	/^icache_entries := `grep "ICACHE_ENTRIES =" $(src_dir)\/riscv\/mmu.h | sed 's\/.* = \\(.*\\);\/\\/;"	m
 icache_entries	riscv/riscv.mk.in	/^icache_entries := `grep "ICACHE_ENTRIES =" $(src_dir)\/riscv\/mmu.h | sed 's\/.* = \\(.*\\);\/\\/;"	m
 icache_entry_t	riscv/mmu.h	/^struct icache_entry_t {$/;"	s
 icache_index	riscv/mmu.h	/^  inline size_t icache_index(reg_t addr)$/;"	f	class:mmu_t	typeref:typename:size_t
@@ -5793,34 +5680,25 @@ insn_fetch_t	riscv/mmu.h	/^struct insn_fetch_t$/;"	s
 insn_func_t	riscv/processor.h	/^typedef reg_t (*insn_func_t)(processor_t*, insn_t, reg_t);$/;"	t	typeref:typename:reg_t (*)(processor_t *,insn_t,reg_t)
 insn_length	riscv/decode.h	/^#define insn_length(/;"	d
 insn_list.h	build/riscv.mk	/^insn_list.h: $(src_dir)\/riscv\/riscv.mk.in$/;"	t
-insn_list.h	riscv.mk	/^insn_list.h: $(src_dir)\/riscv\/riscv.mk.in$/;"	t
 insn_list.h	riscv/riscv.mk.in	/^insn_list.h: $(src_dir)\/riscv\/riscv.mk.in$/;"	t
 insn_t	riscv/decode.h	/^  insn_t(insn_bits_t bits) : b(bits) {}$/;"	f	class:insn_t
 insn_t	riscv/decode.h	/^class insn_t$/;"	c
 insn_trap_t	riscv/trap.h	/^  insn_trap_t(reg_t which, reg_t tval)$/;"	f	class:insn_trap_t
 insn_trap_t	riscv/trap.h	/^class insn_trap_t : public trap_t$/;"	c
-install	Makefile	/^install : install-hdrs install-libs install-exes install-pc$/;"	t
 install	Makefile.in	/^install : install-hdrs install-libs install-exes install-pc$/;"	t
 install	build/Makefile	/^install : install-hdrs install-libs install-exes install-pc$/;"	t
-install-exes	Makefile	/^install-exes : $(install_exes)$/;"	t
 install-exes	Makefile.in	/^install-exes : $(install_exes)$/;"	t
 install-exes	build/Makefile	/^install-exes : $(install_exes)$/;"	t
-install-hdrs	Makefile	/^install-hdrs : $(install_hdrs)$/;"	t
 install-hdrs	Makefile.in	/^install-hdrs : $(install_hdrs)$/;"	t
 install-hdrs	build/Makefile	/^install-hdrs : $(install_hdrs)$/;"	t
-install-libs	Makefile	/^install-libs : $(install_libs)$/;"	t
 install-libs	Makefile.in	/^install-libs : $(install_libs)$/;"	t
 install-libs	build/Makefile	/^install-libs : $(install_libs)$/;"	t
-install-pc	Makefile	/^install-pc : $(install_pcs)$/;"	t
 install-pc	Makefile.in	/^install-pc : $(install_pcs)$/;"	t
 install-pc	build/Makefile	/^install-pc : $(install_pcs)$/;"	t
-install_exes_dir	Makefile	/^install_exes_dir := $(INSTALLDIR)\/bin$/;"	m
 install_exes_dir	Makefile.in	/^install_exes_dir := $(INSTALLDIR)\/bin$/;"	m
 install_exes_dir	build/Makefile	/^install_exes_dir := $(INSTALLDIR)\/bin$/;"	m
-install_hdrs_dir	Makefile	/^install_hdrs_dir := $(INSTALLDIR)\/include$/;"	m
 install_hdrs_dir	Makefile.in	/^install_hdrs_dir := $(INSTALLDIR)\/include$/;"	m
 install_hdrs_dir	build/Makefile	/^install_hdrs_dir := $(INSTALLDIR)\/include$/;"	m
-install_libs_dir	Makefile	/^install_libs_dir := $(INSTALLDIR)\/lib$/;"	m
 install_libs_dir	Makefile.in	/^install_libs_dir := $(INSTALLDIR)\/lib$/;"	m
 install_libs_dir	build/Makefile	/^install_libs_dir := $(INSTALLDIR)\/lib$/;"	m
 instructions	riscv/processor.h	/^  std::vector<insn_desc_t> instructions;$/;"	m	class:processor_t	typeref:typename:std::vector<insn_desc_t>
@@ -6014,16 +5892,12 @@ mcontrol_action_t	riscv/processor.h	/^} mcontrol_action_t;$/;"	t	typeref:enum:__
 mcontrol_match_t	riscv/processor.h	/^} mcontrol_match_t;$/;"	t	typeref:enum:__anon2b80edf10303
 mcontrol_t	riscv/processor.h	/^} mcontrol_t;$/;"	t	typeref:struct:__anon2b80edf10408
 mcounteren	riscv/processor.h	/^  uint32_t mcounteren;$/;"	m	struct:state_t	typeref:typename:uint32_t
-mcppbs-CFLAGS	Makefile	/^mcppbs-CFLAGS   := $(default-CFLAGS) -g -O2$/;"	m
 mcppbs-CFLAGS	Makefile.in	/^mcppbs-CFLAGS   := $(default-CFLAGS) @CFLAGS@$/;"	m
 mcppbs-CFLAGS	build/Makefile	/^mcppbs-CFLAGS   := $(default-CFLAGS) -g -O2$/;"	m
-mcppbs-CPPFLAGS	Makefile	/^mcppbs-CPPFLAGS := $/;"	m
 mcppbs-CPPFLAGS	Makefile.in	/^mcppbs-CPPFLAGS := @CPPFLAGS@$/;"	m
 mcppbs-CPPFLAGS	build/Makefile	/^mcppbs-CPPFLAGS := $/;"	m
-mcppbs-CXXFLAGS	Makefile	/^mcppbs-CXXFLAGS := $(default-CXXFLAGS) -g -O2$/;"	m
 mcppbs-CXXFLAGS	Makefile.in	/^mcppbs-CXXFLAGS := $(default-CXXFLAGS) @CXXFLAGS@$/;"	m
 mcppbs-CXXFLAGS	build/Makefile	/^mcppbs-CXXFLAGS := $(default-CXXFLAGS) -g -O2$/;"	m
-mcppbs-LDFLAGS	Makefile	/^mcppbs-LDFLAGS :=  -Wl,--export-dynamic$/;"	m
 mcppbs-LDFLAGS	Makefile.in	/^mcppbs-LDFLAGS := @LDFLAGS@$/;"	m
 mcppbs-LDFLAGS	build/Makefile	/^mcppbs-LDFLAGS :=  -Wl,--export-dynamic$/;"	m
 medeleg	riscv/processor.h	/^  reg_t medeleg;$/;"	m	struct:state_t	typeref:typename:reg_t
@@ -6228,7 +6102,6 @@ pmpcfg	riscv/processor.h	/^  uint8_t pmpcfg[max_pmp];$/;"	m	struct:state_t	typer
 popcount	riscv/insns/vpopc_m.h	/^reg_t popcount = 0;$/;"	v	typeref:typename:reg_t
 pos	riscv/insns/vcompress_vm.h	/^reg_t pos = 0;$/;"	v	typeref:typename:reg_t
 pos	riscv/insns/vfirst_m.h	/^reg_t pos = -1;$/;"	v	typeref:typename:reg_t
-prefix	Makefile	/^prefix       ?= \/etc\/opt\/risc-v$/;"	m
 prefix	Makefile.in	/^prefix       ?= @prefix@$/;"	m
 prefix	build/Makefile	/^prefix       ?= \/etc\/opt\/risc-v$/;"	m
 preload_aware_memif_t	fesvr/htif.cc	/^    preload_aware_memif_t(htif_t* htif) : memif_t(htif), htif(htif) {}$/;"	f	class:htif_t::load_payload::preload_aware_memif_t	file:
@@ -6260,11 +6133,8 @@ proj_maintainer	configure.ac	/^m4_define( proj_maintainer,   [Andrew Waterman])$
 proj_name	configure.ac	/^AC_INIT(proj_name,proj_version,proj_maintainer,proj_abbreviation)$/;"	p
 proj_name	configure.ac	/^m4_define( proj_name,         [RISC-V ISA Simulator])$/;"	d
 proj_version	configure.ac	/^m4_define( proj_version, [?])$/;"	d
-project_name	Makefile	/^project_name := spike$/;"	m
 project_name	Makefile.in	/^project_name := @PACKAGE_TARNAME@$/;"	m
 project_name	build/Makefile	/^project_name := spike$/;"	m
-project_ver	Makefile	/^  project_ver:=$(shell $(scripts_dir)\/vcs-version.sh $(src_dir))$/;"	m
-project_ver	Makefile	/^  project_ver:=?$/;"	m
 project_ver	Makefile.in	/^  project_ver:=$(shell $(scripts_dir)\/vcs-version.sh $(src_dir))$/;"	m
 project_ver	Makefile.in	/^  project_ver:=@PACKAGE_VERSION@$/;"	m
 project_ver	build/Makefile	/^  project_ver:=$(shell $(scripts_dir)\/vcs-version.sh $(src_dir))$/;"	m
@@ -6410,10 +6280,8 @@ resumeack	riscv/debug_module.h	/^  bool resumeack;$/;"	m	struct:__anon5c7e8f3d07
 resumereq	riscv/debug_module.h	/^  bool resumereq;$/;"	m	struct:__anon5c7e8f3d0208	typeref:typename:bool
 ret	riscv/processor.cc	/^#define ret(/;"	d	file:
 return_resp	fesvr/dtm.cc	/^void dtm_t::return_resp(resp resp_bits){$/;"	f	class:dtm_t	typeref:typename:void
-reverse_list	Makefile	/^reverse_list = $(call reverse_list_h,$(1),)$/;"	m
 reverse_list	Makefile.in	/^reverse_list = $(call reverse_list_h,$(1),)$/;"	m
 reverse_list	build/Makefile	/^reverse_list = $(call reverse_list_h,$(1),)$/;"	m
-reverse_list_h	Makefile	/^define reverse_list_h$/;"	m
 reverse_list_h	Makefile.in	/^define reverse_list_h$/;"	m
 reverse_list_h	build/Makefile	/^define reverse_list_h$/;"	m
 rfb_t	fesvr/rfb.cc	/^rfb_t::rfb_t(int display)$/;"	f	class:rfb_t
@@ -6428,93 +6296,64 @@ rhs	riscv/insns/remu.h	/^reg_t rhs = zext_xlen(RS2);$/;"	v	typeref:typename:reg_
 rhs	riscv/insns/remuw.h	/^reg_t rhs = zext32(RS2);$/;"	v	typeref:typename:reg_t
 rhs	riscv/insns/remw.h	/^sreg_t rhs = sext32(RS2);$/;"	v	typeref:typename:sreg_t
 riscv_CFLAGS	build/riscv.mk	/^riscv_CFLAGS = -fPIC$/;"	m
-riscv_CFLAGS	riscv.mk	/^riscv_CFLAGS = -fPIC$/;"	m
 riscv_CFLAGS	riscv/riscv.mk.in	/^riscv_CFLAGS = -fPIC$/;"	m
 riscv_gen_hdrs	build/riscv.mk	/^riscv_gen_hdrs = \\$/;"	m
-riscv_gen_hdrs	riscv.mk	/^riscv_gen_hdrs = \\$/;"	m
 riscv_gen_hdrs	riscv/riscv.mk.in	/^riscv_gen_hdrs = \\$/;"	m
 riscv_gen_srcs	build/riscv.mk	/^riscv_gen_srcs = \\$/;"	m
-riscv_gen_srcs	riscv.mk	/^riscv_gen_srcs = \\$/;"	m
 riscv_gen_srcs	riscv/riscv.mk.in	/^riscv_gen_srcs = \\$/;"	m
 riscv_hdrs	build/riscv.mk	/^riscv_hdrs = \\$/;"	m
-riscv_hdrs	riscv.mk	/^riscv_hdrs = \\$/;"	m
 riscv_hdrs	riscv/riscv.mk.in	/^riscv_hdrs = \\$/;"	m
 riscv_insn_ext_a	build/riscv.mk	/^riscv_insn_ext_a = \\$/;"	m
-riscv_insn_ext_a	riscv.mk	/^riscv_insn_ext_a = \\$/;"	m
 riscv_insn_ext_a	riscv/riscv.mk.in	/^riscv_insn_ext_a = \\$/;"	m
 riscv_insn_ext_b	build/riscv.mk	/^riscv_insn_ext_b = \\$/;"	m
-riscv_insn_ext_b	riscv.mk	/^riscv_insn_ext_b = \\$/;"	m
 riscv_insn_ext_b	riscv/riscv.mk.in	/^riscv_insn_ext_b = \\$/;"	m
 riscv_insn_ext_c	build/riscv.mk	/^riscv_insn_ext_c = \\$/;"	m
-riscv_insn_ext_c	riscv.mk	/^riscv_insn_ext_c = \\$/;"	m
 riscv_insn_ext_c	riscv/riscv.mk.in	/^riscv_insn_ext_c = \\$/;"	m
 riscv_insn_ext_d	build/riscv.mk	/^riscv_insn_ext_d = \\$/;"	m
-riscv_insn_ext_d	riscv.mk	/^riscv_insn_ext_d = \\$/;"	m
 riscv_insn_ext_d	riscv/riscv.mk.in	/^riscv_insn_ext_d = \\$/;"	m
 riscv_insn_ext_f	build/riscv.mk	/^riscv_insn_ext_f = \\$/;"	m
-riscv_insn_ext_f	riscv.mk	/^riscv_insn_ext_f = \\$/;"	m
 riscv_insn_ext_f	riscv/riscv.mk.in	/^riscv_insn_ext_f = \\$/;"	m
 riscv_insn_ext_h	build/riscv.mk	/^riscv_insn_ext_h = \\$/;"	m
-riscv_insn_ext_h	riscv.mk	/^riscv_insn_ext_h = \\$/;"	m
 riscv_insn_ext_h	riscv/riscv.mk.in	/^riscv_insn_ext_h = \\$/;"	m
 riscv_insn_ext_i	build/riscv.mk	/^riscv_insn_ext_i = \\$/;"	m
-riscv_insn_ext_i	riscv.mk	/^riscv_insn_ext_i = \\$/;"	m
 riscv_insn_ext_i	riscv/riscv.mk.in	/^riscv_insn_ext_i = \\$/;"	m
 riscv_insn_ext_m	build/riscv.mk	/^riscv_insn_ext_m = \\$/;"	m
-riscv_insn_ext_m	riscv.mk	/^riscv_insn_ext_m = \\$/;"	m
 riscv_insn_ext_m	riscv/riscv.mk.in	/^riscv_insn_ext_m = \\$/;"	m
 riscv_insn_ext_q	build/riscv.mk	/^riscv_insn_ext_q = \\$/;"	m
-riscv_insn_ext_q	riscv.mk	/^riscv_insn_ext_q = \\$/;"	m
 riscv_insn_ext_q	riscv/riscv.mk.in	/^riscv_insn_ext_q = \\$/;"	m
 riscv_insn_ext_v	build/riscv.mk	/^riscv_insn_ext_v = \\$/;"	m
-riscv_insn_ext_v	riscv.mk	/^riscv_insn_ext_v = \\$/;"	m
 riscv_insn_ext_v	riscv/riscv.mk.in	/^riscv_insn_ext_v = \\$/;"	m
 riscv_insn_ext_v_alu_fp	build/riscv.mk	/^riscv_insn_ext_v_alu_fp = \\$/;"	m
-riscv_insn_ext_v_alu_fp	riscv.mk	/^riscv_insn_ext_v_alu_fp = \\$/;"	m
 riscv_insn_ext_v_alu_fp	riscv/riscv.mk.in	/^riscv_insn_ext_v_alu_fp = \\$/;"	m
 riscv_insn_ext_v_alu_int	build/riscv.mk	/^riscv_insn_ext_v_alu_int = \\$/;"	m
-riscv_insn_ext_v_alu_int	riscv.mk	/^riscv_insn_ext_v_alu_int = \\$/;"	m
 riscv_insn_ext_v_alu_int	riscv/riscv.mk.in	/^riscv_insn_ext_v_alu_int = \\$/;"	m
 riscv_insn_ext_v_amo	build/riscv.mk	/^riscv_insn_ext_v_amo = \\$/;"	m
-riscv_insn_ext_v_amo	riscv.mk	/^riscv_insn_ext_v_amo = \\$/;"	m
 riscv_insn_ext_v_amo	riscv/riscv.mk.in	/^riscv_insn_ext_v_amo = \\$/;"	m
 riscv_insn_ext_v_ctrl	build/riscv.mk	/^riscv_insn_ext_v_ctrl = \\$/;"	m
-riscv_insn_ext_v_ctrl	riscv.mk	/^riscv_insn_ext_v_ctrl = \\$/;"	m
 riscv_insn_ext_v_ctrl	riscv/riscv.mk.in	/^riscv_insn_ext_v_ctrl = \\$/;"	m
 riscv_insn_ext_v_ldst	build/riscv.mk	/^riscv_insn_ext_v_ldst = \\$/;"	m
-riscv_insn_ext_v_ldst	riscv.mk	/^riscv_insn_ext_v_ldst = \\$/;"	m
 riscv_insn_ext_v_ldst	riscv/riscv.mk.in	/^riscv_insn_ext_v_ldst = \\$/;"	m
 riscv_insn_ext_zfh	build/riscv.mk	/^riscv_insn_ext_zfh = \\$/;"	m
-riscv_insn_ext_zfh	riscv.mk	/^riscv_insn_ext_zfh = \\$/;"	m
 riscv_insn_ext_zfh	riscv/riscv.mk.in	/^riscv_insn_ext_zfh = \\$/;"	m
 riscv_insn_list	build/riscv.mk	/^riscv_insn_list = \\$/;"	m
-riscv_insn_list	riscv.mk	/^riscv_insn_list = \\$/;"	m
 riscv_insn_list	riscv/riscv.mk.in	/^riscv_insn_list = \\$/;"	m
 riscv_insn_priv	build/riscv.mk	/^riscv_insn_priv = \\$/;"	m
-riscv_insn_priv	riscv.mk	/^riscv_insn_priv = \\$/;"	m
 riscv_insn_priv	riscv/riscv.mk.in	/^riscv_insn_priv = \\$/;"	m
 riscv_install_hdrs	build/riscv.mk	/^riscv_install_hdrs = mmio_plugin.h$/;"	m
-riscv_install_hdrs	riscv.mk	/^riscv_install_hdrs = mmio_plugin.h$/;"	m
 riscv_install_hdrs	riscv/riscv.mk.in	/^riscv_install_hdrs = mmio_plugin.h$/;"	m
 riscv_install_prog_srcs	build/riscv.mk	/^riscv_install_prog_srcs = \\$/;"	m
-riscv_install_prog_srcs	riscv.mk	/^riscv_install_prog_srcs = \\$/;"	m
 riscv_install_prog_srcs	riscv/riscv.mk.in	/^riscv_install_prog_srcs = \\$/;"	m
 riscv_junk	build/riscv.mk	/^riscv_junk = \\$/;"	m
-riscv_junk	riscv.mk	/^riscv_junk = \\$/;"	m
 riscv_junk	riscv/riscv.mk.in	/^riscv_junk = \\$/;"	m
 riscv_precompiled_hdrs	build/riscv.mk	/^riscv_precompiled_hdrs = \\$/;"	m
-riscv_precompiled_hdrs	riscv.mk	/^riscv_precompiled_hdrs = \\$/;"	m
 riscv_precompiled_hdrs	riscv/riscv.mk.in	/^riscv_precompiled_hdrs = \\$/;"	m
 riscv_srcs	build/riscv.mk	/^riscv_srcs = \\$/;"	m
-riscv_srcs	riscv.mk	/^riscv_srcs = \\$/;"	m
 riscv_srcs	riscv/riscv.mk.in	/^riscv_srcs = \\$/;"	m
 riscv_stat	fesvr/syscall.cc	/^  riscv_stat(const struct stat& s)$/;"	f	struct:riscv_stat	file:
 riscv_stat	fesvr/syscall.cc	/^struct riscv_stat$/;"	s	file:
 riscv_subproject_deps	build/riscv.mk	/^riscv_subproject_deps = \\$/;"	m
-riscv_subproject_deps	riscv.mk	/^riscv_subproject_deps = \\$/;"	m
 riscv_subproject_deps	riscv/riscv.mk.in	/^riscv_subproject_deps = \\$/;"	m
 riscv_test_srcs	build/riscv.mk	/^riscv_test_srcs =$/;"	m
-riscv_test_srcs	riscv.mk	/^riscv_test_srcs =$/;"	m
 riscv_test_srcs	riscv/riscv.mk.in	/^riscv_test_srcs =$/;"	m
 rm	riscv/decode.h	/^  uint64_t rm() { return x(12, 3); }$/;"	f	class:insn_t	typeref:typename:uint64_t
 rocc_insn_t	riscv/rocc.h	/^struct rocc_insn_t$/;"	s
@@ -6673,21 +6512,12 @@ rv32_crc32c_b	build/crc32c_b.cc	/^reg_t rv32_crc32c_b(processor_t* p, insn_t ins
 rv32_crc32c_d	build/crc32c_d.cc	/^reg_t rv32_crc32c_d(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_crc32c_h	build/crc32c_h.cc	/^reg_t rv32_crc32c_h(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_crc32c_w	build/crc32c_w.cc	/^reg_t rv32_crc32c_w(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
-rv32_csrrc	build/csrrc.cc	/^reg_t rv32_csrrc(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
-rv32_csrrci	build/csrrci.cc	/^reg_t rv32_csrrci(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
-rv32_csrrs	build/csrrs.cc	/^reg_t rv32_csrrs(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
-rv32_csrrsi	build/csrrsi.cc	/^reg_t rv32_csrrsi(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
-rv32_csrrw	build/csrrw.cc	/^reg_t rv32_csrrw(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
-rv32_csrrwi	build/csrrwi.cc	/^reg_t rv32_csrrwi(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_ctz	build/ctz.cc	/^reg_t rv32_ctz(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_ctzw	build/ctzw.cc	/^reg_t rv32_ctzw(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_div	build/div.cc	/^reg_t rv32_div(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_divu	build/divu.cc	/^reg_t rv32_divu(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_divuw	build/divuw.cc	/^reg_t rv32_divuw(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_divw	build/divw.cc	/^reg_t rv32_divw(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
-rv32_dret	build/dret.cc	/^reg_t rv32_dret(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
-rv32_ebreak	build/ebreak.cc	/^reg_t rv32_ebreak(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
-rv32_ecall	build/ecall.cc	/^reg_t rv32_ecall(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_fadd_d	build/fadd_d.cc	/^reg_t rv32_fadd_d(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_fadd_h	build/fadd_h.cc	/^reg_t rv32_fadd_h(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_fadd_q	build/fadd_q.cc	/^reg_t rv32_fadd_q(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
@@ -6846,9 +6676,7 @@ rv32_hlv_wu	build/hlv_wu.cc	/^reg_t rv32_hlv_wu(processor_t* p, insn_t insn, reg
 rv32_hlvx_hu	build/hlvx_hu.cc	/^reg_t rv32_hlvx_hu(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_hlvx_wu	build/hlvx_wu.cc	/^reg_t rv32_hlvx_wu(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_hsv_b	build/hsv_b.cc	/^reg_t rv32_hsv_b(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
-rv32_hsv_d	build/hsv_d.cc	/^reg_t rv32_hsv_d(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_hsv_h	build/hsv_h.cc	/^reg_t rv32_hsv_h(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
-rv32_hsv_w	build/hsv_w.cc	/^reg_t rv32_hsv_w(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_jal	build/jal.cc	/^reg_t rv32_jal(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_jalr	build/jalr.cc	/^reg_t rv32_jalr(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_lb	build/lb.cc	/^reg_t rv32_lb(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
@@ -6864,7 +6692,6 @@ rv32_max	build/max.cc	/^reg_t rv32_max(processor_t* p, insn_t insn, reg_t pc)$/;
 rv32_maxu	build/maxu.cc	/^reg_t rv32_maxu(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_min	build/min.cc	/^reg_t rv32_min(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_minu	build/minu.cc	/^reg_t rv32_minu(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
-rv32_mret	build/mret.cc	/^reg_t rv32_mret(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_mul	build/mul.cc	/^reg_t rv32_mul(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_mulh	build/mulh.cc	/^reg_t rv32_mulh(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_mulhsu	build/mulhsu.cc	/^reg_t rv32_mulhsu(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
@@ -6911,7 +6738,6 @@ rv32_sc_w	build/sc_w.cc	/^reg_t rv32_sc_w(processor_t* p, insn_t insn, reg_t pc)
 rv32_sd	build/sd.cc	/^reg_t rv32_sd(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_sext_b	build/sext_b.cc	/^reg_t rv32_sext_b(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_sext_h	build/sext_h.cc	/^reg_t rv32_sext_h(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
-rv32_sfence_vma	build/sfence_vma.cc	/^reg_t rv32_sfence_vma(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_sh	build/sh.cc	/^reg_t rv32_sh(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_sh1add	build/sh1add.cc	/^reg_t rv32_sh1add(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_sh1addu_w	build/sh1addu_w.cc	/^reg_t rv32_sh1addu_w(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
@@ -6939,7 +6765,6 @@ rv32_sra	build/sra.cc	/^reg_t rv32_sra(processor_t* p, insn_t insn, reg_t pc)$/;
 rv32_srai	build/srai.cc	/^reg_t rv32_srai(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_sraiw	build/sraiw.cc	/^reg_t rv32_sraiw(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_sraw	build/sraw.cc	/^reg_t rv32_sraw(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
-rv32_sret	build/sret.cc	/^reg_t rv32_sret(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_srl	build/srl.cc	/^reg_t rv32_srl(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_srli	build/srli.cc	/^reg_t rv32_srli(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_srliw	build/srliw.cc	/^reg_t rv32_srliw(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
@@ -7357,7 +7182,6 @@ rv32_vxor_vx	build/vxor_vx.cc	/^reg_t rv32_vxor_vx(processor_t* p, insn_t insn, 
 rv32_vzext_vf2	build/vzext_vf2.cc	/^reg_t rv32_vzext_vf2(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_vzext_vf4	build/vzext_vf4.cc	/^reg_t rv32_vzext_vf4(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_vzext_vf8	build/vzext_vf8.cc	/^reg_t rv32_vzext_vf8(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
-rv32_wfi	build/wfi.cc	/^reg_t rv32_wfi(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_xnor	build/xnor.cc	/^reg_t rv32_xnor(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_xor	build/xor.cc	/^reg_t rv32_xor(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_xori	build/xori.cc	/^reg_t rv32_xori(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
@@ -7460,21 +7284,12 @@ rv64_crc32c_b	build/crc32c_b.cc	/^reg_t rv64_crc32c_b(processor_t* p, insn_t ins
 rv64_crc32c_d	build/crc32c_d.cc	/^reg_t rv64_crc32c_d(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_crc32c_h	build/crc32c_h.cc	/^reg_t rv64_crc32c_h(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_crc32c_w	build/crc32c_w.cc	/^reg_t rv64_crc32c_w(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
-rv64_csrrc	build/csrrc.cc	/^reg_t rv64_csrrc(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
-rv64_csrrci	build/csrrci.cc	/^reg_t rv64_csrrci(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
-rv64_csrrs	build/csrrs.cc	/^reg_t rv64_csrrs(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
-rv64_csrrsi	build/csrrsi.cc	/^reg_t rv64_csrrsi(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
-rv64_csrrw	build/csrrw.cc	/^reg_t rv64_csrrw(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
-rv64_csrrwi	build/csrrwi.cc	/^reg_t rv64_csrrwi(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_ctz	build/ctz.cc	/^reg_t rv64_ctz(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_ctzw	build/ctzw.cc	/^reg_t rv64_ctzw(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_div	build/div.cc	/^reg_t rv64_div(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_divu	build/divu.cc	/^reg_t rv64_divu(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_divuw	build/divuw.cc	/^reg_t rv64_divuw(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_divw	build/divw.cc	/^reg_t rv64_divw(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
-rv64_dret	build/dret.cc	/^reg_t rv64_dret(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
-rv64_ebreak	build/ebreak.cc	/^reg_t rv64_ebreak(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
-rv64_ecall	build/ecall.cc	/^reg_t rv64_ecall(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_fadd_d	build/fadd_d.cc	/^reg_t rv64_fadd_d(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_fadd_h	build/fadd_h.cc	/^reg_t rv64_fadd_h(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_fadd_q	build/fadd_q.cc	/^reg_t rv64_fadd_q(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
@@ -7633,9 +7448,7 @@ rv64_hlv_wu	build/hlv_wu.cc	/^reg_t rv64_hlv_wu(processor_t* p, insn_t insn, reg
 rv64_hlvx_hu	build/hlvx_hu.cc	/^reg_t rv64_hlvx_hu(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_hlvx_wu	build/hlvx_wu.cc	/^reg_t rv64_hlvx_wu(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_hsv_b	build/hsv_b.cc	/^reg_t rv64_hsv_b(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
-rv64_hsv_d	build/hsv_d.cc	/^reg_t rv64_hsv_d(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_hsv_h	build/hsv_h.cc	/^reg_t rv64_hsv_h(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
-rv64_hsv_w	build/hsv_w.cc	/^reg_t rv64_hsv_w(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_jal	build/jal.cc	/^reg_t rv64_jal(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_jalr	build/jalr.cc	/^reg_t rv64_jalr(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_lb	build/lb.cc	/^reg_t rv64_lb(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
@@ -7651,7 +7464,6 @@ rv64_max	build/max.cc	/^reg_t rv64_max(processor_t* p, insn_t insn, reg_t pc)$/;
 rv64_maxu	build/maxu.cc	/^reg_t rv64_maxu(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_min	build/min.cc	/^reg_t rv64_min(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_minu	build/minu.cc	/^reg_t rv64_minu(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
-rv64_mret	build/mret.cc	/^reg_t rv64_mret(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_mul	build/mul.cc	/^reg_t rv64_mul(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_mulh	build/mulh.cc	/^reg_t rv64_mulh(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_mulhsu	build/mulhsu.cc	/^reg_t rv64_mulhsu(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
@@ -7698,7 +7510,6 @@ rv64_sc_w	build/sc_w.cc	/^reg_t rv64_sc_w(processor_t* p, insn_t insn, reg_t pc)
 rv64_sd	build/sd.cc	/^reg_t rv64_sd(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_sext_b	build/sext_b.cc	/^reg_t rv64_sext_b(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_sext_h	build/sext_h.cc	/^reg_t rv64_sext_h(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
-rv64_sfence_vma	build/sfence_vma.cc	/^reg_t rv64_sfence_vma(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_sh	build/sh.cc	/^reg_t rv64_sh(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_sh1add	build/sh1add.cc	/^reg_t rv64_sh1add(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_sh1addu_w	build/sh1addu_w.cc	/^reg_t rv64_sh1addu_w(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
@@ -7726,7 +7537,6 @@ rv64_sra	build/sra.cc	/^reg_t rv64_sra(processor_t* p, insn_t insn, reg_t pc)$/;
 rv64_srai	build/srai.cc	/^reg_t rv64_srai(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_sraiw	build/sraiw.cc	/^reg_t rv64_sraiw(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_sraw	build/sraw.cc	/^reg_t rv64_sraw(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
-rv64_sret	build/sret.cc	/^reg_t rv64_sret(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_srl	build/srl.cc	/^reg_t rv64_srl(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_srli	build/srli.cc	/^reg_t rv64_srli(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_srliw	build/srliw.cc	/^reg_t rv64_srliw(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
@@ -8144,7 +7954,6 @@ rv64_vxor_vx	build/vxor_vx.cc	/^reg_t rv64_vxor_vx(processor_t* p, insn_t insn, 
 rv64_vzext_vf2	build/vzext_vf2.cc	/^reg_t rv64_vzext_vf2(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_vzext_vf4	build/vzext_vf4.cc	/^reg_t rv64_vzext_vf4(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_vzext_vf8	build/vzext_vf8.cc	/^reg_t rv64_vzext_vf8(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
-rv64_wfi	build/wfi.cc	/^reg_t rv64_wfi(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_xnor	build/xnor.cc	/^reg_t rv64_xnor(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_xor	build/xor.cc	/^reg_t rv64_xor(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_xori	build/xori.cc	/^reg_t rv64_xori(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
@@ -8219,7 +8028,6 @@ sbcs_t	riscv/debug_module.h	/^} sbcs_t;$/;"	t	typeref:struct:__anon5c7e8f3d0608
 sbdata	riscv/debug_module.h	/^    uint32_t sbdata[4];$/;"	m	class:debug_module_t	typeref:typename:uint32_t[4]
 scause	riscv/processor.h	/^  reg_t scause;$/;"	m	struct:state_t	typeref:typename:reg_t
 scounteren	riscv/processor.h	/^  uint32_t scounteren;$/;"	m	struct:state_t	typeref:typename:uint32_t
-scripts_dir	Makefile	/^scripts_dir  := $(src_dir)\/scripts$/;"	m
 scripts_dir	Makefile.in	/^scripts_dir  := $(src_dir)\/scripts$/;"	m
 scripts_dir	build/Makefile	/^scripts_dir  := $(src_dir)\/scripts$/;"	m
 sd	riscv/opcodes.h	/^static uint32_t sd(unsigned int src, unsigned int base, uint16_t offset)$/;"	f	typeref:typename:uint32_t
@@ -8384,7 +8192,6 @@ slow_path	riscv/execute.cc	/^bool processor_t::slow_path()$/;"	f	class:processor
 socket_fd	riscv/remote_bitbang.h	/^  int socket_fd;$/;"	m	class:remote_bitbang_t	typeref:typename:int
 sockfd	fesvr/rfb.h	/^  int sockfd;$/;"	m	class:rfb_t	typeref:typename:int
 softfloat_CFLAGS	build/softfloat.mk	/^softfloat_CFLAGS = -fPIC$/;"	m
-softfloat_CFLAGS	softfloat.mk	/^softfloat_CFLAGS = -fPIC$/;"	m
 softfloat_CFLAGS	softfloat/softfloat.mk.in	/^softfloat_CFLAGS = -fPIC$/;"	m
 softfloat_add128	softfloat/primitives.h	/^ softfloat_add128( uint64_t a64, uint64_t a0, uint64_t b64, uint64_t b0 )$/;"	f	typeref:typename:INLINE struct uint128
 softfloat_add128	softfloat/s_add128.c	/^ softfloat_add128( uint64_t a64, uint64_t a0, uint64_t b64, uint64_t b0 )$/;"	f	typeref:struct:uint128
@@ -8408,7 +8215,6 @@ softfloat_approxRecipSqrt_1k1s	softfloat/s_approxRecipSqrt_1Ks.c	/^const uint16_
 softfloat_approxRecip_1k0s	softfloat/s_approxRecip_1Ks.c	/^const uint16_t softfloat_approxRecip_1k0s[16] = {$/;"	v	typeref:typename:const uint16_t[16]
 softfloat_approxRecip_1k1s	softfloat/s_approxRecip_1Ks.c	/^const uint16_t softfloat_approxRecip_1k1s[16] = {$/;"	v	typeref:typename:const uint16_t[16]
 softfloat_c_srcs	build/softfloat.mk	/^softfloat_c_srcs = \\$/;"	m
-softfloat_c_srcs	softfloat.mk	/^softfloat_c_srcs = \\$/;"	m
 softfloat_c_srcs	softfloat/softfloat.mk.in	/^softfloat_c_srcs = \\$/;"	m
 softfloat_commonNaNToExtF80M	softfloat/specialize.h	/^ softfloat_commonNaNToExtF80M($/;"	f	typeref:typename:INLINE void
 softfloat_commonNaNToExtF80UI	softfloat/specialize.h	/^struct uint128 softfloat_commonNaNToExtF80UI( const struct commonNaN *aPtr )$/;"	f	typeref:typename:INLINE struct uint128
@@ -8448,13 +8254,10 @@ softfloat_flag_overflow	softfloat/softfloat.h	/^    softfloat_flag_overflow  =  
 softfloat_flag_underflow	softfloat/softfloat.h	/^    softfloat_flag_underflow =  2,$/;"	e	enum:__anon52f85d6e0303
 softfloat_h	softfloat/softfloat.h	/^#define softfloat_h /;"	d
 softfloat_hdrs	build/softfloat.mk	/^softfloat_hdrs = \\$/;"	m
-softfloat_hdrs	softfloat.mk	/^softfloat_hdrs = \\$/;"	m
 softfloat_hdrs	softfloat/softfloat.mk.in	/^softfloat_hdrs = \\$/;"	m
 softfloat_install_prog_srcs	build/softfloat.mk	/^softfloat_install_prog_srcs =$/;"	m
-softfloat_install_prog_srcs	softfloat.mk	/^softfloat_install_prog_srcs =$/;"	m
 softfloat_install_prog_srcs	softfloat/softfloat.mk.in	/^softfloat_install_prog_srcs =$/;"	m
 softfloat_install_shared_lib	build/softfloat.mk	/^softfloat_install_shared_lib = yes$/;"	m
-softfloat_install_shared_lib	softfloat.mk	/^softfloat_install_shared_lib = yes$/;"	m
 softfloat_install_shared_lib	softfloat/softfloat.mk.in	/^softfloat_install_shared_lib = yes$/;"	m
 softfloat_isSigNaNExtF80UI	softfloat/specialize.h	/^#define softfloat_isSigNaNExtF80UI(/;"	d
 softfloat_isSigNaNF128UI	softfloat/specialize.h	/^#define softfloat_isSigNaNF128UI(/;"	d
@@ -8579,10 +8382,8 @@ softfloat_subMagsF16	softfloat/s_subMagsF16.c	/^float16_t softfloat_subMagsF16( 
 softfloat_subMagsF32	softfloat/s_subMagsF32.c	/^float32_t softfloat_subMagsF32( uint_fast32_t uiA, uint_fast32_t uiB )$/;"	f	typeref:typename:float32_t
 softfloat_subMagsF64	softfloat/s_subMagsF64.c	/^ softfloat_subMagsF64( uint_fast64_t uiA, uint_fast64_t uiB, bool signZ )$/;"	f	typeref:typename:float64_t
 softfloat_subproject_deps	build/softfloat.mk	/^softfloat_subproject_deps =$/;"	m
-softfloat_subproject_deps	softfloat.mk	/^softfloat_subproject_deps =$/;"	m
 softfloat_subproject_deps	softfloat/softfloat.mk.in	/^softfloat_subproject_deps =$/;"	m
 softfloat_test_srcs	build/softfloat.mk	/^softfloat_test_srcs =$/;"	m
-softfloat_test_srcs	softfloat.mk	/^softfloat_test_srcs =$/;"	m
 softfloat_test_srcs	softfloat/softfloat.mk.in	/^softfloat_test_srcs =$/;"	m
 softfloat_tininess_afterRounding	softfloat/softfloat.h	/^    softfloat_tininess_afterRounding  = 1$/;"	e	enum:__anon52f85d6e0103
 softfloat_tininess_beforeRounding	softfloat/softfloat.h	/^    softfloat_tininess_beforeRounding = 0,$/;"	e	enum:__anon52f85d6e0103
@@ -8590,42 +8391,29 @@ softfloat_types_h	softfloat/softfloat_types.h	/^#define softfloat_types_h /;"	d
 sort_mem_region	spike_main/spike.cc	/^bool sort_mem_region(const std::pair<reg_t, mem_t*> &a,$/;"	f	typeref:typename:bool
 specialize_h	softfloat/specialize.h	/^#define specialize_h /;"	d
 spike_dasm_install_prog_srcs	build/spike_dasm.mk	/^spike_dasm_install_prog_srcs = \\$/;"	m
-spike_dasm_install_prog_srcs	spike_dasm.mk	/^spike_dasm_install_prog_srcs = \\$/;"	m
 spike_dasm_install_prog_srcs	spike_dasm/spike_dasm.mk.in	/^spike_dasm_install_prog_srcs = \\$/;"	m
 spike_dasm_srcs	build/spike_dasm.mk	/^spike_dasm_srcs = \\$/;"	m
-spike_dasm_srcs	spike_dasm.mk	/^spike_dasm_srcs = \\$/;"	m
 spike_dasm_srcs	spike_dasm/spike_dasm.mk.in	/^spike_dasm_srcs = \\$/;"	m
 spike_dasm_subproject_deps	build/spike_dasm.mk	/^spike_dasm_subproject_deps = \\$/;"	m
-spike_dasm_subproject_deps	spike_dasm.mk	/^spike_dasm_subproject_deps = \\$/;"	m
 spike_dasm_subproject_deps	spike_dasm/spike_dasm.mk.in	/^spike_dasm_subproject_deps = \\$/;"	m
 spike_main_hdrs	build/spike_main.mk	/^spike_main_hdrs = \\$/;"	m
-spike_main_hdrs	spike_main.mk	/^spike_main_hdrs = \\$/;"	m
 spike_main_hdrs	spike_main/spike_main.mk.in	/^spike_main_hdrs = \\$/;"	m
 spike_main_install_prog_srcs	build/spike_main.mk	/^spike_main_install_prog_srcs = \\$/;"	m
-spike_main_install_prog_srcs	spike_main.mk	/^spike_main_install_prog_srcs = \\$/;"	m
 spike_main_install_prog_srcs	spike_main/spike_main.mk.in	/^spike_main_install_prog_srcs = \\$/;"	m
 spike_main_srcs	build/spike_main.mk	/^spike_main_srcs = \\$/;"	m
-spike_main_srcs	spike_main.mk	/^spike_main_srcs = \\$/;"	m
 spike_main_srcs	spike_main/spike_main.mk.in	/^spike_main_srcs = \\$/;"	m
 spike_main_subproject_deps	build/spike_main.mk	/^spike_main_subproject_deps = \\$/;"	m
-spike_main_subproject_deps	spike_main.mk	/^spike_main_subproject_deps = \\$/;"	m
 spike_main_subproject_deps	spike_main/spike_main.mk.in	/^spike_main_subproject_deps = \\$/;"	m
-sprojs	Makefile	/^sprojs         :=  fesvr riscv disasm customext fdt softfloat spike_main spike_dasm$/;"	m
 sprojs	Makefile.in	/^sprojs         := @subprojects@$/;"	m
 sprojs	build/Makefile	/^sprojs         :=  fesvr riscv disasm customext fdt softfloat spike_main spike_dasm$/;"	m
-sprojs_enabled	Makefile	/^sprojs_enabled :=  fesvr riscv disasm customext fdt softfloat spike_main spike_dasm$/;"	m
 sprojs_enabled	Makefile.in	/^sprojs_enabled := @subprojects_enabled@$/;"	m
 sprojs_enabled	build/Makefile	/^sprojs_enabled :=  fesvr riscv disasm customext fdt softfloat spike_main spike_dasm$/;"	m
-sprojs_include	Makefile	/^sprojs_include := -I. -I$(src_dir) $(addprefix -I$(src_dir)\/, $(sprojs_enabled))$/;"	m
 sprojs_include	Makefile.in	/^sprojs_include := -I. -I$(src_dir) $(addprefix -I$(src_dir)\/, $(sprojs_enabled))$/;"	m
 sprojs_include	build/Makefile	/^sprojs_include := -I. -I$(src_dir) $(addprefix -I$(src_dir)\/, $(sprojs_enabled))$/;"	m
-sprojs_mk	Makefile	/^sprojs_mk = $(addsuffix .mk, $(sprojs_enabled))$/;"	m
 sprojs_mk	Makefile.in	/^sprojs_mk = $(addsuffix .mk, $(sprojs_enabled))$/;"	m
 sprojs_mk	build/Makefile	/^sprojs_mk = $(addsuffix .mk, $(sprojs_enabled))$/;"	m
-sprojs_mk_in	Makefile	/^sprojs_mk_in = \\$/;"	m
 sprojs_mk_in	Makefile.in	/^sprojs_mk_in = \\$/;"	m
 sprojs_mk_in	build/Makefile	/^sprojs_mk_in = \\$/;"	m
-src_dir	Makefile	/^src_dir      := .$/;"	m
 src_dir	Makefile.in	/^src_dir      := @srcdir@$/;"	m
 src_dir	build/Makefile	/^src_dir      := ..$/;"	m
 sreg_t	fesvr/memif.h	/^typedef int64_t sreg_t;$/;"	t	typeref:typename:int64_t
@@ -8677,7 +8465,6 @@ strnlen	fdt/libfdt_env.h	/^#define strnlen /;"	d
 strtolower	riscv/processor.cc	/^static std::string strtolower(const char* str)$/;"	f	typeref:typename:std::string	file:
 stval	riscv/processor.h	/^  reg_t stval;$/;"	m	struct:state_t	typeref:typename:reg_t
 stvec	riscv/processor.h	/^  reg_t stvec;$/;"	m	struct:state_t	typeref:typename:reg_t
-subproject_template	Makefile	/^define subproject_template$/;"	m
 subproject_template	Makefile.in	/^define subproject_template$/;"	m
 subproject_template	build/Makefile	/^define subproject_template$/;"	m
 suggest_help	spike_main/spike.cc	/^static void suggest_help()$/;"	f	typeref:typename:void	file:

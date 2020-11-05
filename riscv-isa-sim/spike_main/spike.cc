@@ -13,7 +13,6 @@
 #include <string>
 #include <memory>
 #include <fstream>
-#include <iostream>
 #include "../VERSION"
 
 static void help(int exit_code = 1)
@@ -202,7 +201,6 @@ static unsigned long atoul_nonzero_safe(const char* s)
 
 int main(int argc, char** argv)
 {
-	std::cout << "CALL MAIN" << std::endl;
   bool debug = false;
   bool halted = false;
   bool histogram = false;
@@ -393,7 +391,7 @@ int main(int argc, char** argv)
       }
     }
   }
-	
+
   sim_t s(isa, priv, varch, nprocs, halted, real_time_clint,
       initrd_start, initrd_end, bootargs, start_pc, mems, plugin_devices, htif_args,
       std::move(hartids), dm_config, log_path, dtb_enabled, dtb_file);
