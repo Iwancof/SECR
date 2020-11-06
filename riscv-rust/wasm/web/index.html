@@ -1,0 +1,200 @@
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link rel="stylesheet" href="xtermjs/xterm.css" />
+    <script src="xtermjs/xterm.js"></script>
+    <style>
+      #terminal {
+        height: 90%;
+      }
+    </style>
+  </head>
+  <body>
+    <script type="module">
+      import App from './App.js';
+      import init, { WasmRiscv } from "./riscv_emu_rust_wasm.js";
+
+      const resourcePath = '../../resources/';
+      const COLUMNS = 80;
+      const MINIMUM_ROWS = 24;
+
+      let wasm;
+
+      const runButton = document.getElementById('run-button');
+	  const fileSelect = document.getElementById('file-select');
+	  const debuggerCheckbox = document.getElementById('debugger-checkbox');
+
+      const terminal = new Terminal();
+      terminal.setOption('cursorBlink', true);
+      terminal.setOption('convertEol', true);
+      terminal.open(document.getElementById('terminal'));
+
+      terminal.writeln('Message from the emulator author Takahiro:');
+      terminal.writeln('');
+      terminal.writeln('This is RISC-V processor emulator written in Rust and compiled to WebAssembly.');
+      terminal.writeln('You can run the RISC-V port of Linux or xv6 (UNIX V6 rewritten by MIT for x86)');
+      terminal.writeln('on your browser. Select OS from the list and press Run button.');
+      terminal.writeln('');
+      terminal.writeln('Or you can run your own program. Drag and drop your binary file here.');
+      terminal.writeln('');
+      terminal.writeln('The emulator is still very slow. It takes time to boot Linux or xv6. Thank you');
+      terminal.writeln('for your patience.');
+      terminal.writeln('');
+      terminal.writeln('Enjoy RISC-V and Operating System on browser!');
+      terminal.writeln('');
+
+      const run = async (elfBuffer, fsBuffer, symbolBuffer, isPresetBinaries) => {
+        const debugMode = debuggerCheckbox.checked;
+
+        const riscv = WasmRiscv.new();
+        riscv.setup_program(new Uint8Array(elfBuffer));
+
+        if (fsBuffer.byteLength > 0) {
+          riscv.setup_filesystem(new Uint8Array(fsBuffer));
+        }
+
+        if (symbolBuffer.byteLength > 0) {
+          riscv.load_program_for_symbols(new Uint8Array(symbolBuffer));
+        }
+
+        // Enable experimental address translation page cache optimization
+        // if booting Linux or xv6. Disable this feature if you face
+        // uncertain error.
+        if (isPresetBinaries) {
+          riscv.enable_page_cache(true);
+        }
+
+        const app = new App(riscv, terminal, {
+          debugModeEnabled: debugMode
+        });
+
+        if (debugMode) {
+          terminal.writeln('Debug mode.');
+          app.startDebugMode();
+        } else {
+          app.run();
+        }
+      };
+
+      // From https://github.com/xtermjs/xterm.js/tree/master/addons/xterm-addon-fit
+      const onResize = event => {
+        // @TODO: Remove reliance on private API
+        const core = terminal._core;
+
+        const parentElementStyle = window.getComputedStyle(terminal.element.parentElement);
+        const parentElementHeight = parseInt(parentElementStyle.getPropertyValue('height'));
+        const elementStyle = window.getComputedStyle(terminal.element);
+        const elementPadding = {
+          top: parseInt(elementStyle.getPropertyValue('padding-top')),
+          bottom: parseInt(elementStyle.getPropertyValue('padding-bottom'))
+        };
+        const elementPaddingVer = elementPadding.top + elementPadding.bottom;
+        const availableHeight = parentElementHeight - elementPaddingVer;
+        const rows = Math.max(MINIMUM_ROWS, Math.floor(availableHeight / core._renderService.dimensions.actualCellHeight));
+        terminal.resize(COLUMNS, rows);
+      };
+
+      window.addEventListener('resize', onResize);
+      onResize();
+
+      window.addEventListener('dragover', event => {
+        event.preventDefault();
+      });
+
+      window.addEventListener('drop', event => {
+        event.preventDefault();
+
+        if (runButton.disabled) {
+          return;
+        }
+
+        runButton.disabled = true;
+        fileSelect.disabled = true;
+        debuggerCheckbox.disabled = true;
+
+        terminal.clear();
+
+        const reader = new FileReader();
+        reader.addEventListener('load', event => {
+          terminal.writeln('Running program.');
+          run(event.target.result, new ArrayBuffer(0), new ArrayBuffer(0), false);
+        });
+        reader.addEventListener('error', error => {
+          terminal.writeln(error.message);
+          runButton.disabled = false;
+          fileSelect.disabled = false;
+          debuggerCheckbox.disabled = false;
+        });
+        reader.readAsArrayBuffer(event.dataTransfer.files[0]);
+        terminal.writeln('Loading program...');
+      });
+
+      const onClick = async event => {
+        runButton.disabled = true;
+        fileSelect.disabled = true;
+        debuggerCheckbox.disabled = true;
+
+        terminal.clear();
+
+        const debugMode = debuggerCheckbox.checked;
+        const selectedOption = fileSelect.selectedOptions[0];
+        const filename = selectedOption.value;
+        const isLinux = filename === 'linux/opensbi/fw_payload.elf' || filename === 'linux/bbl/bbl';
+        const isXv6 = filename === 'xv6/kernel';
+
+        terminal.writeln('Downloading files...');
+
+        const elfResponse = await fetch(resourcePath + filename);
+        const elfBuffer = await elfResponse.arrayBuffer();
+
+        let fsBuffer;
+        let symbolBuffer;
+
+        if (isLinux) {
+          const fsResponse = await fetch(resourcePath + 'linux/rootfs.img');
+          fsBuffer = await fsResponse.arrayBuffer();
+          if (debugMode) {
+            const symbolResponse = await fetch(resourcePath + 'linux/vmlinux');
+            symbolBuffer = await symbolResponse.arrayBuffer();
+          } else {
+            symbolBuffer = new ArrayBuffer(0);
+          }
+        } else if (isXv6) {
+          const fsResponse = await fetch(resourcePath + 'xv6/fs.img');
+          fsBuffer = await fsResponse.arrayBuffer();
+          symbolBuffer = new ArrayBuffer(0);
+        } else {
+          runButton.disabled = false;
+          fileSelect.disabled = false;
+          debuggerCheckbox.disabled = false;
+          terminal.writeln('Unknown program.');
+          throw new Error('Unknown program.');
+        }
+
+        terminal.writeln('Done downloading.');
+
+        run(elfBuffer, fsBuffer, symbolBuffer, true);
+      };
+
+      init()
+        .then(_wasm => {
+          wasm = _wasm;
+          runButton.addEventListener('click', onClick);
+          runButton.disabled = false;
+          debuggerCheckbox.disabled = false;
+        })
+        .catch(error => terminal.writeln(error.message));
+    </script>
+    <select id="file-select">
+      <option value="linux/opensbi/fw_payload.elf" selected>Linux + OpenSBI</option>
+      <option value="linux/bbl/bbl">Linux + Legacy BBL</option>
+      <option value="xv6/kernel">xv6 (tiny OS)</option>
+    </select>
+    <button id="run-button" disabled>Run</button>
+    <input id="debugger-checkbox" type="checkbox" disabled>Debugger</input>
+    <div id="terminal"></div>
+    <div>
+      <a href="https://risc-v-getting-started-guide.readthedocs.io/en/latest/linux-qemu.html">Linux</a>, <a href="https://github.com/mit-pdos/xv6-riscv" target="_blank">xv6</a> on <a href="https://github.com/takahirox/riscv-rust" target="_blank">RISC-V processor emulator in Rust+WASM</a>
+    </div>
+  </body>
+</html>

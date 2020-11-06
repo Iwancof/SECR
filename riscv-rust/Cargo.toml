@@ -1,0 +1,23 @@
+[package]
+name = "riscv_emu_rust"
+version = "0.2.0"
+description = "RISC-V emulator written in Rust"
+authors = ["Takahiro <hogehoge@gachapin.jp>"]
+license = "MIT"
+homepage = "https://github.com/takahirox/riscv-rust"
+repository = "https://github.com/takahirox/riscv-rust"
+exclude = [
+  "resources/*",
+  "screenshots/*",
+  "cli/*",
+  "wasm/*"
+]
+
+[workspace]
+members = [".", "cli", "wasm"]
+
+[badges]
+travis-ci = { repository = "takahirox/riscv-rust" }
+
+[dependencies]
+fnv = "1.0.7"
