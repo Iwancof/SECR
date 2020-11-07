@@ -4,9 +4,8 @@ use core::panic::PanicInfo;
 
 #[no_mangle]
 fn main() {
-	loop {
 
-	}
+	panic!();
 }
 
 #[panic_handler]
