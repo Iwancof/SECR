@@ -8,7 +8,7 @@ _start:
     lui     sp, %hi(stacks + 1024)
     ori     sp, sp, %lo(stacks + 1024)
     /* Now jump to the rust world; __start_rust.  */
-    j       __start_rust
+    j       main 
 
 .bss
 
