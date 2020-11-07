@@ -1,12 +1,11 @@
 
-LINKER_SCRIPT = linker.ld
-
 
 .PHONY: all
 all: RROS
 
 .PHONY: run
 run: all
+	spike pk ./rros.img
 
 .PHONY: clean
 clean: 
@@ -36,7 +35,7 @@ RUST_OBJECT: main.rs
 	rustc main.rs -o ./object_files/main.o $(RUSTC_FLAGS)
 	
 
-RROS: BOOT_ASM $(LINKER_SCRIPT) RUST_OBJECT
+RROS: BOOT_ASM RUST_OBJECT
 	riscv64-linux-gnu-ld ./object_files/* -o rros.img
 
 
