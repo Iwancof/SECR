@@ -1,11 +1,17 @@
+#![allow(unused)]
+
 #![no_std]
 
 use core::panic::PanicInfo;
 
-#[no_mangle]
-fn main() {
+extern "C" {
+	fn break_point();
+	fn syscall_exit();
+}
 
-	panic!();
+#[no_mangle]
+unsafe fn main() {
+	syscall_exit();
 }
 
 #[panic_handler]

@@ -4471,6 +4471,7 @@ _exception	debug_rom/debug_rom.S	/^_exception:$/;"	l
 _memif	fesvr/device.h	/^  memif_t& _memif;$/;"	m	class:command_t	typeref:typename:memif_t &
 _name	riscv/trap.h	/^  char _name[16];$/;"	m	class:trap_t	typeref:typename:char[16]
 _resume	debug_rom/debug_rom.S	/^_resume:$/;"	l
+_spike_main	build/_spike_main.cc	/^int _spike_main( int arg ) { return arg; }$/;"	f	typeref:typename:int
 _state	riscv/jtag_dtm.h	/^    jtag_state_t _state;$/;"	m	class:jtag_dtm_t	typeref:typename:jtag_state_t
 _tck	riscv/jtag_dtm.h	/^    bool _tck, _tms, _tdi, _tdo;$/;"	m	class:jtag_dtm_t	typeref:typename:bool
 _tdi	riscv/jtag_dtm.h	/^    bool _tck, _tms, _tdi, _tdo;$/;"	m	class:jtag_dtm_t	typeref:typename:bool
@@ -6512,12 +6513,21 @@ rv32_crc32c_b	build/crc32c_b.cc	/^reg_t rv32_crc32c_b(processor_t* p, insn_t ins
 rv32_crc32c_d	build/crc32c_d.cc	/^reg_t rv32_crc32c_d(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_crc32c_h	build/crc32c_h.cc	/^reg_t rv32_crc32c_h(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_crc32c_w	build/crc32c_w.cc	/^reg_t rv32_crc32c_w(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
+rv32_csrrc	build/csrrc.cc	/^reg_t rv32_csrrc(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
+rv32_csrrci	build/csrrci.cc	/^reg_t rv32_csrrci(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
+rv32_csrrs	build/csrrs.cc	/^reg_t rv32_csrrs(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
+rv32_csrrsi	build/csrrsi.cc	/^reg_t rv32_csrrsi(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
+rv32_csrrw	build/csrrw.cc	/^reg_t rv32_csrrw(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
+rv32_csrrwi	build/csrrwi.cc	/^reg_t rv32_csrrwi(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_ctz	build/ctz.cc	/^reg_t rv32_ctz(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_ctzw	build/ctzw.cc	/^reg_t rv32_ctzw(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_div	build/div.cc	/^reg_t rv32_div(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_divu	build/divu.cc	/^reg_t rv32_divu(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_divuw	build/divuw.cc	/^reg_t rv32_divuw(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_divw	build/divw.cc	/^reg_t rv32_divw(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
+rv32_dret	build/dret.cc	/^reg_t rv32_dret(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
+rv32_ebreak	build/ebreak.cc	/^reg_t rv32_ebreak(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
+rv32_ecall	build/ecall.cc	/^reg_t rv32_ecall(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_fadd_d	build/fadd_d.cc	/^reg_t rv32_fadd_d(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_fadd_h	build/fadd_h.cc	/^reg_t rv32_fadd_h(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_fadd_q	build/fadd_q.cc	/^reg_t rv32_fadd_q(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
@@ -6676,7 +6686,9 @@ rv32_hlv_wu	build/hlv_wu.cc	/^reg_t rv32_hlv_wu(processor_t* p, insn_t insn, reg
 rv32_hlvx_hu	build/hlvx_hu.cc	/^reg_t rv32_hlvx_hu(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_hlvx_wu	build/hlvx_wu.cc	/^reg_t rv32_hlvx_wu(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_hsv_b	build/hsv_b.cc	/^reg_t rv32_hsv_b(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
+rv32_hsv_d	build/hsv_d.cc	/^reg_t rv32_hsv_d(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_hsv_h	build/hsv_h.cc	/^reg_t rv32_hsv_h(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
+rv32_hsv_w	build/hsv_w.cc	/^reg_t rv32_hsv_w(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_jal	build/jal.cc	/^reg_t rv32_jal(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_jalr	build/jalr.cc	/^reg_t rv32_jalr(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_lb	build/lb.cc	/^reg_t rv32_lb(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
@@ -6692,6 +6704,7 @@ rv32_max	build/max.cc	/^reg_t rv32_max(processor_t* p, insn_t insn, reg_t pc)$/;
 rv32_maxu	build/maxu.cc	/^reg_t rv32_maxu(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_min	build/min.cc	/^reg_t rv32_min(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_minu	build/minu.cc	/^reg_t rv32_minu(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
+rv32_mret	build/mret.cc	/^reg_t rv32_mret(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_mul	build/mul.cc	/^reg_t rv32_mul(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_mulh	build/mulh.cc	/^reg_t rv32_mulh(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_mulhsu	build/mulhsu.cc	/^reg_t rv32_mulhsu(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
@@ -6738,6 +6751,7 @@ rv32_sc_w	build/sc_w.cc	/^reg_t rv32_sc_w(processor_t* p, insn_t insn, reg_t pc)
 rv32_sd	build/sd.cc	/^reg_t rv32_sd(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_sext_b	build/sext_b.cc	/^reg_t rv32_sext_b(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_sext_h	build/sext_h.cc	/^reg_t rv32_sext_h(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
+rv32_sfence_vma	build/sfence_vma.cc	/^reg_t rv32_sfence_vma(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_sh	build/sh.cc	/^reg_t rv32_sh(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_sh1add	build/sh1add.cc	/^reg_t rv32_sh1add(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_sh1addu_w	build/sh1addu_w.cc	/^reg_t rv32_sh1addu_w(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
@@ -6765,6 +6779,7 @@ rv32_sra	build/sra.cc	/^reg_t rv32_sra(processor_t* p, insn_t insn, reg_t pc)$/;
 rv32_srai	build/srai.cc	/^reg_t rv32_srai(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_sraiw	build/sraiw.cc	/^reg_t rv32_sraiw(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_sraw	build/sraw.cc	/^reg_t rv32_sraw(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
+rv32_sret	build/sret.cc	/^reg_t rv32_sret(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_srl	build/srl.cc	/^reg_t rv32_srl(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_srli	build/srli.cc	/^reg_t rv32_srli(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_srliw	build/srliw.cc	/^reg_t rv32_srliw(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
@@ -7182,6 +7197,7 @@ rv32_vxor_vx	build/vxor_vx.cc	/^reg_t rv32_vxor_vx(processor_t* p, insn_t insn, 
 rv32_vzext_vf2	build/vzext_vf2.cc	/^reg_t rv32_vzext_vf2(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_vzext_vf4	build/vzext_vf4.cc	/^reg_t rv32_vzext_vf4(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_vzext_vf8	build/vzext_vf8.cc	/^reg_t rv32_vzext_vf8(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
+rv32_wfi	build/wfi.cc	/^reg_t rv32_wfi(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_xnor	build/xnor.cc	/^reg_t rv32_xnor(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_xor	build/xor.cc	/^reg_t rv32_xor(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv32_xori	build/xori.cc	/^reg_t rv32_xori(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
@@ -7284,12 +7300,21 @@ rv64_crc32c_b	build/crc32c_b.cc	/^reg_t rv64_crc32c_b(processor_t* p, insn_t ins
 rv64_crc32c_d	build/crc32c_d.cc	/^reg_t rv64_crc32c_d(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_crc32c_h	build/crc32c_h.cc	/^reg_t rv64_crc32c_h(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_crc32c_w	build/crc32c_w.cc	/^reg_t rv64_crc32c_w(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
+rv64_csrrc	build/csrrc.cc	/^reg_t rv64_csrrc(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
+rv64_csrrci	build/csrrci.cc	/^reg_t rv64_csrrci(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
+rv64_csrrs	build/csrrs.cc	/^reg_t rv64_csrrs(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
+rv64_csrrsi	build/csrrsi.cc	/^reg_t rv64_csrrsi(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
+rv64_csrrw	build/csrrw.cc	/^reg_t rv64_csrrw(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
+rv64_csrrwi	build/csrrwi.cc	/^reg_t rv64_csrrwi(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_ctz	build/ctz.cc	/^reg_t rv64_ctz(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_ctzw	build/ctzw.cc	/^reg_t rv64_ctzw(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_div	build/div.cc	/^reg_t rv64_div(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_divu	build/divu.cc	/^reg_t rv64_divu(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_divuw	build/divuw.cc	/^reg_t rv64_divuw(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_divw	build/divw.cc	/^reg_t rv64_divw(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
+rv64_dret	build/dret.cc	/^reg_t rv64_dret(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
+rv64_ebreak	build/ebreak.cc	/^reg_t rv64_ebreak(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
+rv64_ecall	build/ecall.cc	/^reg_t rv64_ecall(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_fadd_d	build/fadd_d.cc	/^reg_t rv64_fadd_d(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_fadd_h	build/fadd_h.cc	/^reg_t rv64_fadd_h(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_fadd_q	build/fadd_q.cc	/^reg_t rv64_fadd_q(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
@@ -7448,7 +7473,9 @@ rv64_hlv_wu	build/hlv_wu.cc	/^reg_t rv64_hlv_wu(processor_t* p, insn_t insn, reg
 rv64_hlvx_hu	build/hlvx_hu.cc	/^reg_t rv64_hlvx_hu(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_hlvx_wu	build/hlvx_wu.cc	/^reg_t rv64_hlvx_wu(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_hsv_b	build/hsv_b.cc	/^reg_t rv64_hsv_b(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
+rv64_hsv_d	build/hsv_d.cc	/^reg_t rv64_hsv_d(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_hsv_h	build/hsv_h.cc	/^reg_t rv64_hsv_h(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
+rv64_hsv_w	build/hsv_w.cc	/^reg_t rv64_hsv_w(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_jal	build/jal.cc	/^reg_t rv64_jal(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_jalr	build/jalr.cc	/^reg_t rv64_jalr(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_lb	build/lb.cc	/^reg_t rv64_lb(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
@@ -7464,6 +7491,7 @@ rv64_max	build/max.cc	/^reg_t rv64_max(processor_t* p, insn_t insn, reg_t pc)$/;
 rv64_maxu	build/maxu.cc	/^reg_t rv64_maxu(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_min	build/min.cc	/^reg_t rv64_min(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_minu	build/minu.cc	/^reg_t rv64_minu(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
+rv64_mret	build/mret.cc	/^reg_t rv64_mret(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_mul	build/mul.cc	/^reg_t rv64_mul(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_mulh	build/mulh.cc	/^reg_t rv64_mulh(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_mulhsu	build/mulhsu.cc	/^reg_t rv64_mulhsu(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
@@ -7510,6 +7538,7 @@ rv64_sc_w	build/sc_w.cc	/^reg_t rv64_sc_w(processor_t* p, insn_t insn, reg_t pc)
 rv64_sd	build/sd.cc	/^reg_t rv64_sd(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_sext_b	build/sext_b.cc	/^reg_t rv64_sext_b(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_sext_h	build/sext_h.cc	/^reg_t rv64_sext_h(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
+rv64_sfence_vma	build/sfence_vma.cc	/^reg_t rv64_sfence_vma(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_sh	build/sh.cc	/^reg_t rv64_sh(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_sh1add	build/sh1add.cc	/^reg_t rv64_sh1add(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_sh1addu_w	build/sh1addu_w.cc	/^reg_t rv64_sh1addu_w(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
@@ -7537,6 +7566,7 @@ rv64_sra	build/sra.cc	/^reg_t rv64_sra(processor_t* p, insn_t insn, reg_t pc)$/;
 rv64_srai	build/srai.cc	/^reg_t rv64_srai(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_sraiw	build/sraiw.cc	/^reg_t rv64_sraiw(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_sraw	build/sraw.cc	/^reg_t rv64_sraw(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
+rv64_sret	build/sret.cc	/^reg_t rv64_sret(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_srl	build/srl.cc	/^reg_t rv64_srl(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_srli	build/srli.cc	/^reg_t rv64_srli(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_srliw	build/srliw.cc	/^reg_t rv64_srliw(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
@@ -7954,6 +7984,7 @@ rv64_vxor_vx	build/vxor_vx.cc	/^reg_t rv64_vxor_vx(processor_t* p, insn_t insn, 
 rv64_vzext_vf2	build/vzext_vf2.cc	/^reg_t rv64_vzext_vf2(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_vzext_vf4	build/vzext_vf4.cc	/^reg_t rv64_vzext_vf4(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_vzext_vf8	build/vzext_vf8.cc	/^reg_t rv64_vzext_vf8(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
+rv64_wfi	build/wfi.cc	/^reg_t rv64_wfi(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_xnor	build/xnor.cc	/^reg_t rv64_xnor(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_xor	build/xor.cc	/^reg_t rv64_xor(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t
 rv64_xori	build/xori.cc	/^reg_t rv64_xori(processor_t* p, insn_t insn, reg_t pc)$/;"	f	typeref:typename:reg_t

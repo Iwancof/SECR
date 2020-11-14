@@ -306,6 +306,7 @@ impl Cpu {
 			Ok(word) => word,
 			Err(e) => return Err(e)
 		};
+
 		let instruction_address = self.pc;
 		let word = match (original_word & 0x3) == 0x3 {
 			true => {
@@ -1680,10 +1681,19 @@ fn get_register_name(num: usize) -> &'static str {
 	}
 }
 
-const INSTRUCTION_NUM: usize = 116;
+const INSTRUCTION_NUM: usize = 117;
 
 // @TODO: Reorder in often used order as 
 const INSTRUCTIONS: [Instruction; INSTRUCTION_NUM] = [
+	Instruction {
+		mask: 0xffffffff,
+		data: 0x1234567f,
+		name: "IWANCOF_CALL",
+		operation: |_cpu, _word, _address| {
+			panic!("Iwancof Call!!!");
+		},
+		disassemble:	dump_format_r
+	},
 	Instruction {
 		mask: 0xfe00707f,
 		data: 0x00000033,
@@ -2232,6 +2242,9 @@ const INSTRUCTIONS: [Instruction; INSTRUCTION_NUM] = [
 		name: "EBREAK",
 		operation: |_cpu, _word, _address| {
 			// @TODO: Implement
+
+
+
 			Ok(())
 		},
 		disassemble: dump_empty

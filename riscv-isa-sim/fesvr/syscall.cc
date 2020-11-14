@@ -338,14 +338,27 @@ reg_t syscall_t::sys_chdir(reg_t path, reg_t a1, reg_t a2, reg_t a3, reg_t a4, r
   return sysret_errno(chdir(buf.data()));
 }
 
+void bad_syscall_fail_point() {
+}
+void break_point_at_dispatch() {
+}
+
+
 void syscall_t::dispatch(reg_t mm)
 {
   reg_t magicmem[8];
   memif->read(mm, sizeof(magicmem), magicmem);
 
   reg_t n = from_le(magicmem[0]);
-  if (n >= table.size() || !table[n])
+	//std::cout << "exe syscall #" + std::to_string(n) + "." << std::endl;
+	for(int i = 0;i < 8;i++) {
+		//std::cout << "magicmem[" + std::to_string(i) + "] = " + std::to_string(magicmem[i]) + "." << std::endl;
+	}
+	//std::cout << std::endl;
+  if (n >= table.size() || !table[n]) {
+		bad_syscall_fail_point();
     throw std::runtime_error("bad syscall #" + std::to_string(n));
+	}
 
   magicmem[0] = to_le((this->*table[n])(from_le(magicmem[1]), from_le(magicmem[2]), from_le(magicmem[3]), from_le(magicmem[4]), from_le(magicmem[5]), from_le(magicmem[6]), from_le(magicmem[7])));
 

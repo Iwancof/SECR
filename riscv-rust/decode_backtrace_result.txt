@@ -1,0 +1,8 @@
+#0  riscv_emu_rust::cpu::Cpu::decode (self=0x7fffffff4640, word=65815) at src/cpu.rs:338
+#1  0x00005555555a4389 in riscv_emu_rust::cpu::Cpu::tick_operate (self=0x7fffffff4640) at src/cpu.rs:321
+#2  0x00005555555a4104 in riscv_emu_rust::cpu::Cpu::tick (self=0x7fffffff4640) at src/cpu.rs:281
+#3  0x00005555555853cb in riscv_emu_rust::Emulator::tick (self=0x7fffffff4640) at src/lib.rs:133
+#4  0x0000555555584ea9 in riscv_emu_rust::Emulator::run_program (self=0x7fffffff4640) at src/lib.rs:81
+#5  0x0000555555584e70 in riscv_emu_rust::Emulator::run (self=0x7fffffff4640) at src/lib.rs:74
+#6  0x000055555556beda in riscv_emu_rust_cli::main () at cli/src/main.rs:133
+

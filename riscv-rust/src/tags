@@ -1,0 +1,463 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	/a3c87ab5/
+0x1	device/dts.dts	/^			phandle = <0x1>;$/;"	p
+0x2	device/dts.dts	/^				phandle = <0x2>;$/;"	p
+0x3	device/dts.dts	/^			phandle = <0x3>;$/;"	p
+AddressingMode	mmu.rs	/^pub enum AddressingMode {$/;"	g
+Bit32	cpu.rs	/^	Bit32,$/;"	e	enum:Xlen
+Bit64	cpu.rs	/^	Bit64$/;"	e	enum:Xlen
+Breakpoint	cpu.rs	/^	Breakpoint,$/;"	e	enum:TrapType
+Clint	device/clint.rs	/^impl Clint {$/;"	c
+Clint	device/clint.rs	/^pub struct Clint {$/;"	s
+Cpu	cpu.rs	/^impl Cpu {$/;"	c
+Cpu	cpu.rs	/^pub struct Cpu {$/;"	s
+DecodeCache	cpu.rs	/^impl DecodeCache {$/;"	c
+DecodeCache	cpu.rs	/^struct DecodeCache {$/;"	s
+DecodeCacheEntry	cpu.rs	/^impl DecodeCacheEntry {$/;"	c
+DecodeCacheEntry	cpu.rs	/^struct DecodeCacheEntry {$/;"	s
+DefaultTerminal	default_terminal.rs	/^impl DefaultTerminal {$/;"	c
+DefaultTerminal	default_terminal.rs	/^impl Terminal for DefaultTerminal {$/;"	c
+DefaultTerminal	default_terminal.rs	/^pub struct DefaultTerminal {$/;"	s
+DontCare	mmu.rs	/^	DontCare$/;"	e	enum:MemoryAccessType
+ElfAnalyzer	elf_analyzer.rs	/^impl ElfAnalyzer {$/;"	c
+ElfAnalyzer	elf_analyzer.rs	/^pub struct ElfAnalyzer {$/;"	s
+Emulator	lib.rs	/^impl Emulator {$/;"	c
+Emulator	lib.rs	/^pub struct Emulator {$/;"	s
+EnvironmentCallFromMMode	cpu.rs	/^	EnvironmentCallFromMMode,$/;"	e	enum:TrapType
+EnvironmentCallFromSMode	cpu.rs	/^	EnvironmentCallFromSMode,$/;"	e	enum:TrapType
+EnvironmentCallFromUMode	cpu.rs	/^	EnvironmentCallFromUMode,$/;"	e	enum:TrapType
+Execute	mmu.rs	/^	Execute,$/;"	e	enum:MemoryAccessType
+FormatB	cpu.rs	/^struct FormatB {$/;"	s
+FormatCSR	cpu.rs	/^struct FormatCSR {$/;"	s
+FormatI	cpu.rs	/^struct FormatI {$/;"	s
+FormatJ	cpu.rs	/^struct FormatJ {$/;"	s
+FormatR	cpu.rs	/^struct FormatR {$/;"	s
+FormatR2	cpu.rs	/^struct FormatR2 {$/;"	s
+FormatS	cpu.rs	/^struct FormatS {$/;"	s
+FormatU	cpu.rs	/^struct FormatU {$/;"	s
+Header	elf_analyzer.rs	/^pub struct Header {$/;"	s
+IllegalInstruction	cpu.rs	/^	IllegalInstruction,$/;"	e	enum:TrapType
+Instruction	cpu.rs	/^struct Instruction {$/;"	s
+InstructionAccessFault	cpu.rs	/^	InstructionAccessFault,$/;"	e	enum:TrapType
+InstructionAddressMisaligned	cpu.rs	/^	InstructionAddressMisaligned,$/;"	e	enum:TrapType
+InstructionPageFault	cpu.rs	/^	InstructionPageFault,$/;"	e	enum:TrapType
+LoadAccessFault	cpu.rs	/^	LoadAccessFault,$/;"	e	enum:TrapType
+LoadAddressMisaligned	cpu.rs	/^	LoadAddressMisaligned,$/;"	e	enum:TrapType
+LoadPageFault	cpu.rs	/^	LoadPageFault,$/;"	e	enum:TrapType
+Machine	cpu.rs	/^	Machine$/;"	e	enum:PrivilegeMode
+MachineExternalInterrupt	cpu.rs	/^	MachineExternalInterrupt$/;"	e	enum:TrapType
+MachineSoftwareInterrupt	cpu.rs	/^	MachineSoftwareInterrupt,$/;"	e	enum:TrapType
+MachineTimerInterrupt	cpu.rs	/^	MachineTimerInterrupt,$/;"	e	enum:TrapType
+Memory	memory.rs	/^impl Memory {$/;"	c
+Memory	memory.rs	/^pub struct Memory {$/;"	s
+MemoryAccessType	mmu.rs	/^enum MemoryAccessType {$/;"	g
+MemoryWrapper	mmu.rs	/^impl MemoryWrapper {$/;"	c
+MemoryWrapper	mmu.rs	/^pub struct MemoryWrapper {$/;"	s
+Mmu	mmu.rs	/^impl Mmu {$/;"	c
+Mmu	mmu.rs	/^pub struct Mmu {$/;"	s
+None	mmu.rs	/^	None,$/;"	e	enum:AddressingMode
+Plic	device/plic.rs	/^impl Plic {$/;"	c
+Plic	device/plic.rs	/^pub struct Plic {$/;"	s
+PrivilegeMode	cpu.rs	/^pub enum PrivilegeMode {$/;"	g
+Read	mmu.rs	/^	Read,$/;"	e	enum:MemoryAccessType
+Reserved	cpu.rs	/^	Reserved,$/;"	e	enum:PrivilegeMode
+SV32	mmu.rs	/^	SV32,$/;"	e	enum:AddressingMode
+SV39	mmu.rs	/^	SV39,$/;"	e	enum:AddressingMode
+SV48	mmu.rs	/^	SV48 \/\/ @TODO: Implement$/;"	e	enum:AddressingMode
+SectionHeader	elf_analyzer.rs	/^pub struct SectionHeader {$/;"	s
+StoreAccessFault	cpu.rs	/^	StoreAccessFault,$/;"	e	enum:TrapType
+StoreAddressMisaligned	cpu.rs	/^	StoreAddressMisaligned,$/;"	e	enum:TrapType
+StorePageFault	cpu.rs	/^	StorePageFault,$/;"	e	enum:TrapType
+Supervisor	cpu.rs	/^	Supervisor,$/;"	e	enum:PrivilegeMode
+SupervisorExternalInterrupt	cpu.rs	/^	SupervisorExternalInterrupt,$/;"	e	enum:TrapType
+SupervisorSoftwareInterrupt	cpu.rs	/^	SupervisorSoftwareInterrupt,$/;"	e	enum:TrapType
+SupervisorTimerInterrupt	cpu.rs	/^	SupervisorTimerInterrupt,$/;"	e	enum:TrapType
+SymbolEntry	elf_analyzer.rs	/^pub struct SymbolEntry {$/;"	s
+Terminal	terminal.rs	/^pub trait Terminal {$/;"	i
+Trap	cpu.rs	/^pub struct Trap {$/;"	s
+TrapType	cpu.rs	/^pub enum TrapType {$/;"	g
+Uart	device/uart.rs	/^impl Uart {$/;"	c
+Uart	device/uart.rs	/^pub struct Uart {$/;"	s
+User	cpu.rs	/^	User,$/;"	e	enum:PrivilegeMode
+UserExternalInterrupt	cpu.rs	/^	UserExternalInterrupt,$/;"	e	enum:TrapType
+UserSoftwareInterrupt	cpu.rs	/^	UserSoftwareInterrupt,$/;"	e	enum:TrapType
+UserTimerInterrupt	cpu.rs	/^	UserTimerInterrupt,$/;"	e	enum:TrapType
+VirtioBlockDisk	device/virtio_block_disk.rs	/^impl VirtioBlockDisk {$/;"	c
+VirtioBlockDisk	device/virtio_block_disk.rs	/^pub struct VirtioBlockDisk {$/;"	s
+Write	mmu.rs	/^	Write,$/;"	e	enum:MemoryAccessType
+Xlen	cpu.rs	/^pub enum Xlen {$/;"	g
+_ProgramHeader	elf_analyzer.rs	/^pub struct _ProgramHeader {$/;"	s
+_driver_features_sel	device/virtio_block_disk.rs	/^	_driver_features_sel: u32, \/\/ write only$/;"	m	struct:VirtioBlockDisk
+_dump_flag	cpu.rs	/^	_dump_flag: bool,$/;"	m	struct:Cpu
+_e_abi_version	elf_analyzer.rs	/^	_e_abi_version: u8,$/;"	m	struct:Header
+_e_class	elf_analyzer.rs	/^	_e_class: u8,$/;"	m	struct:Header
+_e_ehsize	elf_analyzer.rs	/^	_e_ehsize: u16,$/;"	m	struct:Header
+_e_elf_version	elf_analyzer.rs	/^	_e_elf_version: u8,$/;"	m	struct:Header
+_e_endian	elf_analyzer.rs	/^	_e_endian: u8,$/;"	m	struct:Header
+_e_flags	elf_analyzer.rs	/^	_e_flags: u32,$/;"	m	struct:Header
+_e_machine	elf_analyzer.rs	/^	_e_machine: u16,$/;"	m	struct:Header
+_e_osabi	elf_analyzer.rs	/^	_e_osabi: u8,$/;"	m	struct:Header
+_e_phentsize	elf_analyzer.rs	/^	_e_phentsize: u16,$/;"	m	struct:Header
+_e_phnum	elf_analyzer.rs	/^	_e_phnum: u16,$/;"	m	struct:Header
+_e_phoff	elf_analyzer.rs	/^	_e_phoff: u64,$/;"	m	struct:Header
+_e_shentsize	elf_analyzer.rs	/^	_e_shentsize: u16,$/;"	m	struct:Header
+_e_shstrndx	elf_analyzer.rs	/^	_e_shstrndx: u16$/;"	m	struct:Header
+_e_type	elf_analyzer.rs	/^	_e_type: u16,$/;"	m	struct:Header
+_e_version	elf_analyzer.rs	/^	_e_version: u32,$/;"	m	struct:Header
+_get_addressing_mode_name	mmu.rs	/^fn _get_addressing_mode_name(mode: &AddressingMode) -> &'static str {$/;"	f
+_get_privilege_mode_name	cpu.rs	/^fn _get_privilege_mode_name(mode: &PrivilegeMode) -> &'static str {$/;"	f
+_get_trap_type_name	cpu.rs	/^fn _get_trap_type_name(trap_type: &TrapType) -> &'static str {$/;"	f
+_p_align	elf_analyzer.rs	/^	_p_align: u64$/;"	m	struct:_ProgramHeader
+_p_filesz	elf_analyzer.rs	/^	_p_filesz: u64,$/;"	m	struct:_ProgramHeader
+_p_flags	elf_analyzer.rs	/^	_p_flags: u32,$/;"	m	struct:_ProgramHeader
+_p_memsz	elf_analyzer.rs	/^	_p_memsz: u64,$/;"	m	struct:_ProgramHeader
+_p_offset	elf_analyzer.rs	/^	_p_offset: u64,$/;"	m	struct:_ProgramHeader
+_p_paddr	elf_analyzer.rs	/^	_p_paddr: u64,$/;"	m	struct:_ProgramHeader
+_p_type	elf_analyzer.rs	/^	_p_type: u32,$/;"	m	struct:_ProgramHeader
+_p_vaddr	elf_analyzer.rs	/^	_p_vaddr: u64,$/;"	m	struct:_ProgramHeader
+_read_program_headers	elf_analyzer.rs	/^	pub fn _read_program_headers(&self, header: &Header) -> Vec<_ProgramHeader> {$/;"	P	implementation:ElfAnalyzer
+_set_fcsr_nv	cpu.rs	/^	fn _set_fcsr_nv(&mut self) {$/;"	P	implementation:Cpu
+_set_fcsr_nx	cpu.rs	/^	fn _set_fcsr_nx(&mut self) {$/;"	P	implementation:Cpu
+_set_fcsr_of	cpu.rs	/^	fn _set_fcsr_of(&mut self) {$/;"	P	implementation:Cpu
+_set_fcsr_uf	cpu.rs	/^	fn _set_fcsr_uf(&mut self) {$/;"	P	implementation:Cpu
+_sh_addralign	elf_analyzer.rs	/^	_sh_addralign: u64,$/;"	m	struct:SectionHeader
+_sh_entsize	elf_analyzer.rs	/^	_sh_entsize: u64$/;"	m	struct:SectionHeader
+_sh_flags	elf_analyzer.rs	/^	_sh_flags: u64,$/;"	m	struct:SectionHeader
+_sh_info	elf_analyzer.rs	/^	_sh_info: u32,$/;"	m	struct:SectionHeader
+_sh_link	elf_analyzer.rs	/^	_sh_link: u32,$/;"	m	struct:SectionHeader
+_st_other	elf_analyzer.rs	/^	_st_other: u8,$/;"	m	struct:SymbolEntry
+_st_shndx	elf_analyzer.rs	/^	_st_shndx: u16,$/;"	m	struct:SymbolEntry
+_st_size	elf_analyzer.rs	/^	_st_size: u64$/;"	m	struct:SymbolEntry
+addressing_mode	mmu.rs	/^	addressing_mode: AddressingMode,$/;"	m	struct:Mmu
+back_index	cpu.rs	/^	back_index: usize,$/;"	m	struct:DecodeCache
+clear_ip	device/plic.rs	/^	fn clear_ip(&mut self, irq: u32) {$/;"	P	implementation:Plic
+clear_page_cache	mmu.rs	/^	fn clear_page_cache(&mut self) {$/;"	P	implementation:Mmu
+clint	device/mod.rs	/^pub mod clint;$/;"	n
+clint	mmu.rs	/^	clint: Clint,$/;"	m	struct:Mmu
+clock	cpu.rs	/^	clock: u64,$/;"	m	struct:Cpu
+clock	device/clint.rs	/^	clock: u64,$/;"	m	struct:Clint
+clock	device/plic.rs	/^	clock: u64,$/;"	m	struct:Plic
+clock	device/uart.rs	/^	clock: u64,$/;"	m	struct:Uart
+clock	device/virtio_block_disk.rs	/^	clock: u64,$/;"	m	struct:VirtioBlockDisk
+clock	mmu.rs	/^	clock: u64,$/;"	m	struct:Mmu
+contents	device/virtio_block_disk.rs	/^	contents: Vec<u64>$/;"	m	struct:VirtioBlockDisk
+cpu	lib.rs	/^	cpu: Cpu,$/;"	m	struct:Emulator
+cpu	lib.rs	/^pub mod cpu;$/;"	n
+create_symbol_map	elf_analyzer.rs	/^	pub fn create_symbol_map(&self, entries: &Vec<SymbolEntry>,$/;"	P	implementation:ElfAnalyzer
+csr	cpu.rs	/^	csr: [u64; CSR_CAPACITY],$/;"	m	struct:Cpu
+csr	cpu.rs	/^	csr: u16,$/;"	m	struct:FormatCSR
+data	cpu.rs	/^	data: u32, \/\/ @TODO: rename$/;"	m	struct:Instruction
+data	elf_analyzer.rs	/^	data: Vec<u8>$/;"	m	struct:ElfAnalyzer
+data	memory.rs	/^	data: Vec<u64>$/;"	m	struct:Memory
+decode	cpu.rs	/^	fn decode(&mut self, word: u32) -> Result<&Instruction, ()> {$/;"	P	implementation:Cpu
+decode_and_get_instruction_index	cpu.rs	/^	fn decode_and_get_instruction_index(&self, word: u32) -> Result<usize, ()> {$/;"	P	implementation:Cpu
+decode_cache	cpu.rs	/^	decode_cache: DecodeCache,$/;"	m	struct:Cpu
+decode_raw	cpu.rs	/^	fn decode_raw(&self, word: u32) -> Result<&Instruction, ()> {$/;"	P	implementation:Cpu
+default_terminal	lib.rs	/^pub mod default_terminal;$/;"	n
+device	lib.rs	/^pub mod device;$/;"	n
+device_features	device/virtio_block_disk.rs	/^	device_features: u64, \/\/ read only$/;"	m	struct:VirtioBlockDisk
+device_features_sel	device/virtio_block_disk.rs	/^	device_features_sel: u32, \/\/ write only$/;"	m	struct:VirtioBlockDisk
+disassemble	cpu.rs	/^	disassemble: fn(cpu: &mut Cpu, word: u32, address: u64, evaluate: bool) -> String$/;"	m	struct:Instruction
+disassemble_next_instruction	cpu.rs	/^	pub fn disassemble_next_instruction(&mut self) -> String {$/;"	P	implementation:Cpu
+disk	mmu.rs	/^	disk: VirtioBlockDisk,$/;"	m	struct:Mmu
+driver_features	device/virtio_block_disk.rs	/^	driver_features: u32, \/\/ write only$/;"	m	struct:VirtioBlockDisk
+dtb	mmu.rs	/^	dtb: Vec<u8>,$/;"	m	struct:Mmu
+dump_empty	cpu.rs	/^fn dump_empty(_cpu: &mut Cpu, _word: u32, _address: u64, _evaluate: bool) -> String {$/;"	f
+dump_format_b	cpu.rs	/^fn dump_format_b(cpu: &mut Cpu, word: u32, address: u64, evaluate: bool) -> String {$/;"	f
+dump_format_csr	cpu.rs	/^fn dump_format_csr(cpu: &mut Cpu, word: u32, _address: u64, evaluate: bool) -> String {$/;"	f
+dump_format_i	cpu.rs	/^fn dump_format_i(cpu: &mut Cpu, word: u32, _address: u64, evaluate: bool) -> String {$/;"	f
+dump_format_i_mem	cpu.rs	/^fn dump_format_i_mem(cpu: &mut Cpu, word: u32, _address: u64, evaluate: bool) -> String {$/;"	f
+dump_format_j	cpu.rs	/^fn dump_format_j(cpu: &mut Cpu, word: u32, address: u64, evaluate: bool) -> String {$/;"	f
+dump_format_r	cpu.rs	/^fn dump_format_r(cpu: &mut Cpu, word: u32, _address: u64, evaluate: bool) -> String {$/;"	f
+dump_format_r2	cpu.rs	/^fn dump_format_r2(cpu: &mut Cpu, word: u32, _address: u64, evaluate: bool) -> String {$/;"	f
+dump_format_s	cpu.rs	/^fn dump_format_s(cpu: &mut Cpu, word: u32, _address: u64, evaluate: bool) -> String {$/;"	f
+dump_format_u	cpu.rs	/^fn dump_format_u(cpu: &mut Cpu, word: u32, _address: u64, evaluate: bool) -> String {$/;"	f
+e_entry	elf_analyzer.rs	/^	pub e_entry: u64,$/;"	m	struct:Header
+e_shnum	elf_analyzer.rs	/^	e_shnum: u16,$/;"	m	struct:Header
+e_shoff	elf_analyzer.rs	/^	e_shoff: u64,$/;"	m	struct:Header
+e_width	elf_analyzer.rs	/^	pub e_width: u8, \/\/ 32 or 64$/;"	m	struct:Header
+elf_analyzer	lib.rs	/^pub mod elf_analyzer;$/;"	n
+enable_page_cache	lib.rs	/^	pub fn enable_page_cache(&mut self, enabled: bool) {$/;"	P	implementation:Emulator
+enable_page_cache	mmu.rs	/^	pub fn enable_page_cache(&mut self, enabled: bool) {$/;"	P	implementation:Mmu
+enabled	device/plic.rs	/^	enabled: u64,$/;"	m	struct:Plic
+entries	cpu.rs	/^	entries: Vec<DecodeCacheEntry>,$/;"	m	struct:DecodeCache
+f	cpu.rs	/^	f: [f64; 32],$/;"	m	struct:Cpu
+fetch	cpu.rs	/^	fn fetch(&mut self) -> Result<u32, Trap> {$/;"	P	implementation:Cpu
+fetch	mmu.rs	/^	fn fetch(&mut self, v_address: u64) -> Result<u8, Trap> {$/;"	P	implementation:Mmu
+fetch_page_cache	mmu.rs	/^	fetch_page_cache: FnvHashMap<u64, u64>,$/;"	m	struct:Mmu
+fetch_word	mmu.rs	/^	pub fn fetch_word(&mut self, v_address: u64) -> Result<u32, Trap> {$/;"	P	implementation:Mmu
+find_tohost_addr	elf_analyzer.rs	/^	pub fn find_tohost_addr(&self, program_data_section_headers: &Vec<&SectionHeader>,$/;"	P	implementation:ElfAnalyzer
+front_index	cpu.rs	/^	front_index: usize,$/;"	m	struct:DecodeCache
+get	cpu.rs	/^	fn get(&mut self, word: u32) -> Option<usize> {$/;"	P	implementation:DecodeCache
+get_addredd_of_symbol	lib.rs	/^	pub fn get_addredd_of_symbol(&self, s: &String) -> Option<u64> {$/;"	P	implementation:Emulator
+get_base_avail_address	device/virtio_block_disk.rs	/^	fn get_base_avail_address(&self) -> u64 {$/;"	P	implementation:VirtioBlockDisk
+get_base_desc_address	device/virtio_block_disk.rs	/^	fn get_base_desc_address(&self) -> u64 {$/;"	P	implementation:VirtioBlockDisk
+get_base_used_address	device/virtio_block_disk.rs	/^	fn get_base_used_address(&self) -> u64 {$/;"	P	implementation:VirtioBlockDisk
+get_clint	mmu.rs	/^	pub fn get_clint(&self) -> &Clint {$/;"	P	implementation:Mmu
+get_cpu	lib.rs	/^	pub fn get_cpu(&self) -> &Cpu {$/;"	P	implementation:Emulator
+get_effective_address	mmu.rs	/^	fn get_effective_address(&self, address: u64) -> u64 {$/;"	P	implementation:Mmu
+get_input	default_terminal.rs	/^	fn get_input(&mut self) -> u8 {$/;"	P	implementation:DefaultTerminal
+get_input	terminal.rs	/^	fn get_input(&mut self) -> u8;$/;"	P	interface:Terminal
+get_mut_clint	mmu.rs	/^	pub fn get_mut_clint(&mut self) -> &mut Clint {$/;"	P	implementation:Mmu
+get_mut_cpu	lib.rs	/^	pub fn get_mut_cpu(&mut self) -> &mut Cpu {$/;"	P	implementation:Emulator
+get_mut_mmu	cpu.rs	/^	pub fn get_mut_mmu(&mut self) -> &mut Mmu {$/;"	P	implementation:Cpu
+get_mut_terminal	cpu.rs	/^	pub fn get_mut_terminal(&mut self) -> &mut Box<dyn Terminal> {$/;"	P	implementation:Cpu
+get_mut_terminal	device/uart.rs	/^	pub fn get_mut_terminal(&mut self) -> &mut Box<dyn Terminal> {$/;"	P	implementation:Uart
+get_mut_terminal	lib.rs	/^	pub fn get_mut_terminal(&mut self) -> &mut Box<dyn Terminal> {$/;"	P	implementation:Emulator
+get_mut_uart	mmu.rs	/^	pub fn get_mut_uart(&mut self) -> &mut Uart {$/;"	P	implementation:Mmu
+get_output	default_terminal.rs	/^	fn get_output(&mut self) -> u8 {$/;"	P	implementation:DefaultTerminal
+get_output	terminal.rs	/^	fn get_output(&mut self) -> u8;$/;"	P	interface:Terminal
+get_page_address	device/virtio_block_disk.rs	/^	fn get_page_address(&self) -> u64 {$/;"	P	implementation:VirtioBlockDisk
+get_privilege_encoding	cpu.rs	/^fn get_privilege_encoding(mode: &PrivilegeMode) -> u8 {$/;"	f
+get_privilege_mode	cpu.rs	/^pub fn get_privilege_mode(encoding: u64) -> PrivilegeMode {$/;"	f
+get_register_name	cpu.rs	/^fn get_register_name(num: usize) -> &'static str {$/;"	f
+get_trap_cause	cpu.rs	/^fn get_trap_cause(trap: &Trap, xlen: &Xlen) -> u64 {$/;"	f
+guest_page_size	device/virtio_block_disk.rs	/^	guest_page_size: u32, \/\/ write only$/;"	m	struct:VirtioBlockDisk
+handle_disk_access	device/virtio_block_disk.rs	/^	fn handle_disk_access(&mut self, memory: &mut MemoryWrapper) {$/;"	P	implementation:VirtioBlockDisk
+handle_exception	cpu.rs	/^	fn handle_exception(&mut self, exception: Trap, instruction_address: u64) {$/;"	P	implementation:Cpu
+handle_interrupt	cpu.rs	/^	fn handle_interrupt(&mut self, instruction_address: u64) {$/;"	P	implementation:Cpu
+handle_trap	cpu.rs	/^	fn handle_trap(&mut self, trap: Trap, instruction_address: u64, is_interrupt: bool) -> bool{$/;"	P	implementation:Cpu
+has_csr_access_privilege	cpu.rs	/^	fn has_csr_access_privilege(&self, address: u16) -> bool {$/;"	P	implementation:Cpu
+hash_map	cpu.rs	/^	hash_map: FnvHashMap::<u32, usize>,$/;"	m	struct:DecodeCache
+hit_count	cpu.rs	/^	hit_count: u64,$/;"	m	struct:DecodeCache
+ier	device/uart.rs	/^	ier: u8, \/\/ interrupt enable register$/;"	m	struct:Uart
+iir	device/uart.rs	/^	iir: u8, \/\/ interrupt identification register$/;"	m	struct:Uart
+imm	cpu.rs	/^	imm: i64$/;"	m	struct:FormatI
+imm	cpu.rs	/^	imm: i64$/;"	m	struct:FormatS
+imm	cpu.rs	/^	imm: u64$/;"	m	struct:FormatB
+imm	cpu.rs	/^	imm: u64$/;"	m	struct:FormatJ
+imm	cpu.rs	/^	imm: u64$/;"	m	struct:FormatU
+init	device/virtio_block_disk.rs	/^	pub fn init(&mut self, contents: Vec<u8>) {$/;"	P	implementation:VirtioBlockDisk
+init	memory.rs	/^	pub fn init(&mut self, capacity: u64) {$/;"	P	implementation:Memory
+init	mmu.rs	/^	fn init(&mut self, capacity: u64) {$/;"	P	implementation:MemoryWrapper
+init_disk	mmu.rs	/^	pub fn init_disk(&mut self, data: Vec<u8>) {$/;"	P	implementation:Mmu
+init_dtb	mmu.rs	/^	pub fn init_dtb(&mut self, data: Vec<u8>) {$/;"	P	implementation:Mmu
+init_memory	mmu.rs	/^	pub fn init_memory(&mut self, capacity: u64) {$/;"	P	implementation:Mmu
+input_data	default_terminal.rs	/^	input_data: Vec<u8>,$/;"	m	struct:DefaultTerminal
+insert	cpu.rs	/^	fn insert(&mut self, word: u32, instruction_index: usize) {$/;"	P	implementation:DecodeCache
+instruction_index	cpu.rs	/^	instruction_index: usize,$/;"	m	struct:DecodeCacheEntry
+interrupt_status	device/virtio_block_disk.rs	/^	interrupt_status: u32, \/\/ read only$/;"	m	struct:VirtioBlockDisk
+ips	device/plic.rs	/^	ips: [u8; 1024],$/;"	m	struct:Plic
+irq	device/plic.rs	/^	irq: u32,$/;"	m	struct:Plic
+is_interrupting	device/uart.rs	/^	pub fn is_interrupting(&mut self) -> bool {$/;"	P	implementation:Uart
+is_interrupting	device/virtio_block_disk.rs	/^	pub fn is_interrupting(&mut self) -> bool {$/;"	P	implementation:VirtioBlockDisk
+is_reservation_set	cpu.rs	/^	is_reservation_set: bool,$/;"	m	struct:Cpu
+is_test	lib.rs	/^	is_test: bool,$/;"	m	struct:Emulator
+lcr	device/uart.rs	/^	lcr: u8, \/\/ line control register$/;"	m	struct:Uart
+load	device/clint.rs	/^	pub fn load(&self, address: u64) -> u8 {$/;"	P	implementation:Clint
+load	device/plic.rs	/^	pub fn load(&self, address: u64) -> u8 {$/;"	P	implementation:Plic
+load	device/uart.rs	/^	pub fn load(&mut self, address: u64) -> u8 {$/;"	P	implementation:Uart
+load	device/virtio_block_disk.rs	/^	pub fn load(&mut self, address: u64) -> u8 {$/;"	P	implementation:VirtioBlockDisk
+load	mmu.rs	/^	pub fn load(&mut self, v_address: u64) -> Result<u8, Trap> {$/;"	P	implementation:Mmu
+load_bytes	mmu.rs	/^	fn load_bytes(&mut self, v_address: u64, width: u64) -> Result<u64, Trap> {$/;"	P	implementation:Mmu
+load_doubleword	mmu.rs	/^	pub fn load_doubleword(&mut self, v_address: u64) -> Result<u64, Trap> {$/;"	P	implementation:Mmu
+load_doubleword_raw	mmu.rs	/^	fn load_doubleword_raw(&mut self, p_address: u64) -> u64 {$/;"	P	implementation:Mmu
+load_halfword	mmu.rs	/^	pub fn load_halfword(&mut self, v_address: u64) -> Result<u16, Trap> {$/;"	P	implementation:Mmu
+load_halfword_raw	mmu.rs	/^	fn load_halfword_raw(&mut self, p_address: u64) -> u16 {$/;"	P	implementation:Mmu
+load_page_cache	mmu.rs	/^	load_page_cache: FnvHashMap<u64, u64>,$/;"	m	struct:Mmu
+load_program_for_symbols	lib.rs	/^	pub fn load_program_for_symbols(&mut self, content: Vec<u8>) {$/;"	P	implementation:Emulator
+load_raw	mmu.rs	/^	fn load_raw(&mut self, p_address: u64) -> u8 {$/;"	P	implementation:Mmu
+load_word	mmu.rs	/^	pub fn load_word(&mut self, v_address: u64) -> Result<u32, Trap> {$/;"	P	implementation:Mmu
+load_word_raw	mmu.rs	/^	pub fn load_word_raw(&mut self, p_address: u64) -> u32 {$/;"	P	implementation:Mmu
+lsr	device/uart.rs	/^	lsr: u8, \/\/ line status register$/;"	m	struct:Uart
+mask	cpu.rs	/^	mask: u32,$/;"	m	struct:Instruction
+mcr	device/uart.rs	/^	mcr: u8, \/\/ modem control register$/;"	m	struct:Uart
+memory	lib.rs	/^pub mod memory;$/;"	n
+memory	mmu.rs	/^	memory: Memory$/;"	m	struct:MemoryWrapper
+memory	mmu.rs	/^	memory: MemoryWrapper,$/;"	m	struct:Mmu
+miss_count	cpu.rs	/^	miss_count: u64$/;"	m	struct:DecodeCache
+mmu	cpu.rs	/^	mmu: Mmu,$/;"	m	struct:Cpu
+mmu	lib.rs	/^pub mod mmu;$/;"	n
+most_negative	cpu.rs	/^	fn most_negative(&self) -> i64 {$/;"	P	implementation:Cpu
+msip	device/clint.rs	/^	msip: u32,$/;"	m	struct:Clint
+mstatus	mmu.rs	/^	mstatus: u64,$/;"	m	struct:Mmu
+mtime	device/clint.rs	/^	mtime: u64$/;"	m	struct:Clint
+mtimecmp	device/clint.rs	/^	mtimecmp: u64,$/;"	m	struct:Clint
+name	cpu.rs	/^	name: &'static str,$/;"	m	struct:Instruction
+needs_update_irq	device/plic.rs	/^	needs_update_irq: bool,$/;"	m	struct:Plic
+new	cpu.rs	/^	fn new() -> Self {$/;"	P	implementation:DecodeCache
+new	cpu.rs	/^	fn new(next_index: usize, prev_index: usize) -> Self {$/;"	P	implementation:DecodeCacheEntry
+new	cpu.rs	/^	pub fn new(terminal: Box<dyn Terminal>) -> Self {$/;"	P	implementation:Cpu
+new	default_terminal.rs	/^	pub fn new() -> Self {$/;"	P	implementation:DefaultTerminal
+new	device/clint.rs	/^	pub fn new() -> Self {$/;"	P	implementation:Clint
+new	device/plic.rs	/^	pub fn new() -> Self {$/;"	P	implementation:Plic
+new	device/uart.rs	/^	pub fn new(terminal: Box<dyn Terminal>) -> Self {$/;"	P	implementation:Uart
+new	device/virtio_block_disk.rs	/^	pub fn new() -> Self {$/;"	P	implementation:VirtioBlockDisk
+new	elf_analyzer.rs	/^	pub fn new(data: Vec<u8>) -> Self {$/;"	P	implementation:ElfAnalyzer
+new	lib.rs	/^	pub fn new(terminal: Box<dyn Terminal>) -> Self {$/;"	P	implementation:Emulator
+new	memory.rs	/^	pub fn new() -> Self {$/;"	P	implementation:Memory
+new	mmu.rs	/^	fn new() -> Self {$/;"	P	implementation:MemoryWrapper
+new	mmu.rs	/^	pub fn new(xlen: Xlen, terminal: Box<dyn Terminal>) -> Self {$/;"	P	implementation:Mmu
+next_index	cpu.rs	/^	next_index: usize,$/;"	m	struct:DecodeCacheEntry
+notify_clocks	device/virtio_block_disk.rs	/^	notify_clocks: Vec::<u64>,$/;"	m	struct:VirtioBlockDisk
+operation	cpu.rs	/^	operation: fn(cpu: &mut Cpu, word: u32, address: u64) -> Result<(), Trap>,$/;"	m	struct:Instruction
+output_data	default_terminal.rs	/^	output_data: Vec<u8>$/;"	m	struct:DefaultTerminal
+page_cache_enabled	mmu.rs	/^	page_cache_enabled: bool,$/;"	m	struct:Mmu
+parse_format_b	cpu.rs	/^fn parse_format_b(word: u32) -> FormatB {$/;"	f
+parse_format_csr	cpu.rs	/^fn parse_format_csr(word: u32) -> FormatCSR {$/;"	f
+parse_format_i	cpu.rs	/^fn parse_format_i(word: u32) -> FormatI {$/;"	f
+parse_format_j	cpu.rs	/^fn parse_format_j(word: u32) -> FormatJ {$/;"	f
+parse_format_r	cpu.rs	/^fn parse_format_r(word: u32) -> FormatR {$/;"	f
+parse_format_r2	cpu.rs	/^fn parse_format_r2(word: u32) -> FormatR2 {$/;"	f
+parse_format_s	cpu.rs	/^fn parse_format_s(word: u32) -> FormatS {$/;"	f
+parse_format_u	cpu.rs	/^fn parse_format_u(word: u32) -> FormatU {$/;"	f
+pc	cpu.rs	/^	pc: u64,$/;"	m	struct:Cpu
+plic	device/mod.rs	/^pub mod plic;$/;"	n
+plic	mmu.rs	/^	plic: Plic,$/;"	m	struct:Mmu
+ppn	mmu.rs	/^	ppn: u64,$/;"	m	struct:Mmu
+prev_index	cpu.rs	/^	prev_index: usize$/;"	m	struct:DecodeCacheEntry
+priorities	device/plic.rs	/^	priorities: [u32; 1024],$/;"	m	struct:Plic
+privilege_mode	cpu.rs	/^	privilege_mode: PrivilegeMode,$/;"	m	struct:Cpu
+privilege_mode	mmu.rs	/^	privilege_mode: PrivilegeMode,$/;"	m	struct:Mmu
+put_byte	default_terminal.rs	/^	fn put_byte(&mut self, value: u8) {$/;"	P	implementation:DefaultTerminal
+put_byte	terminal.rs	/^	fn put_byte(&mut self, value: u8);$/;"	P	interface:Terminal
+put_bytes_to_terminal	lib.rs	/^	fn put_bytes_to_terminal(&mut self, bytes: &[u8]) {$/;"	P	implementation:Emulator
+put_input	default_terminal.rs	/^	fn put_input(&mut self, value: u8) {$/;"	P	implementation:DefaultTerminal
+put_input	terminal.rs	/^	fn put_input(&mut self, data: u8);$/;"	P	interface:Terminal
+queue_align	device/virtio_block_disk.rs	/^	queue_align: u32, \/\/ write only$/;"	m	struct:VirtioBlockDisk
+queue_notify	device/virtio_block_disk.rs	/^	queue_notify: u32, \/\/ write only$/;"	m	struct:VirtioBlockDisk
+queue_pfn	device/virtio_block_disk.rs	/^	queue_pfn: u32, \/\/ read and write$/;"	m	struct:VirtioBlockDisk
+queue_select	device/virtio_block_disk.rs	/^	queue_select: u32, \/\/ write only$/;"	m	struct:VirtioBlockDisk
+queue_size	device/virtio_block_disk.rs	/^	queue_size: u32, \/\/ write only$/;"	m	struct:VirtioBlockDisk
+rbr	device/uart.rs	/^	rbr: u8, \/\/ receiver buffer register$/;"	m	struct:Uart
+rd	cpu.rs	/^	rd: usize$/;"	m	struct:FormatCSR
+rd	cpu.rs	/^	rd: usize,$/;"	m	struct:FormatI
+rd	cpu.rs	/^	rd: usize,$/;"	m	struct:FormatJ
+rd	cpu.rs	/^	rd: usize,$/;"	m	struct:FormatR
+rd	cpu.rs	/^	rd: usize,$/;"	m	struct:FormatR2
+rd	cpu.rs	/^	rd: usize,$/;"	m	struct:FormatU
+read_byte	elf_analyzer.rs	/^	pub fn read_byte(&self, offset: usize) -> u8 {$/;"	P	implementation:ElfAnalyzer
+read_byte	memory.rs	/^	pub fn read_byte(&self, address: u64) -> u8 {$/;"	P	implementation:Memory
+read_byte	mmu.rs	/^	pub fn read_byte(&mut self, p_address: u64) -> u8 {$/;"	P	implementation:MemoryWrapper
+read_bytes	memory.rs	/^	pub fn read_bytes(&self, address: u64, width: u64) -> u64 {$/;"	P	implementation:Memory
+read_csr	cpu.rs	/^	fn read_csr(&mut self, address: u16) -> Result<u64, Trap> {$/;"	P	implementation:Cpu
+read_csr_raw	cpu.rs	/^	fn read_csr_raw(&self, address: u16) -> u64 {$/;"	P	implementation:Cpu
+read_doubleword	elf_analyzer.rs	/^	fn read_doubleword(&self, offset: usize) -> u64 {$/;"	P	implementation:ElfAnalyzer
+read_doubleword	memory.rs	/^	pub fn read_doubleword(&self, address: u64) -> u64 {$/;"	P	implementation:Memory
+read_doubleword	mmu.rs	/^	pub fn read_doubleword(&mut self, p_address: u64) -> u64 {$/;"	P	implementation:MemoryWrapper
+read_from_disk	device/virtio_block_disk.rs	/^	fn read_from_disk(&mut self, address: u64) -> u8 {$/;"	P	implementation:VirtioBlockDisk
+read_halfword	elf_analyzer.rs	/^	fn read_halfword(&self, offset: usize) -> u16 {$/;"	P	implementation:ElfAnalyzer
+read_halfword	memory.rs	/^	pub fn read_halfword(&self, address: u64) -> u16 {$/;"	P	implementation:Memory
+read_halfword	mmu.rs	/^	pub fn read_halfword(&mut self, p_address: u64) -> u16 {$/;"	P	implementation:MemoryWrapper
+read_header	elf_analyzer.rs	/^	pub fn read_header(&self) -> Header {$/;"	P	implementation:ElfAnalyzer
+read_mtime	device/clint.rs	/^	pub fn read_mtime(&self) -> u64 {$/;"	P	implementation:Clint
+read_pc	cpu.rs	/^	pub fn read_pc(&self) -> u64 {$/;"	P	implementation:Cpu
+read_register	cpu.rs	/^	pub fn read_register(&self, reg: u8) -> i64 {$/;"	P	implementation:Cpu
+read_section_headers	elf_analyzer.rs	/^	pub fn read_section_headers(&self, header: &Header) -> Vec<SectionHeader> {$/;"	P	implementation:ElfAnalyzer
+read_strings	elf_analyzer.rs	/^	fn read_strings(&self, section_header: &SectionHeader, index: u64) -> String {$/;"	P	implementation:ElfAnalyzer
+read_symbol_entries	elf_analyzer.rs	/^	pub fn read_symbol_entries(&self, header: &Header,$/;"	P	implementation:ElfAnalyzer
+read_word	elf_analyzer.rs	/^	fn read_word(&self, offset: usize) -> u32 {$/;"	P	implementation:ElfAnalyzer
+read_word	memory.rs	/^	pub fn read_word(&self, address: u64) -> u32 {$/;"	P	implementation:Memory
+read_word	mmu.rs	/^	pub fn read_word(&mut self, p_address: u64) -> u32 {$/;"	P	implementation:MemoryWrapper
+reservation	cpu.rs	/^	reservation: u64, \/\/ @TODO: Should support multiple address reservations$/;"	m	struct:Cpu
+rs	cpu.rs	/^	rs: usize,$/;"	m	struct:FormatCSR
+rs1	cpu.rs	/^	rs1: usize,$/;"	m	struct:FormatB
+rs1	cpu.rs	/^	rs1: usize,$/;"	m	struct:FormatI
+rs1	cpu.rs	/^	rs1: usize,$/;"	m	struct:FormatR
+rs1	cpu.rs	/^	rs1: usize,$/;"	m	struct:FormatR2
+rs1	cpu.rs	/^	rs1: usize,$/;"	m	struct:FormatS
+rs2	cpu.rs	/^	rs2: usize$/;"	m	struct:FormatR
+rs2	cpu.rs	/^	rs2: usize,$/;"	m	struct:FormatB
+rs2	cpu.rs	/^	rs2: usize,$/;"	m	struct:FormatR2
+rs2	cpu.rs	/^	rs2: usize,$/;"	m	struct:FormatS
+rs3	cpu.rs	/^	rs3: usize$/;"	m	struct:FormatR2
+run	lib.rs	/^	pub fn run(&mut self) {$/;"	P	implementation:Emulator
+run_program	lib.rs	/^	pub fn run_program(&mut self) {$/;"	P	implementation:Emulator
+run_test	lib.rs	/^	pub fn run_test(&mut self) {$/;"	P	implementation:Emulator
+scr	device/uart.rs	/^	scr: u8, \/\/ scratch$/;"	m	struct:Uart
+set_fcsr_dz	cpu.rs	/^	fn set_fcsr_dz(&mut self) {$/;"	P	implementation:Cpu
+set_ip	device/plic.rs	/^	fn set_ip(&mut self, irq: u32) {$/;"	P	implementation:Plic
+setup_dtb	lib.rs	/^	pub fn setup_dtb(&mut self, content: Vec<u8>) {$/;"	P	implementation:Emulator
+setup_filesystem	lib.rs	/^	pub fn setup_filesystem(&mut self, content: Vec<u8>) {$/;"	P	implementation:Emulator
+setup_program	lib.rs	/^	pub fn setup_program(&mut self, data: Vec<u8>) {$/;"	P	implementation:Emulator
+sh_addr	elf_analyzer.rs	/^	pub sh_addr: u64,$/;"	m	struct:SectionHeader
+sh_name	elf_analyzer.rs	/^	sh_name: u32,$/;"	m	struct:SectionHeader
+sh_offset	elf_analyzer.rs	/^	pub sh_offset: u64,$/;"	m	struct:SectionHeader
+sh_size	elf_analyzer.rs	/^	pub sh_size: u64,$/;"	m	struct:SectionHeader
+sh_type	elf_analyzer.rs	/^	pub sh_type: u32,$/;"	m	struct:SectionHeader
+sign_extend	cpu.rs	/^	fn sign_extend(&self, value: i64) -> i64 {$/;"	P	implementation:Cpu
+st_info	elf_analyzer.rs	/^	st_info: u8,$/;"	m	struct:SymbolEntry
+st_name	elf_analyzer.rs	/^	st_name: u32,$/;"	m	struct:SymbolEntry
+st_value	elf_analyzer.rs	/^	st_value: u64,$/;"	m	struct:SymbolEntry
+status	device/virtio_block_disk.rs	/^	status: u32, \/\/ read and write$/;"	m	struct:VirtioBlockDisk
+store	device/clint.rs	/^	pub fn store(&mut self, address: u64, value: u8) {$/;"	P	implementation:Clint
+store	device/plic.rs	/^	pub fn store(&mut self, address: u64, value: u8) {$/;"	P	implementation:Plic
+store	device/uart.rs	/^	pub fn store(&mut self, address: u64, value: u8) {$/;"	P	implementation:Uart
+store	device/virtio_block_disk.rs	/^	pub fn store(&mut self, address: u64, value: u8) {$/;"	P	implementation:VirtioBlockDisk
+store	mmu.rs	/^	pub fn store(&mut self, v_address: u64, value: u8) -> Result<(), Trap> {$/;"	P	implementation:Mmu
+store_bytes	mmu.rs	/^	fn store_bytes(&mut self, v_address: u64, value: u64, width: u64) -> Result<(), Trap> {$/;"	P	implementation:Mmu
+store_doubleword	mmu.rs	/^	pub fn store_doubleword(&mut self, v_address: u64, value: u64) -> Result<(), Trap> {$/;"	P	implementation:Mmu
+store_doubleword_raw	mmu.rs	/^	fn store_doubleword_raw(&mut self, p_address: u64, value: u64) {$/;"	P	implementation:Mmu
+store_halfword	mmu.rs	/^	pub fn store_halfword(&mut self, v_address: u64, value: u16) -> Result<(), Trap> {$/;"	P	implementation:Mmu
+store_halfword_raw	mmu.rs	/^	fn store_halfword_raw(&mut self, p_address: u64, value: u16) {$/;"	P	implementation:Mmu
+store_page_cache	mmu.rs	/^	store_page_cache: FnvHashMap<u64, u64>$/;"	m	struct:Mmu
+store_raw	mmu.rs	/^	pub fn store_raw(&mut self, p_address: u64, value: u8) {$/;"	P	implementation:Mmu
+store_word	mmu.rs	/^	pub fn store_word(&mut self, v_address: u64, value: u32) -> Result<(), Trap> {$/;"	P	implementation:Mmu
+store_word_raw	mmu.rs	/^	fn store_word_raw(&mut self, p_address: u64, value: u32) {$/;"	P	implementation:Mmu
+symbol_map	lib.rs	/^	symbol_map: FnvHashMap::<String, u64>,$/;"	m	struct:Emulator
+terminal	device/uart.rs	/^	terminal: Box<dyn Terminal>$/;"	m	struct:Uart
+terminal	lib.rs	/^pub mod terminal;$/;"	n
+thr	device/uart.rs	/^	thr: u8, \/\/ transmitter holding register$/;"	m	struct:Uart
+threshold	device/plic.rs	/^	threshold: u32,$/;"	m	struct:Plic
+tick	cpu.rs	/^	pub fn tick(&mut self) {$/;"	P	implementation:Cpu
+tick	device/clint.rs	/^	pub fn tick(&mut self, mip: &mut u64) {$/;"	P	implementation:Clint
+tick	device/plic.rs	/^	pub fn tick(&mut self, virtio_ip: bool,$/;"	P	implementation:Plic
+tick	device/uart.rs	/^	pub fn tick(&mut self) {$/;"	P	implementation:Uart
+tick	device/virtio_block_disk.rs	/^	pub fn tick(&mut self, memory: &mut MemoryWrapper) {$/;"	P	implementation:VirtioBlockDisk
+tick	lib.rs	/^	pub fn tick(&mut self) {$/;"	P	implementation:Emulator
+tick	mmu.rs	/^	pub fn tick(&mut self, mip: &mut u64) {$/;"	P	implementation:Mmu
+tick_operate	cpu.rs	/^	fn tick_operate(&mut self) -> Result<(), Trap> {$/;"	P	implementation:Cpu
+tohost_addr	lib.rs	/^	tohost_addr: u64$/;"	m	struct:Emulator
+transfer_from_disk	device/virtio_block_disk.rs	/^	fn transfer_from_disk(&mut self, memory: &mut MemoryWrapper, mem_address: u64, disk_address: u6/;"	P	implementation:VirtioBlockDisk
+transfer_to_disk	device/virtio_block_disk.rs	/^	fn transfer_to_disk(&mut self, memory: &mut MemoryWrapper, mem_address: u64, disk_address: u64,/;"	P	implementation:VirtioBlockDisk
+translate_address	mmu.rs	/^	fn translate_address(&mut self, v_address: u64, access_type: &MemoryAccessType) -> Result<u64, /;"	P	implementation:Mmu
+trap_type	cpu.rs	/^	pub trap_type: TrapType,$/;"	m	struct:Trap
+traverse_page	mmu.rs	/^	fn traverse_page(&mut self, v_address: u64, level: u8, parent_ppn: u64,$/;"	P	implementation:Mmu
+uart	device/mod.rs	/^pub mod uart;$/;"	n
+uart	mmu.rs	/^	uart: Uart,$/;"	m	struct:Mmu
+uart_ip_cache	device/plic.rs	/^	uart_ip_cache: bool$/;"	m	struct:Plic
+uncompress	cpu.rs	/^	fn uncompress(&self, halfword: u32) -> u32 {$/;"	P	implementation:Cpu
+unsigned_data	cpu.rs	/^	fn unsigned_data(&self, value: i64) -> u64 {$/;"	P	implementation:Cpu
+unsigned_data_mask	cpu.rs	/^	unsigned_data_mask: u64$/;"	m	struct:Cpu
+update_addressing_mode	cpu.rs	/^	fn update_addressing_mode(&mut self, value: u64) {$/;"	P	implementation:Cpu
+update_addressing_mode	mmu.rs	/^	pub fn update_addressing_mode(&mut self, new_addressing_mode: AddressingMode) {$/;"	P	implementation:Mmu
+update_irq	device/plic.rs	/^	fn update_irq(&mut self, mip: &mut u64) {$/;"	P	implementation:Plic
+update_mstatus	mmu.rs	/^	pub fn update_mstatus(&mut self, mstatus: u64) {$/;"	P	implementation:Mmu
+update_pc	cpu.rs	/^	pub fn update_pc(&mut self, value: u64) {$/;"	P	implementation:Cpu
+update_ppn	mmu.rs	/^	pub fn update_ppn(&mut self, ppn: u64) {$/;"	P	implementation:Mmu
+update_privilege_mode	mmu.rs	/^	pub fn update_privilege_mode(&mut self, mode: PrivilegeMode) {$/;"	P	implementation:Mmu
+update_xlen	cpu.rs	/^	pub fn update_xlen(&mut self, xlen: Xlen) {$/;"	P	implementation:Cpu
+update_xlen	lib.rs	/^	pub fn update_xlen(&mut self, xlen: Xlen) {$/;"	P	implementation:Emulator
+update_xlen	mmu.rs	/^	pub fn update_xlen(&mut self, xlen: Xlen) {$/;"	P	implementation:Mmu
+used_ring_index	device/virtio_block_disk.rs	/^	used_ring_index: u16,$/;"	m	struct:VirtioBlockDisk
+validate	elf_analyzer.rs	/^	pub fn validate(&self) -> bool {$/;"	P	implementation:ElfAnalyzer
+validate_address	memory.rs	/^	pub fn validate_address(&self, address: u64) -> bool {$/;"	P	implementation:Memory
+validate_address	mmu.rs	/^	pub fn validate_address(&mut self, v_address: u64) -> Result<bool, ()> {$/;"	P	implementation:Mmu
+validate_address	mmu.rs	/^	pub fn validate_address(&self, address: u64) -> bool {$/;"	P	implementation:MemoryWrapper
+value	cpu.rs	/^	pub value: u64 \/\/ Trap type specific value$/;"	m	struct:Trap
+virtio_block_disk	device/mod.rs	/^pub mod virtio_block_disk;$/;"	n
+virtio_ip_cache	device/plic.rs	/^	virtio_ip_cache: bool,$/;"	m	struct:Plic
+wfi	cpu.rs	/^	wfi: bool,$/;"	m	struct:Cpu
+word	cpu.rs	/^	word: u32,$/;"	m	struct:DecodeCacheEntry
+write_byte	memory.rs	/^	pub fn write_byte(&mut self, address: u64, value: u8) {$/;"	P	implementation:Memory
+write_byte	mmu.rs	/^	pub fn write_byte(&mut self, p_address: u64, value: u8) {$/;"	P	implementation:MemoryWrapper
+write_bytes	memory.rs	/^	pub fn write_bytes(&mut self, address: u64, value: u64, width: u64) {$/;"	P	implementation:Memory
+write_csr	cpu.rs	/^	fn write_csr(&mut self, address: u16, value: u64) -> Result<(), Trap> {$/;"	P	implementation:Cpu
+write_csr_raw	cpu.rs	/^	fn write_csr_raw(&mut self, address: u16, value: u64) {$/;"	P	implementation:Cpu
+write_doubleword	memory.rs	/^	pub fn write_doubleword(&mut self, address: u64, value: u64) {$/;"	P	implementation:Memory
+write_doubleword	mmu.rs	/^	pub fn write_doubleword(&mut self, p_address: u64, value: u64) {$/;"	P	implementation:MemoryWrapper
+write_halfword	memory.rs	/^	pub fn write_halfword(&mut self, address: u64, value: u16) {$/;"	P	implementation:Memory
+write_halfword	mmu.rs	/^	pub fn write_halfword(&mut self, p_address: u64, value: u16) {$/;"	P	implementation:MemoryWrapper
+write_mtime	device/clint.rs	/^	pub fn write_mtime(&mut self, value: u64) {$/;"	P	implementation:Clint
+write_to_disk	device/virtio_block_disk.rs	/^	fn write_to_disk(&mut self, address: u64, value: u8) {$/;"	P	implementation:VirtioBlockDisk
+write_word	memory.rs	/^	pub fn write_word(&mut self, address: u64, value: u32) {$/;"	P	implementation:Memory
+write_word	mmu.rs	/^	pub fn write_word(&mut self, p_address: u64, value: u32) {$/;"	P	implementation:MemoryWrapper
+x	cpu.rs	/^	x: [i64; 32],$/;"	m	struct:Cpu
+xlen	cpu.rs	/^	xlen: Xlen,$/;"	m	struct:Cpu
+xlen	mmu.rs	/^	xlen: Xlen,$/;"	m	struct:Mmu
