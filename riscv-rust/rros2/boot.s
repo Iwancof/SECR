@@ -11,67 +11,6 @@ os_start:
 	
 	j				os_main
 
-/*
-nested_check:
-	lla				t3, nested_check_los_start
-	.4byte		0x00000e2f
-	
-	addi			sp, sp, -12
-	li				a1, 10
-	sh				a1, 0(sp)
-	li				a1, 20
-	sh				a1, 2(sp)
-nested_loop_start:
-	lh				a1, 0(sp)
-	lh				a2, 2(sp)
-	addi			a1, a1, 1
-	sh				a1, 0(sp)
-	sh				a2, 2(sp)
-
-	sw				a1, 4(sp)
-	sw				a2, 8(sp)
-	
-	mv				a0, a1
-	call			times
-
-	mv				a1, a0
-	li				a0, 11
-	ebreak
-
-	lh				a1, 0(sp)
-	lh				a2, 2(sp)
-	bltu			a1, a2, nested_loop_start
-
-	j					easy_panic
-
-times:
-	slli				a0, a0, 1
-	ret
-	# lla				t3,	sin_los_start
-	# .4byte		0x00000e2f
-
-easy_panic:
-	j					easy_panic
-
-nested_check_los_start:
-	.byte	nested_check_los_end - nested_check_los_start
-	.byte	11
-	.byte	0b00000100
-	.byte 3
-	.byte	0b00000010
-nested_check_los_end:
-*/
-/*
-os_main_los_start:
-	.byte os_main_los_end - os_main_los_start
-	.byte	23
-	.byte	0b00001000
-	.byte	7
-	.byte	0b00000100
-os_main_los_end:
-*/
-
-
 os_main:
 	lla			t3, os_main_los_start
 	.4byte	0x00000e2f
@@ -110,13 +49,9 @@ loop_start:
 	ebreak
 
 	j				easy_panic
+
 easy_panic:
 	j				easy_panic
-
-los_:
-	.4byte	0x0000001f
-	.4byte	0x0000002f
-	.4byte	0x0000003f
 
 .section	.rodata
 os_main_los_start:
