@@ -1398,6 +1398,32 @@ impl Cpu {
 		self.local_offset_sp += self.get_now_lob_size()? as u64;
 		Ok(())
 	}
+	pub fn dump_local_offset_stack(&mut self) {
+		print_tty("-- Start los dumping -- \n".to_string());
+		let mut reading_pointer = self.local_offset_sp;
+		loop {
+			let lob_size = match self.mmu.load(reading_pointer) {
+				Ok(v) => v,
+				Err(_) => return,
+			};
+			if lob_size == 0 { // field must not be zero. so this is end of stack.
+				break;
+			}
+			print_tty(format!(" lob dump in {:x}\n", reading_pointer));
+			for i in (1..(lob_size as u64)).step_by(2) {
+				match self.mmu.load(reading_pointer + i) {
+					Ok(v) => print_tty(format!("  end offset : {}\n", v)),
+					Err(_) => return,
+				}
+				match self.mmu.load(reading_pointer + i + 1) {
+					Ok(v) => print_tty(format!("  access flag: {:x}\n", v)),
+					Err(_) => return,
+				}
+			}
+			reading_pointer += lob_size as u64;
+		}
+		print_tty("-- End of stack -- \n".to_string());
+	}
 	pub fn tsp_check(&mut self, base_reg: usize, offset: i64, size: u8) -> Result<(), Trap>{
 		if base_reg != 2 {
 			return Ok(()); // not local access.
@@ -1405,11 +1431,15 @@ impl Cpu {
 		for i in (1..self.get_now_lob_size()? as u64).step_by(2) {
 			let end_offset = self.mmu.load(self.local_offset_sp + i)? as i64;
 			let access_flag = self.mmu.load(self.local_offset_sp + i + 1)? as u8;
+			if end_offset == 0 {
+				break;
+			}
 
 			if offset <= end_offset {
 				// TODO: Read or write ...?
 				if access_flag & size == 0 { // Access Denied
 					print_tty(format!("TSP Check Fault! in {}. Access by {}\n", offset, size));
+					print_tty(format!("Correct info. {}:{}\n", end_offset, access_flag));
 					return Err(Trap {
 						trap_type: TrapType::TSPCheckFault,
 						value: offset as u64, // TODO: support i64.
@@ -1420,7 +1450,7 @@ impl Cpu {
 				}
 			}
 		}
-		print_tty("not found...\n".to_string());
+		print_tty(format!("not found...{}:{}\n", offset, size));
 		return Err(Trap {
 			trap_type: TrapType::TSPCheckFault,
 			value: u64::MAX,
@@ -2325,10 +2355,23 @@ const INSTRUCTIONS: [Instruction; INSTRUCTION_NUM] = [
 		data: 0x00100073,
 		name: "EBREAK",
 		operation: |cpu, _word, _address| {
-			for i in 0..32 {
-				// print_tty(format!("{}:{}\n", get_register_name(i), _cpu.x[i]))
+			match cpu.x[10] {
+				0..=31 => {
+					print_tty(format!("Normal reg: x[{}] = {}\n", cpu.x[10], cpu.x[cpu.x[10] as usize]));
+				},
+				100..=131 => {
+					print_tty(format!("Floating reg: x[{}] = {}\n", cpu.x[10] - 100, cpu.f[(cpu.x[10] - 100) as usize]));
+				},
+				200 => {
+					print_tty(format!("Local Offset Stack Pointer = {:x}\n", cpu.local_offset_sp));
+				},
+				201 => {
+					cpu.dump_local_offset_stack();
+				},
+				_ => {
+					print_tty(format!("Unknown reg: {}\n", cpu.x[10]));
+				},
 			}
-			print_tty(format!("losp is {:x}\n", cpu.local_offset_sp));
 			// @TODO: Implement
 			Ok(())
 		},
@@ -2852,6 +2895,10 @@ const INSTRUCTIONS: [Instruction; INSTRUCTION_NUM] = [
 			let los_pointer = cpu.x[f.rd] as u64;
 			// print_tty(format!("lospset register is {:x}\n", los_pointer));
 			cpu.local_offset_sp = los_pointer;
+			cpu.mmu.store(cpu.local_offset_sp, 0)?;
+
+			cpu.local_offset_sp += 1;
+
 
 			Ok(())
 		},
