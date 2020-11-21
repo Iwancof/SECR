@@ -1,9 +1,21 @@
+#[allow(unused)]
+
 extern crate fnv;
 
 use self::fnv::FnvHashMap;
 
 use mmu::{AddressingMode, Mmu};
 use terminal::Terminal;
+
+fn print_tty(msg: String) {
+	use std::fs::File;
+	use std::io::Write;
+
+	let mut file = File::create("/dev/pts/5").unwrap();
+	write!(file, "{}", msg).unwrap();
+
+	file.flush().unwrap();
+}
 
 const CSR_CAPACITY: usize = 4096;
 
@@ -73,7 +85,21 @@ pub struct Cpu {
 	is_reservation_set: bool,
 	_dump_flag: bool,
 	decode_cache: DecodeCache,
-	unsigned_data_mask: u64
+	unsigned_data_mask: u64,
+	local_offset_sp: u64,
+}
+
+#[derive(Debug)]
+pub struct Lob { // Local Offsets Block
+	// This struct memory layout is not emurator's that.
+	size: u8,
+	entries: Vec<Loe>,
+
+}
+#[derive(Debug)]
+pub struct Loe { // Local Offsets Entry.
+	end_offset: u8,
+	access_flag: u8,
 }
 
 #[derive(Clone)]
@@ -113,6 +139,7 @@ pub enum TrapType {
 	InstructionPageFault,
 	LoadPageFault,
 	StorePageFault,
+	TSPCheckFault,
 	UserSoftwareInterrupt,
 	SupervisorSoftwareInterrupt,
 	MachineSoftwareInterrupt,
@@ -121,7 +148,7 @@ pub enum TrapType {
 	MachineTimerInterrupt,
 	UserExternalInterrupt,
 	SupervisorExternalInterrupt,
-	MachineExternalInterrupt
+	MachineExternalInterrupt,
 }
 
 fn _get_privilege_mode_name(mode: &PrivilegeMode) -> &'static str {
@@ -169,6 +196,7 @@ fn _get_trap_type_name(trap_type: &TrapType) -> &'static str {
 		TrapType::InstructionPageFault => "InstructionPageFault",
 		TrapType::LoadPageFault => "LoadPageFault",
 		TrapType::StorePageFault => "StorePageFault",
+		TrapType::TSPCheckFault => "TSPCheckFault",
 		TrapType::UserSoftwareInterrupt => "UserSoftwareInterrupt",
 		TrapType::SupervisorSoftwareInterrupt => "SupervisorSoftwareInterrupt",
 		TrapType::MachineSoftwareInterrupt => "MachineSoftwareInterrupt",
@@ -201,6 +229,7 @@ fn get_trap_cause(trap: &Trap, xlen: &Xlen) -> u64 {
 		TrapType::InstructionPageFault => 12,
 		TrapType::LoadPageFault => 13,
 		TrapType::StorePageFault => 15,
+		TrapType::TSPCheckFault => 16,
 		TrapType::UserSoftwareInterrupt => interrupt_bit,
 		TrapType::SupervisorSoftwareInterrupt => interrupt_bit + 1,
 		TrapType::MachineSoftwareInterrupt => interrupt_bit + 3,
@@ -233,7 +262,8 @@ impl Cpu {
 			is_reservation_set: false,
 			_dump_flag: false,
 			decode_cache: DecodeCache::new(),
-			unsigned_data_mask: 0xffffffffffffffff
+			unsigned_data_mask: 0xffffffffffffffff,
+			local_offset_sp: 0,
 		};
 		cpu.x[0xb] = 0x1020; // I don't know why but Linux boot seems to require this initialization
 		cpu.write_csr_raw(CSR_MISA_ADDRESS, 0x800000008014312f);
@@ -321,6 +351,7 @@ impl Cpu {
 
 		match self.decode(word) {
 			Ok(inst) => {
+				// print_tty(format!("{:x}:{}\n", instruction_address, inst.name));
 				let result = (inst.operation)(self, word, instruction_address);
 				self.x[0] = 0; // hardwired zero
 				return result;
@@ -537,6 +568,9 @@ impl Cpu {
 			// where x is a new privilege mode.
 
 			match trap.trap_type {
+				TrapType::TSPCheckFault => {
+					print_tty("detect tsp check fualt\n".to_string());
+				},
 				TrapType::UserSoftwareInterrupt => {
 					if usie == 0 {
 						return false;
@@ -1342,6 +1376,56 @@ impl Cpu {
 	pub fn get_mut_terminal(&mut self) -> &mut Box<dyn Terminal> {
 		self.mmu.get_mut_uart().get_mut_terminal()
 	}
+
+	pub fn push_lob(&mut self, local_offsets_block: Lob) {
+		for entry in local_offsets_block.entries {
+			self.local_offset_sp -= 2; // entry has size of 2.
+			if let Err(_) = self.mmu.store(self.local_offset_sp, entry.end_offset) {
+				
+			}
+			if let Err(_) = self.mmu.store(self.local_offset_sp + 1, entry.access_flag) {
+				
+			}
+		}
+		self.local_offset_sp -= 1;
+		if let Err(_) = self.mmu.store(self.local_offset_sp, local_offsets_block.size) {
+		}
+	}
+	fn get_now_lob_size(&mut self) -> Result<u8, Trap> {
+		self.mmu.load(self.local_offset_sp)
+	}
+	pub fn pop_lob(&mut self) -> Result<(), Trap> {
+		self.local_offset_sp += self.get_now_lob_size()? as u64;
+		Ok(())
+	}
+	pub fn tsp_check(&mut self, base_reg: usize, offset: i64, size: u8) -> Result<(), Trap>{
+		if base_reg != 2 {
+			return Ok(()); // not local access.
+		}
+		for i in (1..self.get_now_lob_size()? as u64).step_by(2) {
+			let end_offset = self.mmu.load(self.local_offset_sp + i)? as i64;
+			let access_flag = self.mmu.load(self.local_offset_sp + i + 1)? as u8;
+
+			if offset <= end_offset {
+				// TODO: Read or write ...?
+				if access_flag & size == 0 { // Access Denied
+					print_tty(format!("TSP Check Fault! in {}. Access by {}\n", offset, size));
+					return Err(Trap {
+						trap_type: TrapType::TSPCheckFault,
+						value: offset as u64, // TODO: support i64.
+					});
+				} else {
+					// print_tty(format!("{} -> {}, {}\n", offset, size, access_flag));
+					return Ok(());
+				}
+			}
+		}
+		print_tty("not found...\n".to_string());
+		return Err(Trap {
+			trap_type: TrapType::TSPCheckFault,
+			value: u64::MAX,
+		});
+	}
 }
 
 struct Instruction {
@@ -1681,7 +1765,7 @@ fn get_register_name(num: usize) -> &'static str {
 	}
 }
 
-const INSTRUCTION_NUM: usize = 117;
+const INSTRUCTION_NUM: usize = 120;
 
 // @TODO: Reorder in often used order as 
 const INSTRUCTIONS: [Instruction; INSTRUCTION_NUM] = [
@@ -2240,11 +2324,12 @@ const INSTRUCTIONS: [Instruction; INSTRUCTION_NUM] = [
 		mask: 0xffffffff,
 		data: 0x00100073,
 		name: "EBREAK",
-		operation: |_cpu, _word, _address| {
+		operation: |cpu, _word, _address| {
+			for i in 0..32 {
+				// print_tty(format!("{}:{}\n", get_register_name(i), _cpu.x[i]))
+			}
+			print_tty(format!("losp is {:x}\n", cpu.local_offset_sp));
 			// @TODO: Implement
-
-
-
 			Ok(())
 		},
 		disassemble: dump_empty
@@ -2642,6 +2727,7 @@ const INSTRUCTIONS: [Instruction; INSTRUCTION_NUM] = [
 		name: "LB",
 		operation: |cpu, word, _address| {
 			let f = parse_format_i(word);
+			cpu.tsp_check(f.rs1, f.imm, 1)?;
 			cpu.x[f.rd] = match cpu.mmu.load(cpu.x[f.rs1].wrapping_add(f.imm) as u64) {
 				Ok(data) => data as i8 as i64,
 				Err(e) => return Err(e)
@@ -2670,6 +2756,7 @@ const INSTRUCTIONS: [Instruction; INSTRUCTION_NUM] = [
 		name: "LD",
 		operation: |cpu, word, _address| {
 			let f = parse_format_i(word);
+			cpu.tsp_check(f.rs1, f.imm, 8)?;
 			cpu.x[f.rd] = match cpu.mmu.load_doubleword(cpu.x[f.rs1].wrapping_add(f.imm) as u64) {
 				Ok(data) => data as i64,
 				Err(e) => return Err(e)
@@ -2684,6 +2771,7 @@ const INSTRUCTIONS: [Instruction; INSTRUCTION_NUM] = [
 		name: "LH",
 		operation: |cpu, word, _address| {
 			let f = parse_format_i(word);
+			cpu.tsp_check(f.rs1, f.imm, 2)?;
 			cpu.x[f.rd] = match cpu.mmu.load_halfword(cpu.x[f.rs1].wrapping_add(f.imm) as u64) {
 				Ok(data) => data as i16 as i64,
 				Err(e) => return Err(e)
@@ -2756,11 +2844,71 @@ const INSTRUCTIONS: [Instruction; INSTRUCTION_NUM] = [
 		disassemble: dump_format_u
 	},
 	Instruction {
+		mask: 0x0000007f,
+		data: 0x0000001f,
+		name: "LOSPSET",
+		operation: |cpu, word, _address| {
+			let f = parse_format_u(word);
+			let los_pointer = cpu.x[f.rd] as u64;
+			// print_tty(format!("lospset register is {:x}\n", los_pointer));
+			cpu.local_offset_sp = los_pointer;
+
+			Ok(())
+		},
+		disassemble: dump_format_u
+	},
+	Instruction {
+		mask: 0x0000007f,
+		data: 0x0000002f,
+		name: "LOBPUSH",
+		operation: |cpu, word, _address| {
+			let f = parse_format_u(word);
+			let now_los_p = cpu.x[f.rd] as u64;
+			
+			let mut offset = now_los_p;
+			let size = cpu.mmu.load_word(offset)? as u8;
+			offset += 1; // size is byte data.
+			
+			let mut local_offset_block = Lob {
+				size: size,
+				entries: Vec::new(),
+			};
+			for _ in 0..((size - 1) / 2) {
+				let end = cpu.mmu.load_word(offset)? as u8;
+				offset += 1;
+				let acf = cpu.mmu.load_word(offset)? as u8;
+				offset += 1;
+				let local_offset_entry = Loe {
+					end_offset: end,
+					access_flag: acf,
+				};
+				// print_tty(format!("{:?}\n", local_offset_entry));
+				local_offset_block.entries.push(local_offset_entry);
+			}
+
+			cpu.push_lob(local_offset_block);
+
+			Ok(())
+		},
+		disassemble: dump_format_u
+	},
+	Instruction {
+		mask: 0x0000007f,
+		data: 0x0000003f,
+		name: "LOBPOP",
+		operation: |cpu, _word, _address| {
+			cpu.pop_lob()?;
+			Ok(())
+		},
+		disassemble: dump_format_u
+	},
+	Instruction {
 		mask: 0x0000707f,
 		data: 0x00002003,
 		name: "LW",
 		operation: |cpu, word, _address| {
 			let f = parse_format_i(word);
+			cpu.tsp_check(f.rs1, f.imm, 4)?;
 			cpu.x[f.rd] = match cpu.mmu.load_word(cpu.x[f.rs1].wrapping_add(f.imm) as u64) {
 				Ok(data) => data as i32 as i64,
 				Err(e) => return Err(e)
@@ -2988,6 +3136,7 @@ const INSTRUCTIONS: [Instruction; INSTRUCTION_NUM] = [
 		name: "SB",
 		operation: |cpu, word, _address| {
 			let f = parse_format_s(word);
+			cpu.tsp_check(f.rs1, f.imm, 1)?;
 			cpu.mmu.store(cpu.x[f.rs1].wrapping_add(f.imm) as u64, cpu.x[f.rs2] as u8)
 		},
 		disassemble: dump_format_s
@@ -3040,6 +3189,7 @@ const INSTRUCTIONS: [Instruction; INSTRUCTION_NUM] = [
 		name: "SD",
 		operation: |cpu, word, _address| {
 			let f = parse_format_s(word);
+			cpu.tsp_check(f.rs1, f.imm, 8)?;
 			cpu.mmu.store_doubleword(cpu.x[f.rs1].wrapping_add(f.imm) as u64, cpu.x[f.rs2] as u64)
 		},
 		disassemble: dump_format_s
@@ -3060,6 +3210,7 @@ const INSTRUCTIONS: [Instruction; INSTRUCTION_NUM] = [
 		name: "SH",
 		operation: |cpu, word, _address| {
 			let f = parse_format_s(word);
+			cpu.tsp_check(f.rs1, f.imm, 2)?;
 			cpu.mmu.store_halfword(cpu.x[f.rs1].wrapping_add(f.imm) as u64, cpu.x[f.rs2] as u16)
 		},
 		disassemble: dump_format_s
@@ -3333,6 +3484,7 @@ const INSTRUCTIONS: [Instruction; INSTRUCTION_NUM] = [
 		name: "SW",
 		operation: |cpu, word, _address| {
 			let f = parse_format_s(word);
+			cpu.tsp_check(f.rs1, f.imm, 4)?;
 			cpu.mmu.store_word(cpu.x[f.rs1].wrapping_add(f.imm) as u64, cpu.x[f.rs2] as u32)
 		},
 		disassemble: dump_format_s

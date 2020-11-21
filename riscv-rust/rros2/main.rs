@@ -14,20 +14,12 @@ use core::panic::PanicInfo;
 
 #[no_mangle]
 fn rust_main() {
-	let mut primes_len = 0;
-	let mut primes = [0 as u32; 1024];
-	for i in 0..1024 {
-		if !primes[0..primes_len].any(|x| {
-			i % x != 0
-		}) {
-			primes[primes_len] = i;
-			primes_len += 1;
-		}
-	}
+	fib();
 
 	panic!("Main function exit");
 }
 
+#[no_mangle]
 fn fib() {
 	let mut prev = 1;
 	let mut now = 1;
@@ -40,8 +32,9 @@ fn fib() {
 	}
 }
 
-fn test(x: i32) {
-	println!("{}", x);
+#[no_mangle]
+fn test(x: u64) {
+	println!("{:x}", x);
 }
 
 #[panic_handler]
