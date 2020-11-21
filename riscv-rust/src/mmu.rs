@@ -9,7 +9,7 @@ extern crate fnv;
 use self::fnv::FnvHashMap;
 
 use memory::Memory;
-use cpu::{PrivilegeMode, Trap, TrapType, Xlen, get_privilege_mode};
+use cpu::{PrivilegeMode, Trap, TrapType, Xlen, get_privilege_mode, print_tty};
 use device::virtio_block_disk::VirtioBlockDisk;
 use device::plic::Plic;
 use device::clint::Clint;
@@ -864,6 +864,51 @@ impl Mmu {
 	pub fn get_mut_uart(&mut self) -> &mut Uart {
 		&mut self.uart
 	}
+	pub fn get_lob(&mut self, lobp: u64, sp: u64) -> Result<LocalOffsetBlock, Trap>{
+		let mut reading = lobp;
+		let lob_size = self.load_doubleword(reading)?;
+		reading += 8;			// block size is quad
+		// print_tty(format!("value is {}\n", self.load_doubleword(reading)?));
+		let mut lob = LocalOffsetBlock {
+			block_size: lob_size,
+			end_pointer: 0,
+			entries: Vec::new(),
+		};
+		let mut max_offset = 0;
+		let entry_number = (lob.block_size - 16) / 8;
+		for _ in (0..entry_number).step_by(2) {
+			let end = self.load_doubleword(reading)?;
+			reading += 8;
+			let access_flag = self.load_doubleword(reading)?;
+			reading += 8;
+
+			let loe = LocalOffsetEntry {
+				end: end + sp,
+				access_flag: access_flag,
+			};
+
+			lob.entries.push(loe);
+
+			if max_offset < end {
+				max_offset = end;
+			}
+		}
+		lob.end_pointer = max_offset + sp; // this is offset. 
+
+		Ok(lob)
+	}
+}
+
+#[derive(Debug)]
+pub struct LocalOffsetBlock {
+	pub block_size: u64,		// block size(not local variables size)
+	pub end_pointer: u64,		// max + sp
+	pub entries: Vec<LocalOffsetEntry>,
+}
+#[derive(Debug)]
+pub struct LocalOffsetEntry {
+	pub end: u64,
+	pub access_flag: u64,
 }
 
 /// [`Memory`](../memory/struct.Memory.html) wrapper. Converts physical address to the one in memory
@@ -932,4 +977,5 @@ impl MemoryWrapper {
 	pub fn validate_address(&self, address: u64) -> bool {
 		self.memory.validate_address(address - DRAM_BASE)
 	}
+
 }

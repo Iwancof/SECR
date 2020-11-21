@@ -13,10 +13,10 @@ os_start:
 
 tsp_check_test:
 	addi				sp, sp, -10
-	li					a0, 2
 
 	lla					t3,	tsp_check_test_los_start
 	.4byte			0x00000e2f
+
 
 	li					t1,	1				# calc temp
 	sd					t1, 0(sp)
@@ -36,7 +36,7 @@ tsp_check_test:
 	ld					t1, 0(sp)
 	add					t1, t1, t1
 	sd					t1, 0(sp)
-	
+
 	li					a0, 6
 	ebreak
 	
@@ -47,9 +47,6 @@ tsp_check_test:
 	lb					t1, 8(sp)
 	lb					t2, 9(sp)
 	bltu				t1, t2, .L0
-
-	addi				sp, sp, 10
-	.4byte	0x0000003f # pop
 
 	j						easy_panic
 
@@ -68,7 +65,6 @@ tsp_check_test_los_end:
 
 .section	.text
 nested_func_test:
-
 	addi				sp,	sp, -16
 
 	lla					t3,	nested_func_test_los_start
@@ -81,7 +77,6 @@ nested_func_test:
 	mv					a2, a0
 	li					a0, 11
 	ebreak
-
 	lb					a2, 1(a2)
 	li					a0, 12
 	ebreak

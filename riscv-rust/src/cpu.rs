@@ -4,10 +4,10 @@ extern crate fnv;
 
 use self::fnv::FnvHashMap;
 
-use mmu::{AddressingMode, Mmu};
+use mmu::{AddressingMode, Mmu, LocalOffsetBlock};
 use terminal::Terminal;
 
-fn print_tty(msg: String) {
+pub fn print_tty(msg: String) {
 	use std::fs::File;
 	use std::io::Write;
 
@@ -87,19 +87,6 @@ pub struct Cpu {
 	decode_cache: DecodeCache,
 	unsigned_data_mask: u64,
 	local_offset_sp: u64,
-}
-
-#[derive(Debug)]
-pub struct Lob { // Local Offsets Block
-	// This struct memory layout is not emurator's that.
-	size: u8,
-	entries: Vec<Loe>,
-
-}
-#[derive(Debug)]
-pub struct Loe { // Local Offsets Entry.
-	end_offset: u8,
-	access_flag: u8,
 }
 
 #[derive(Clone)]
@@ -229,7 +216,7 @@ fn get_trap_cause(trap: &Trap, xlen: &Xlen) -> u64 {
 		TrapType::InstructionPageFault => 12,
 		TrapType::LoadPageFault => 13,
 		TrapType::StorePageFault => 15,
-		TrapType::TSPCheckFault => 16,
+		TrapType::TSPCheckFault => 24,
 		TrapType::UserSoftwareInterrupt => interrupt_bit,
 		TrapType::SupervisorSoftwareInterrupt => interrupt_bit + 1,
 		TrapType::MachineSoftwareInterrupt => interrupt_bit + 3,
@@ -1376,7 +1363,7 @@ impl Cpu {
 	pub fn get_mut_terminal(&mut self) -> &mut Box<dyn Terminal> {
 		self.mmu.get_mut_uart().get_mut_terminal()
 	}
-
+	/*
 	pub fn push_lob(&mut self, local_offsets_block: Lob) {
 		for entry in local_offsets_block.entries {
 			self.local_offset_sp -= 2; // entry has size of 2.
@@ -1425,6 +1412,7 @@ impl Cpu {
 		print_tty("-- End of stack -- \n".to_string());
 	}
 	pub fn tsp_check(&mut self, base_reg: usize, offset: i64, size: u8) -> Result<(), Trap>{
+		return Ok(());
 		if base_reg != 2 {
 			return Ok(()); // not local access.
 		}
@@ -1435,7 +1423,7 @@ impl Cpu {
 				break;
 			}
 
-			if offset <= end_offset {
+			if offset + size as i64 - 1<= end_offset {
 				// TODO: Read or write ...?
 				if access_flag & size == 0 { // Access Denied
 					print_tty(format!("TSP Check Fault! in {}. Access by {}\n", offset, size));
@@ -1455,6 +1443,129 @@ impl Cpu {
 			trap_type: TrapType::TSPCheckFault,
 			value: u64::MAX,
 		});
+	}
+	*/
+	fn push_lob(&mut self, lob: LocalOffsetBlock) -> Result<(), Trap> {
+		self.local_offset_sp -= lob.entries.len() as u64 * 2 * 8; // entries.
+		self.local_offset_sp -= 8; // base pointer
+		self.local_offset_sp -= 8; // block size
+
+		let mut writing = self.local_offset_sp;
+
+		self.mmu.store_doubleword(writing, lob.block_size)?; writing += 8;
+		self.mmu.store_doubleword(writing, lob.end_pointer)?; writing += 8;
+
+		for entry in lob.entries {
+			self.mmu.store_doubleword(writing, entry.end)?;
+			writing += 8;
+			self.mmu.store_doubleword(writing, entry.access_flag)?;
+			writing += 8;
+		}
+
+		Ok(())
+	}
+	fn pop_lob(&mut self) -> Result<(), Trap> {
+		self.local_offset_sp += self.mmu.load_doubleword(self.local_offset_sp)?;
+		Ok(())
+	}
+	fn get_full_address(&mut self, offset: i64) -> u64{
+		self.x[2].wrapping_add(offset) as u64
+	}
+	fn get_entry_number_from_block_size(size: u64) -> u64 {
+		(size - 8 * 2) / 8 / 2
+		// 8: block_size, 8: end_pointer.
+	}
+	fn tsp_check_in_latest_block(&mut self, offset: i64, size: u64) -> Result<(), Trap> {
+		let full_address = self.get_full_address(offset);
+		// print_tty(format!("offset is {}, address is {:x}\n", offset, full_address));
+		self.tsp_check_in_block(self.local_offset_sp, full_address, size)
+	}
+	fn tsp_check_in_block(&mut self, lob_base: u64, accessing_address: u64, request: u64) -> Result<(), Trap> {
+		// No check block validation
+		let size = self.mmu.load_doubleword(lob_base)?;
+		let entry_number = Cpu::get_entry_number_from_block_size(size);
+
+		let mut reading = lob_base + 8 * 2;
+		let end_address = accessing_address + (request & 0b1111) - 1;
+		// print_tty(format!("end_address: {:x}\n", accessing_address + request & 0b1111));
+		// print_tty(format!("accessing_address: {:x}\n", accessing_address));
+		// print_tty(format!("request & 0b1111 : {:x}\n", request & 0b1111));
+		// print_tty(format!("end_address      : {:x}\n", end_address));
+
+		for _ in 0..entry_number {
+			let end_offset = self.mmu.load_doubleword(reading)?;
+			reading += 8;
+			let access_flag = self.mmu.load_doubleword(reading)?;
+			reading += 8;
+
+			//print_tty(format!("access is {:x}\n", end_address));
+		  //print_tty(format!("stored in {:x}\n", end_offset));
+
+			if end_address <= end_offset { // Found
+				//print_tty(format!("access is {:x}\n", end_address));
+				//print_tty(format!("stored in {:x}\n", end_offset));
+				if access_flag & request == request { // Ok
+					return Ok(())
+				} else {
+					print_tty("fault\n".to_string());
+					return Err(Trap {
+						trap_type: TrapType::TSPCheckFault,
+						value: accessing_address,
+					});
+				}
+			}
+		}
+
+		Err(Trap {
+			trap_type: TrapType::TSPCheckFault,
+			value: accessing_address,
+		})
+
+	}
+	fn search_los_frame_skip_list(&mut self, start_sp: u64, address: u64, request: u64) -> Result<(), Trap> {
+		// print_tty(format!("start_sp: {:x}, address: {:x}, request: {:x}\n", start_sp, address, request));
+
+		// Frame search parse.
+		let mut top_of_frame = start_sp;
+		loop {
+			let size = self.mmu.load_doubleword(top_of_frame)?;
+			if size == 0 {
+				return Err( Trap {
+					trap_type: TrapType::TSPCheckFault,
+					value: top_of_frame,
+				});
+			}
+			let end_pointer = self.mmu.load_doubleword(top_of_frame + 8)?;
+			if address < end_pointer { // Found
+				// print_tty(format!("found: {:x}\n", top_of_frame));
+				return self.tsp_check_in_block(top_of_frame, address, request);
+			}
+			top_of_frame += size;
+		}
+	}
+
+	fn tsp_check(&mut self, base_reg: usize, offset: i64, size: u8) -> Result<(), Trap> {
+			
+		// There is 3 cases.
+		// 1. Access local variable via sp,
+		//		-> Check latest local offset block.
+		// 2. Access local variable via pointer,
+		//		-> Search entry, and check it.
+		// 3. Not local variable access.
+		//		-> Returns Ok(())
+
+		if base_reg == 2 { // Case 1.
+			return self.tsp_check_in_latest_block(offset, size as u64); // size is 8bit, but flags are 64bits.
+		} else {
+			let address = self.x[base_reg].wrapping_add(offset) as u64;
+			if self.x[2] as u64 <= address { // Case 2. Search
+				// print_tty("case 2\n".to_string());
+				return self.search_los_frame_skip_list(self.local_offset_sp, address, size as u64);
+			} else { // Case 3.
+				print_tty("case 3\n".to_string());
+				return Ok(())
+			}
+		}
 	}
 }
 
@@ -1795,19 +1906,10 @@ fn get_register_name(num: usize) -> &'static str {
 	}
 }
 
-const INSTRUCTION_NUM: usize = 120;
+const INSTRUCTION_NUM: usize = 119;
 
 // @TODO: Reorder in often used order as 
 const INSTRUCTIONS: [Instruction; INSTRUCTION_NUM] = [
-	Instruction {
-		mask: 0xffffffff,
-		data: 0x1234567f,
-		name: "IWANCOF_CALL",
-		operation: |_cpu, _word, _address| {
-			panic!("Iwancof Call!!!");
-		},
-		disassemble:	dump_format_r
-	},
 	Instruction {
 		mask: 0xfe00707f,
 		data: 0x00000033,
@@ -2357,7 +2459,7 @@ const INSTRUCTIONS: [Instruction; INSTRUCTION_NUM] = [
 		operation: |cpu, _word, _address| {
 			match cpu.x[10] {
 				0..=31 => {
-					print_tty(format!("Normal reg: x[{}] = {}\n", cpu.x[10], cpu.x[cpu.x[10] as usize]));
+					print_tty(format!("Normal reg: x[{}] = {:x}\n", cpu.x[10], cpu.x[cpu.x[10] as usize]));
 				},
 				100..=131 => {
 					print_tty(format!("Floating reg: x[{}] = {}\n", cpu.x[10] - 100, cpu.f[(cpu.x[10] - 100) as usize]));
@@ -2366,7 +2468,7 @@ const INSTRUCTIONS: [Instruction; INSTRUCTION_NUM] = [
 					print_tty(format!("Local Offset Stack Pointer = {:x}\n", cpu.local_offset_sp));
 				},
 				201 => {
-					cpu.dump_local_offset_stack();
+					// cpu.dump_local_offset_stack();
 				},
 				_ => {
 					print_tty(format!("Unknown reg: {}\n", cpu.x[10]));
@@ -2895,10 +2997,8 @@ const INSTRUCTIONS: [Instruction; INSTRUCTION_NUM] = [
 			let los_pointer = cpu.x[f.rd] as u64;
 			// print_tty(format!("lospset register is {:x}\n", los_pointer));
 			cpu.local_offset_sp = los_pointer;
-			cpu.mmu.store(cpu.local_offset_sp, 0)?;
-
-			cpu.local_offset_sp += 1;
-
+			cpu.mmu.store_doubleword(cpu.local_offset_sp, 0)?;
+			cpu.local_offset_sp -= 8;
 
 			Ok(())
 		},
@@ -2910,31 +3010,12 @@ const INSTRUCTIONS: [Instruction; INSTRUCTION_NUM] = [
 		name: "LOBPUSH",
 		operation: |cpu, word, _address| {
 			let f = parse_format_u(word);
-			let now_los_p = cpu.x[f.rd] as u64;
-			
-			let mut offset = now_los_p;
-			let size = cpu.mmu.load_word(offset)? as u8;
-			offset += 1; // size is byte data.
-			
-			let mut local_offset_block = Lob {
-				size: size,
-				entries: Vec::new(),
-			};
-			for _ in 0..((size - 1) / 2) {
-				let end = cpu.mmu.load_word(offset)? as u8;
-				offset += 1;
-				let acf = cpu.mmu.load_word(offset)? as u8;
-				offset += 1;
-				let local_offset_entry = Loe {
-					end_offset: end,
-					access_flag: acf,
-				};
-				// print_tty(format!("{:?}\n", local_offset_entry));
-				local_offset_block.entries.push(local_offset_entry);
-			}
+			let current_frame_lobp = cpu.x[f.rd] as u64;
+			let local_offset_table = cpu.mmu.get_lob(current_frame_lobp, cpu.x[2] as u64)?;
 
-			cpu.push_lob(local_offset_block);
-
+			// print_tty(format!("{:?}", local_offset_table));
+			cpu.push_lob(local_offset_table)?;
+			
 			Ok(())
 		},
 		disassemble: dump_format_u
