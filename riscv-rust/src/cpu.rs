@@ -4,14 +4,14 @@ extern crate fnv;
 
 use self::fnv::FnvHashMap;
 
-use mmu::{AddressingMode, Mmu, LocalOffsetBlock};
+use mmu::{AddressingMode, Mmu, LocalOffsetBlock, LocalOffsetEntry};
 use terminal::Terminal;
 
 pub fn print_tty(msg: String) {
 	use std::fs::File;
 	use std::io::Write;
 
-	let mut file = File::create("/dev/pts/5").unwrap();
+	let mut file = File::create("/dev/pts/2").unwrap();
 	write!(file, "{}", msg).unwrap();
 
 	file.flush().unwrap();
@@ -1507,7 +1507,7 @@ impl Cpu {
 				if access_flag & request == request { // Ok
 					return Ok(())
 				} else {
-					print_tty("fault\n".to_string());
+					print_tty("Accessing entry found. but permission denied.\n".to_string());
 					return Err(Trap {
 						trap_type: TrapType::TSPCheckFault,
 						value: accessing_address,
@@ -1515,13 +1515,55 @@ impl Cpu {
 				}
 			}
 		}
-
+		
+		print_tty(format!("Entry not found, lob_base:{:x}, address:{:x}, request:{:x}\n", lob_base, accessing_address, request));
 		Err(Trap {
 			trap_type: TrapType::TSPCheckFault,
 			value: accessing_address,
 		})
-
 	}
+	/*
+	fn show_local_offsets_block(&mut self, lob_base: u64) -> Result<(), Trap> {
+		let lob = self.read_local_offsets_block(lob_base)?;
+
+		// get start pointer
+		let mut max = 0;
+		for entry in lob.entries {
+			if max < entry.end {
+				max = entry.end;
+			}
+		}
+		// let start_pointer = lob.end_pointer - start_pointer;
+	}
+	fn read_local_offsets_block(&mut self, lob_base: u64) -> Result<LocalOffsetBlock, Trap> {
+		let mut reading = lob_base;
+		let size = self.mmu.load_doubleword(reading)?;
+		reading += 8;
+		let end_pointer = self.mmu.load_doubleword(reading)?;
+		reading += 8;
+
+		let mut lob = LocalOffsetBlock {
+			block_size: size,
+			end_pointer: end_pointer,
+			entries: Vec::new(),
+		};
+		let entry_number = Cpu::get_entry_number_from_block_size(size);
+
+		for i in 0..entry_number {
+			let end = self.mmu.load_doubleword(reading)?;
+			reading += 8;
+			let access_flag = self.mmu.load_doubleword(reading)?;
+			reading += 8;
+			lob.entries.push(LocalOffsetEntry {
+				end: end,
+				access_flag: access_flag,
+			});
+		}
+		Ok(lob)
+	}
+	fn show_local_offset_entry(&mut self, entry_base: u64) {
+	}
+	*/
 	fn search_los_frame_skip_list(&mut self, start_sp: u64, address: u64, request: u64) -> Result<(), Trap> {
 		// print_tty(format!("start_sp: {:x}, address: {:x}, request: {:x}\n", start_sp, address, request));
 
@@ -1530,6 +1572,7 @@ impl Cpu {
 		loop {
 			let size = self.mmu.load_doubleword(top_of_frame)?;
 			if size == 0 {
+				print_tty("The local offset table not found.\n".to_string());
 				return Err( Trap {
 					trap_type: TrapType::TSPCheckFault,
 					value: top_of_frame,
@@ -1545,6 +1588,7 @@ impl Cpu {
 	}
 
 	fn tsp_check(&mut self, base_reg: usize, offset: i64, size: u8) -> Result<(), Trap> {
+		// return Ok(());
 			
 		// There is 3 cases.
 		// 1. Access local variable via sp,
@@ -1562,7 +1606,7 @@ impl Cpu {
 				// print_tty("case 2\n".to_string());
 				return self.search_los_frame_skip_list(self.local_offset_sp, address, size as u64);
 			} else { // Case 3.
-				print_tty("case 3\n".to_string());
+				// print_tty("case 3\n".to_string());
 				return Ok(())
 			}
 		}

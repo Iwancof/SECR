@@ -2,111 +2,98 @@
 .option	nopic
 .global os_start
 
-.section	.text
 os_start:
-	lla					a0, los_end
-	.4byte			0x0000051f
+	lla				a0, los_end
+	.4byte		0x0000051f
 
-	lla					sp,	stack_end
+	lla				sp, stack_end
 
-	j						tsp_check_test
+	j					pwn_check
 
-tsp_check_test:
-	addi				sp, sp, -10
-	li					a0, 2
+pwn_check:
+	addi			sp, sp, -16
+	lla				t3, pwn_check_los_start
+	.4byte		0x00000e2f
 
-	lla					t3,	tsp_check_test_los_start
-	.4byte			0x00000e2f
-
-	li					t1,	1				# calc temp
-	sd					t1, 0(sp)
-
-	li					t1, 0				# count
-	sb					t1, 8(sp)
-
-	li					t1, 5				# max
-	sb					t1, 9(sp)
-
-.L0:
-	# count += 1
-	lb					t1, 8(sp)
-	addi				t1, t1, 1
-	sb					t1, 8(sp)
-
-	ld					t1, 0(sp)
-	add					t1, t1, t1
-	sd					t1, 0(sp)
+	li				a0, 0x1234
+	sh				a0, 14(sp)
 	
-	li					a0, 6
+	mv				a0, sp
+	call			read_input
+
+	lh				a1, 14(sp)
+	li				a0, 11
 	ebreak
+
+	addi			sp, sp, 16
+	.4byte		0x0000003f
 	
-	mv					a0, sp
-	addi				a0, a0, 8
-	call				nested_func_test
+	j					easy_panic
 
-	lb					t1, 8(sp)
-	lb					t2, 9(sp)
-	bltu				t1, t2, .L0
+.section .rodata
+pwn_check_los_start:
+	.dword		pwn_check_los_end - pwn_check_los_start + 8
+	.dword		13
+	.dword		0b0001
+	.dword		15
+	.dword		0b0010
+pwn_check_los_end:
 
-	addi				sp, sp, 10
-	.4byte	0x0000003f # pop
+.section .text
 
-	j						easy_panic
+read_input:
+	# a0: dest addr
+	addi			sp, sp, -24
+	lla				t3, read_input_los_start
+	.4byte		0x00000e2f
 
-easy_panic:
-	j						easy_panic
+	sd				a1, 0(sp)
+	sd				a2, 8(sp)
+	sd				a3, 16(sp)
 
-.section	.rodata
-tsp_check_test_los_start:
-	.dword				tsp_check_test_los_end - tsp_check_test_los_start + 8
-	.dword				7
-	.dword				0b1000
-	.dword				11
-	.dword				0b0001
+	li				a2, 0x10000000
+	li				a3, 10 		# enter
+.loop_start:
+	lb				a1, 0(a2)	# read
+	beqz			a1, .loop_start
 
-tsp_check_test_los_end:
+	sb				a1, 0(a0)
+	addi			a0, a0, 1
 
-.section	.text
-nested_func_test:
+	beq				a1, a3, .return # if enter detected.
+	j					.loop_start
 
-	addi				sp,	sp, -16
-
-	lla					t3,	nested_func_test_los_start
-	.4byte			0x00000e2f
-
-	sd					a1, 0(sp)
-	sd					a2,	8(sp)
-
-	lb					a1, 0(a0)
-	mv					a2, a0
-	li					a0, 11
-	ebreak
-
-	lb					a2, 1(a2)
-	li					a0, 12
-	ebreak
-
-	ld					a1, 0(sp)
-	ld					a2, 8(sp)
-
-	addi				sp, sp, 16
-	.4byte	0x0000003f # pop
+.return:
+	addi			sp, sp, 24
+	.4byte		0x0000003f
 
 	ret
 
-.section	.rodata
-nested_func_test_los_start:
-	.dword				nested_func_test_los_end - nested_func_test_los_start + 8
-	.dword				15
-	.dword				0b1000
+.section .rodata
+read_input_los_start:
+	.dword		read_input_los_end - read_input_los_start + 8
+	.dword		23
+	.dword		0b1000
+read_input_los_end:
 
-nested_func_test_los_end:
+.section .text
 
-.section	.bss
+	
+
+easy_panic:
+	j					easy_panic
+
+
+.section		.bss
 stack_start:
-	.skip				65536
+	.skip			65535
 stack_end:
 
 los_start:
-	.skip				65536
+	.skip			65535
 los_end:
+
+
+
+
+

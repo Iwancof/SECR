@@ -977,5 +977,4 @@ impl MemoryWrapper {
 	pub fn validate_address(&self, address: u64) -> bool {
 		self.memory.validate_address(address - DRAM_BASE)
 	}
-
 }
