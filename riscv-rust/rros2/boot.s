@@ -24,6 +24,9 @@ pwn_check:
 	lh				a1, 14(sp)
 	li				a0, 11
 	ebreak
+	
+	mv				a0, sp
+	call			write_string
 
 	addi			sp, sp, 16
 	.4byte		0x0000003f
@@ -38,6 +41,43 @@ pwn_check_los_start:
 	.dword		15
 	.dword		0b0010
 pwn_check_los_end:
+
+.section .text
+write_string:
+	addi			sp, sp, -24
+	lla				t3,	read_input_los_start
+	.4byte		0x00000e2f
+
+	sd				a1, 0(sp)
+	sd				a2, 8(sp)
+	sd				a3, 16(sp)
+
+	li				a2, 10
+	li				a3, 0x10000000
+.w_loop_start:
+	lb				a1, 0(a0)
+	sb				a1, 0(a3)
+	addi			a0, a0, 1
+	beq				a1, a2, .w_return
+	j					.w_loop_start
+	
+.w_return:
+	ld				a1, 0(sp)
+	ld				a2, 8(sp)
+	ld				a3, 16(sp)
+
+	addi			sp, sp, 24
+	.4byte		0x0000003f
+
+	ret	
+
+.section .rodata
+
+write_string_los_start:
+	.dword		write_string_los_end - write_string_los_start + 8
+	.dword		23
+	.dword		0b1000
+write_string_los_end:
 
 .section .text
 
@@ -77,8 +117,6 @@ read_input_los_start:
 read_input_los_end:
 
 .section .text
-
-	
 
 easy_panic:
 	j					easy_panic

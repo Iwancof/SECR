@@ -45,7 +45,7 @@ impl Uart {
 			}
 		}
 		// 0x10 is just an arbitary number @TODO: Fix me
-		if (self.clock % 0x10) == 0 && self.thr != 0 {
+		if (self.clock % 1) == 0 && self.thr != 0 {
 			self.terminal.put_byte(self.thr);
 			self.thr = 0;
 			self.lsr |= 0x20;
