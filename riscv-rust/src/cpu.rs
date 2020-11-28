@@ -1363,88 +1363,14 @@ impl Cpu {
 	pub fn get_mut_terminal(&mut self) -> &mut Box<dyn Terminal> {
 		self.mmu.get_mut_uart().get_mut_terminal()
 	}
-	/*
-	pub fn push_lob(&mut self, local_offsets_block: Lob) {
-		for entry in local_offsets_block.entries {
-			self.local_offset_sp -= 2; // entry has size of 2.
-			if let Err(_) = self.mmu.store(self.local_offset_sp, entry.end_offset) {
-				
-			}
-			if let Err(_) = self.mmu.store(self.local_offset_sp + 1, entry.access_flag) {
-				
-			}
-		}
-		self.local_offset_sp -= 1;
-		if let Err(_) = self.mmu.store(self.local_offset_sp, local_offsets_block.size) {
+	
+	fn access_to_size(flag: u64) -> u64 {
+		if 0b10000 <= flag {
+			return (flag >> 4) & 0b1111;
+		} else {
+			return flag & 0b1111;
 		}
 	}
-	fn get_now_lob_size(&mut self) -> Result<u8, Trap> {
-		self.mmu.load(self.local_offset_sp)
-	}
-	pub fn pop_lob(&mut self) -> Result<(), Trap> {
-		self.local_offset_sp += self.get_now_lob_size()? as u64;
-		Ok(())
-	}
-	pub fn dump_local_offset_stack(&mut self) {
-		print_tty("-- Start los dumping -- \n".to_string());
-		let mut reading_pointer = self.local_offset_sp;
-		loop {
-			let lob_size = match self.mmu.load(reading_pointer) {
-				Ok(v) => v,
-				Err(_) => return,
-			};
-			if lob_size == 0 { // field must not be zero. so this is end of stack.
-				break;
-			}
-			print_tty(format!(" lob dump in {:x}\n", reading_pointer));
-			for i in (1..(lob_size as u64)).step_by(2) {
-				match self.mmu.load(reading_pointer + i) {
-					Ok(v) => print_tty(format!("  end offset : {}\n", v)),
-					Err(_) => return,
-				}
-				match self.mmu.load(reading_pointer + i + 1) {
-					Ok(v) => print_tty(format!("  access flag: {:x}\n", v)),
-					Err(_) => return,
-				}
-			}
-			reading_pointer += lob_size as u64;
-		}
-		print_tty("-- End of stack -- \n".to_string());
-	}
-	pub fn tsp_check(&mut self, base_reg: usize, offset: i64, size: u8) -> Result<(), Trap>{
-		return Ok(());
-		if base_reg != 2 {
-			return Ok(()); // not local access.
-		}
-		for i in (1..self.get_now_lob_size()? as u64).step_by(2) {
-			let end_offset = self.mmu.load(self.local_offset_sp + i)? as i64;
-			let access_flag = self.mmu.load(self.local_offset_sp + i + 1)? as u8;
-			if end_offset == 0 {
-				break;
-			}
-
-			if offset + size as i64 - 1<= end_offset {
-				// TODO: Read or write ...?
-				if access_flag & size == 0 { // Access Denied
-					print_tty(format!("TSP Check Fault! in {}. Access by {}\n", offset, size));
-					print_tty(format!("Correct info. {}:{}\n", end_offset, access_flag));
-					return Err(Trap {
-						trap_type: TrapType::TSPCheckFault,
-						value: offset as u64, // TODO: support i64.
-					});
-				} else {
-					// print_tty(format!("{} -> {}, {}\n", offset, size, access_flag));
-					return Ok(());
-				}
-			}
-		}
-		print_tty(format!("not found...{}:{}\n", offset, size));
-		return Err(Trap {
-			trap_type: TrapType::TSPCheckFault,
-			value: u64::MAX,
-		});
-	}
-	*/
 	fn push_lob(&mut self, lob: LocalOffsetBlock) -> Result<(), Trap> {
 		self.local_offset_sp -= lob.entries.len() as u64 * 2 * 8; // entries.
 		self.local_offset_sp -= 8; // base pointer
@@ -1486,10 +1412,10 @@ impl Cpu {
 		let entry_number = Cpu::get_entry_number_from_block_size(size);
 
 		let mut reading = lob_base + 8 * 2;
-		let end_address = accessing_address + (request & 0b1111) - 1;
-		// print_tty(format!("end_address: {:x}\n", accessing_address + request & 0b1111));
+		let end_address = accessing_address + Cpu::access_to_size(request) - 1;
+		// print_tty(format!("end_address: {:x}\n", accessing_address + access_to_size(request));
 		// print_tty(format!("accessing_address: {:x}\n", accessing_address));
-		// print_tty(format!("request & 0b1111 : {:x}\n", request & 0b1111));
+		// print_tty(format!("request & 0b11111111 : {:x}\n", request & 0b11111111));
 		// print_tty(format!("end_address      : {:x}\n", end_address));
 
 		for _ in 0..entry_number {
@@ -1498,8 +1424,8 @@ impl Cpu {
 			let access_flag = self.mmu.load_doubleword(reading)?;
 			reading += 8;
 
-			//print_tty(format!("access is {:x}\n", end_address));
-		  //print_tty(format!("stored in {:x}\n", end_offset));
+			// print_tty(format!("access is {:x}\n", end_address));
+		  // print_tty(format!("stored in {:x}\n", end_offset));
 
 			if end_address <= end_offset { // Found
 				//print_tty(format!("access is {:x}\n", end_address));
@@ -1507,7 +1433,8 @@ impl Cpu {
 				if access_flag & request == request { // Ok
 					return Ok(())
 				} else {
-					print_tty("Accessing entry found. but permission denied.\n".to_string());
+					// print_tty("Accessing entry found. but permission denied.\n".to_string());
+					print_tty(format!("Access permission denied. request: {:b}, provide: {:b}\n", request, access_flag));
 					return Err(Trap {
 						trap_type: TrapType::TSPCheckFault,
 						value: accessing_address,
@@ -2870,7 +2797,7 @@ const INSTRUCTIONS: [Instruction; INSTRUCTION_NUM] = [
 		name: "LB",
 		operation: |cpu, word, _address| {
 			let f = parse_format_i(word);
-			cpu.tsp_check(f.rs1, f.imm, 1)?;
+			cpu.tsp_check(f.rs1, f.imm, 0b0001 << 4)?;
 			cpu.x[f.rd] = match cpu.mmu.load(cpu.x[f.rs1].wrapping_add(f.imm) as u64) {
 				Ok(data) => data as i8 as i64,
 				Err(e) => return Err(e)
@@ -2899,7 +2826,7 @@ const INSTRUCTIONS: [Instruction; INSTRUCTION_NUM] = [
 		name: "LD",
 		operation: |cpu, word, _address| {
 			let f = parse_format_i(word);
-			cpu.tsp_check(f.rs1, f.imm, 8)?;
+			cpu.tsp_check(f.rs1, f.imm, 0b1000 << 4)?;
 			cpu.x[f.rd] = match cpu.mmu.load_doubleword(cpu.x[f.rs1].wrapping_add(f.imm) as u64) {
 				Ok(data) => data as i64,
 				Err(e) => return Err(e)
@@ -2914,7 +2841,7 @@ const INSTRUCTIONS: [Instruction; INSTRUCTION_NUM] = [
 		name: "LH",
 		operation: |cpu, word, _address| {
 			let f = parse_format_i(word);
-			cpu.tsp_check(f.rs1, f.imm, 2)?;
+			cpu.tsp_check(f.rs1, f.imm, 0b0010 << 4)?;
 			cpu.x[f.rd] = match cpu.mmu.load_halfword(cpu.x[f.rs1].wrapping_add(f.imm) as u64) {
 				Ok(data) => data as i16 as i64,
 				Err(e) => return Err(e)
@@ -3034,7 +2961,7 @@ const INSTRUCTIONS: [Instruction; INSTRUCTION_NUM] = [
 		name: "LW",
 		operation: |cpu, word, _address| {
 			let f = parse_format_i(word);
-			cpu.tsp_check(f.rs1, f.imm, 4)?;
+			cpu.tsp_check(f.rs1, f.imm, 0b0100 << 4)?;
 			cpu.x[f.rd] = match cpu.mmu.load_word(cpu.x[f.rs1].wrapping_add(f.imm) as u64) {
 				Ok(data) => data as i32 as i64,
 				Err(e) => return Err(e)
@@ -3262,7 +3189,7 @@ const INSTRUCTIONS: [Instruction; INSTRUCTION_NUM] = [
 		name: "SB",
 		operation: |cpu, word, _address| {
 			let f = parse_format_s(word);
-			cpu.tsp_check(f.rs1, f.imm, 1)?;
+			cpu.tsp_check(f.rs1, f.imm, 0b0001)?;
 			cpu.mmu.store(cpu.x[f.rs1].wrapping_add(f.imm) as u64, cpu.x[f.rs2] as u8)
 		},
 		disassemble: dump_format_s
@@ -3315,7 +3242,7 @@ const INSTRUCTIONS: [Instruction; INSTRUCTION_NUM] = [
 		name: "SD",
 		operation: |cpu, word, _address| {
 			let f = parse_format_s(word);
-			cpu.tsp_check(f.rs1, f.imm, 8)?;
+			cpu.tsp_check(f.rs1, f.imm, 0b1000)?;
 			cpu.mmu.store_doubleword(cpu.x[f.rs1].wrapping_add(f.imm) as u64, cpu.x[f.rs2] as u64)
 		},
 		disassemble: dump_format_s
@@ -3336,7 +3263,7 @@ const INSTRUCTIONS: [Instruction; INSTRUCTION_NUM] = [
 		name: "SH",
 		operation: |cpu, word, _address| {
 			let f = parse_format_s(word);
-			cpu.tsp_check(f.rs1, f.imm, 2)?;
+			cpu.tsp_check(f.rs1, f.imm, 0b0010)?;
 			cpu.mmu.store_halfword(cpu.x[f.rs1].wrapping_add(f.imm) as u64, cpu.x[f.rs2] as u16)
 		},
 		disassemble: dump_format_s
@@ -3610,7 +3537,7 @@ const INSTRUCTIONS: [Instruction; INSTRUCTION_NUM] = [
 		name: "SW",
 		operation: |cpu, word, _address| {
 			let f = parse_format_s(word);
-			cpu.tsp_check(f.rs1, f.imm, 4)?;
+			cpu.tsp_check(f.rs1, f.imm, 0b0100)?;
 			cpu.mmu.store_word(cpu.x[f.rs1].wrapping_add(f.imm) as u64, cpu.x[f.rs2] as u32)
 		},
 		disassemble: dump_format_s

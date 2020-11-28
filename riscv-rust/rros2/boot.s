@@ -22,8 +22,8 @@ pwn_check:
 	call			read_input
 
 	lh				a1, 14(sp)
-	li				a0, 11
 	ebreak
+	li				a0, 11
 	
 	mv				a0, sp
 	call			write_string
@@ -37,9 +37,9 @@ pwn_check:
 pwn_check_los_start:
 	.dword		pwn_check_los_end - pwn_check_los_start + 8
 	.dword		13
-	.dword		0b00000001
+	.dword		0b00010001
 	.dword		15
-	.dword		0b00000010
+	.dword		0b00100010
 pwn_check_los_end:
 
 .section .text
@@ -76,7 +76,7 @@ write_string:
 write_string_los_start:
 	.dword		write_string_los_end - write_string_los_start + 8
 	.dword		23
-	.dword		0b00001000
+	.dword		0b10001000
 write_string_los_end:
 
 .section .text
@@ -113,7 +113,7 @@ read_input:
 read_input_los_start:
 	.dword		read_input_los_end - read_input_los_start + 8
 	.dword		23
-	.dword		0b00001000
+	.dword		0b10001000
 read_input_los_end:
 
 .section .text
